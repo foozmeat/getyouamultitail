@@ -5,7 +5,7 @@ var compile_output = function () {
 
     var additional_commands = "";
 
-    var numlines = $('#builder').length();
+    var numlines = $('#builder').length;
 
     $('#builder').each(function (idx, div) {
 
