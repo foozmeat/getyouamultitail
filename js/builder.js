@@ -46,7 +46,7 @@ var create_command = function () {
     compile_logs();
 
     var base_command = "#!/usr/bin/env bash\n\n";
-    base_command += sprintf("# Made with %s\n\nmultitail \\\n", script_link());
+    base_command += sprintf("# Made with %s\n\nmultitail -m 0 \\\n", script_link());
 
     var all_log_commands = "";
 
