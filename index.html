@@ -7,29 +7,68 @@
 
     <title>Get you a Multitail</title>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
-    <style>
 
-    </style>
 
-    <script>
-        var base_command = "#!/bin/env bash\nmultitail "
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
-        $( document ).ready(function() {
 
-            // Your code here.
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
-        });
+    <script src="builder.js"></script>
 
-    </script>
 </head>
 <body>
+<!--<a href="https://github.com/foozmeat/getyouamultitail"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"></a>-->
 
-Hey guys
+<form id="builder" class="form-inline">
+    <div class="logformline0">
+        <div class="form-group">
+            <label for="loglabel0" class="control-label">Label</label>
+            <input id="loglabel0" value="system" class="form-control" placeholder="syslog">
+        </div>
+
+        <div class="form-group">
+          <label for="logcolor0" class="control-label">Color</label>
+          <select name="logcolor0" id="logcolor0" class="form-control">
+              <option>-</option>
+              <option>black</option>
+              <option selected>red</option>
+              <option>green</option>
+              <option>yellow</option>
+              <option>blue</option>
+              <option>magenta</option>
+              <option>white</option>
+          </select>
+        </div>
+
+        <!--<div class="form-group">-->
+          <!--<div class="">-->
+            <!--<label class="radio-inline" for="localremote0-0">-->
+              <!--<input type="radio" name="localremote0" id="localremote0-0" value="1" checked="checked">Local-->
+            <!--</label>-->
+            <!--<label class="radio-inline" for="localremote0-1">-->
+              <!--<input type="radio" name="localremote0" id="localremote0-1" value="2">Remote-->
+            <!--</label>-->
+          <!--</div>-->
+        <!--</div>-->
+
+        <div class="form-group">
+            <label for="logssh0" class="control-label">SSH</label>
+            <input id="logssh0" value="mail.panic.com" class="form-control" placeholder="user@host">
+        </div>
+        <div class="form-group">
+            <label for="logfile0" class="control-label">File</label>
+            <input id="logfile0" value="/var/log/syslog" class="form-control" placeholder="/var/log/syslog">
+        </div>
+    </div>
+</form>
+
+<pre id="result"></pre>
+
 </body>
 </html>
