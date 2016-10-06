@@ -7,70 +7,104 @@
 
     <title>Get you a Multitail</title>
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
     <!--<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">-->
     <!--<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>-->
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
 
     <script language="javascript" src="js/lz-string.min.js"></script>
     <script language="javascript" src="js/sprintf.min.js"></script>
 
     <script src="js/builder.js"></script>
 
+    <script src="https://cdn.jsdelivr.net/clipboard.js/1.5.12/clipboard.min.js"></script>
+
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+
     <style>
         #logformlinetemplate {
-            display:none;
+            display: none;
         }
 
         /*#link {*/
-            /*display: none;*/
+        /*display: none;*/
         /*}*/
     </style>
 </head>
 <body>
-<!--<a href="https://github.com/foozmeat/getyouamultitail"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"></a>-->
+<a href="https://github.com/foozmeat/getyouamultitail">
+    <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"></a>
 
-<form id="builder" class="form-inline">
+<div class="container">
 
-</form>
-<button id="addbutton" name="addbutton" class="btn btn-primary">Add Another Log</button>
+    <div class="jumbotron">
+        <h1>Get you a multitail</h1>
+        <p class="lead">Build yourself some wicked multitail commands and share them with your friends.</p>
+        <div>
+            <!-- Place this tag where you want the button to render. -->
+            <a class="github-button" href="https://github.com/foozmeat/getyouamultitail" data-style="mega" data-count-href="/foozmeat/getyouamultitail/stargazers" data-count-api="/repos/foozmeat/getyouamultitail#stargazers_count" data-count-aria-label="# stargazers on GitHub" aria-label="Star foozmeat/getyouamultitail on GitHub">Star</a>
+        </div>
+    </div>
 
-<pre id="result"></pre>
+    <div class="panel panel-default">
+        <form id="builder" class="form-inline"></form>
 
-<div id="link"><a href="#">Link to this script</a></div>
+        <button id="addbutton" name="addbutton" class="btn btn-primary">Add Another Log</button>
 
-<div id="logformlinetemplate">
-    <div class="form-group">
+        <button id="copybutton" class="btn" data-clipboard-target="#result">Copy to clipboard</button>
+
+        <div class="panel-footer"><pre id="result"></pre></div>
+
+    </div>
+
+    <div id="link"><a href="#">Link to this script</a></div>
+
+</div>
+
+<!-- New Log Template -->
+<div id="logformlinetemplate" class="row panel-body">
+
+    <div class="input-group">
+        <label for="logsplit" class="control-label">Split</label>
+        <input type="checkbox" class="form-control" id="logsplit" checked="checked">
+    </div>
+
+    <div class="input-group">
         <label for="loglabel" class="control-label">Label</label>
-        <input id="loglabel" class="form-control" placeholder="syslog">
+        <input type="text" id="loglabel" class="form-control" placeholder="syslog" value="syslog">
     </div>
 
-    <div class="form-group">
-      <label for="logcolor" class="control-label">Color</label>
-      <select name="logcolor" id="logcolor" class="form-control">
-          <option selected value="">-</option>
-          <option>black</option>
-          <option>red</option>
-          <option>green</option>
-          <option>yellow</option>
-          <option>blue</option>
-          <option>magenta</option>
-          <option>white</option>
-      </select>
+    <div class="input-group">
+        <label for="logcolor" class="control-label">Color</label>
+        <select name="logcolor" id="logcolor" class="form-control">
+            <option selected value="">-</option>
+            <option>black</option>
+            <option>red</option>
+            <option>green</option>
+            <option>yellow</option>
+            <option>blue</option>
+            <option>magenta</option>
+            <option>white</option>
+        </select>
     </div>
 
-    <div class="form-group">
+    <div class="input-group">
         <label for="logssh" class="control-label">SSH</label>
-        <input id="logssh" class="form-control" value="mail.panic.com" placeholder="user@host">
+        <input type="text" id="logssh" class="form-control" value="mail.panic.com" placeholder="user@host">
     </div>
-    <div class="form-group">
+    <div class="input-group">
         <label for="logfile" class="control-label">File</label>
-        <input id="logfile" class="form-control" value="/var/log/system.log" placeholder="/var/log/syslog">
+        <input type="text" id="logfile" class="form-control" value="/var/log/syslog"
+               placeholder="/var/log/syslog">
     </div>
 </div>
 

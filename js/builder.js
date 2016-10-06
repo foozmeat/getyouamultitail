@@ -15,10 +15,11 @@ var compile_logs = function () {
 
         log_dict.label = logformline.find("#loglabel" + idx).val();
         log_dict.color = logformline.find("#logcolor" + idx).val();
-        ;
+
         log_dict.file = logformline.find("#logfile" + idx).val();
         log_dict.ssh = logformline.find("#logssh" + idx).val();
-        ;
+
+        log_dict.split = logformline.find("#logsplit" + idx).is(':checked');
 
         log_structure.lines[idx] = log_dict;
     });
@@ -44,8 +45,8 @@ var create_command = function () {
 
     compile_logs();
 
-    var base_command = "#!/bin/env bash\n\n";
-    base_command += sprintf("# Made with %s\n\nmultitail", script_link());
+    var base_command = "#!/usr/bin/env bash\n\n";
+    base_command += sprintf("# Made with %s\n\nmultitail \\\n", script_link());
 
     var all_log_commands = "";
 
@@ -56,23 +57,27 @@ var create_command = function () {
         var log_commands = "";
 
         if (log.label) {
-            log_commands += sprintf(" --label '[%s]'", log.label);
+            log_commands += sprintf("--label '[%s] ' ", log.label);
         }
 
         if (log.color) {
-            log_commands += sprintf(" -ci %s", log.color);
+            log_commands += sprintf("-ci %s ", log.color);
         }
 
         if (log.ssh && log.file) {
-            log_commands += sprintf(" -L 'ssh %s \"tail -n 0 -q -f %s\"'", log.ssh, log.file);
+
+            log_commands += log.split ? "-l " : "-L ";
+            log_commands += sprintf("'ssh %s \"tail -n 0 -q -f %s\"' ", log.ssh, log.file);
 
         } else if (log.file) {
-            log_commands += sprintf(' %s', log.file);
+            log_commands += log.split ? "-i " : "-I ";
+
+            log_commands += sprintf('%s ', log.file);
 
         }
 
         if (i + 1 < num_logs) {
-            log_commands += " \\ \n";
+            log_commands += "\\ \n";
         }
 
         all_log_commands += log_commands;
@@ -105,7 +110,7 @@ var add_log = function (logline) {
         $("#logcolor", newLog).val(logline.color);
         $("#logssh", newLog).val(logline.ssh);
         $("#logfile", newLog).val(logline.file);
-
+        $("#logsplit", newLog).prop("checked", logline.split);
     }
 
     newLog.find("*").each(function (idx, node) {
@@ -172,5 +177,7 @@ $(document).ready(function () {
         e.preventDefault();
         add_log();
     });
+
+    new Clipboard('#copybutton');
 });
 
