@@ -48,7 +48,7 @@ var create_command = function () {
     compile_logs();
 
     var base_command = "#!/usr/bin/env bash\n\n";
-    base_command += sprintf("# Made with %s\n\nmultitail -m 0 \\\n", script_link());
+    base_command += sprintf("# Made with\n\n# %s\n\nmultitail -m 0 \\\n", script_link());
 
     var all_log_commands = "";
 
@@ -98,6 +98,7 @@ var create_command = function () {
 var update = function () {
     $('#result').text(create_command());
     $('#link a').attr("href", script_link());
+    // $('.twitter-share-button').attr("data-url", script_link());
 };
 
 var add_log = function (logline) {
