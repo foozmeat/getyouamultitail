@@ -1,3 +1,5 @@
+"use strict";
+
 var num_logs = 0;
 
 var log_structure = {
