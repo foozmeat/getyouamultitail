@@ -10,10 +10,13 @@ var log_structure = {
 
 var compile_logs = function () {
 
-    $('#builder').children().each(function (idx, div) {
+    log_structure.lines = [];
+
+    $('#builder').children().each(function (i, div) {
 
         var logformline = $(div);
         var log_dict = {};
+        var idx = logformline.attr("data-group");
 
         log_dict.label = logformline.find("#loglabel" + idx).val();
         log_dict.color = logformline.find("#logcolor" + idx).val();
@@ -25,7 +28,7 @@ var compile_logs = function () {
         log_dict.remote = logformline.find("#logremote" + idx).is(':checked');
         log_dict.comm = logformline.find("#logcomm" + idx).is(':checked');
 
-        log_structure.lines[idx] = log_dict;
+        log_structure.lines[i] = log_dict;
     });
 
     for (var i = 0; i < log_structure.lines.length; i++) {
@@ -42,10 +45,10 @@ var compile_logs = function () {
     delete log_structure.encoded;
 
     var json = JSON.stringify(log_structure);
-    console.log(json.length, json);
+    // console.log(json.length, json);
 
     var compressed = LZString.compressToEncodedURIComponent(json);
-    console.log(compressed.length, compressed);
+    // console.log(compressed.length, compressed);
 
     log_structure.encoded = compressed;
     return log_structure;
@@ -122,9 +125,16 @@ var create_command = function () {
 
 var update = function (evt) {
 
+    console.log("Updating");
     updateLogGroup(evt);
     $('#result').text(create_command());
     $('#link a').attr("href", script_link());
+
+    if (num_logs > 1) {
+        $(".drag-handle").show();
+    } else {
+        $(".drag-handle").hide();
+    }
 
     // $('.twitter-share-button').attr("data-url", script_link());
 };
@@ -242,6 +252,12 @@ $(document).ready(function () {
     });
 
     $("input :checkbox").bootstrapSwitch();
+
+    $( ".form-inline" ).sortable({
+        handle: ".drag-handle",
+        update: function( event, ui ) { update() }
+
+    });
 
     new Clipboard('#copybutton');
 });
