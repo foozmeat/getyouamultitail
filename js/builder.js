@@ -96,7 +96,7 @@ var create_command = function () {
 
             } else if (!log.remote && log.comm) {
                 log_commands += log.split ? "-l " : "-L ";
-                log_commands += sprintf('%s ', log.file);
+                log_commands += sprintf('"%s" ', log.file);
 
             }
 
@@ -106,8 +106,9 @@ var create_command = function () {
         //     log_commands += "\\ \n";
         // }
 
-        all_log_commands += log_commands;
-
+        if (log.file) {
+            all_log_commands += log_commands;
+        }
 
     }
 
