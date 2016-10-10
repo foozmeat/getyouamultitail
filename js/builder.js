@@ -10,7 +10,7 @@ var compile_logs = function () {
 
     log_structure.lines = [];
 
-    $('#builder').children().each(function (i, div) {
+    $('#builder .loggroup').each(function (i, div) {
 
         var logformline = $(div);
         var log_dict = {};
@@ -56,7 +56,7 @@ var compile_logs = function () {
     console.log(json.length, json);
 
     var compressed = LZString.compressToEncodedURIComponent(json);
-    // console.log(compressed.length, compressed);
+    console.log(compressed.length, compressed);
 
     log_structure.encoded = compressed;
     return log_structure;
@@ -71,7 +71,7 @@ var create_command = function () {
 
     compile_logs();
 
-    var base_command = "#!/usr/bin/env bash\n";
+    var base_command = "#!/usr/bin/env bash\n\n";
     base_command += "# Made with \"Get you a multitail\"\n";
     base_command += sprintf("# %s\n\n", script_link());
 
@@ -102,10 +102,12 @@ var create_command = function () {
 
         if (log.file) {
 
-            if (!log.remote && !log.comm) {
-                log_commands += log.split ? "-i " : "-I ";
-            } else {
-                log_commands += log.split ? "-l " : "-L ";
+            if (i > 0) {
+                if (!log.remote && !log.comm) {
+                    log_commands += log.split ? "-i " : "-I ";
+                } else {
+                    log_commands += log.split ? "-l " : "-L ";
+                }
             }
 
             if (log.remote && !log.comm) {
@@ -141,7 +143,6 @@ var create_command = function () {
 
 var update = function (evt) {
 
-    console.log("Updating");
     updateLogGroup(evt);
     $('#result').text(create_command());
     $('#link a').attr("href", script_link());
@@ -236,14 +237,17 @@ var parse_query = function () {
         var json_string = LZString.decompressFromEncodedURIComponent(data);
         // console.log(json_string);
 
-        log_structure = JSON.parse(json_string);
+        var temp_log_structure = JSON.parse(json_string);
+        $("#description").val(temp_log_structure.desc);
+        $("#markinterval").val(temp_log_structure.mark);
 
-        for (var i = 0; i < log_structure.lines.length; i++) {
-            var log = log_structure.lines[i];
+        for (var i = 0; i < temp_log_structure.lines.length; i++) {
+            var log = temp_log_structure.lines[i];
 
             add_log(log);
         }
 
+        log_structure = temp_log_structure;
     } else {
         add_log();
     }
