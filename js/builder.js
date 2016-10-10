@@ -2,9 +2,7 @@
 
 var num_logs = 0;
 
-var log_structure = {
-    'v': 1
-};
+var log_structure = {};
 
 var compile_logs = function () {
 
@@ -195,13 +193,13 @@ var add_log = function (logline) {
     // console.log($(newLog[0]));
 
     if (logline) {
+        $("#logsplit", newLog).prop("checked", logline.split);
         $("#loglabel", newLog).val(logline.label);
         $("#logcolor", newLog).val(logline.color);
-        $("#logssh", newLog).val(logline.ssh);
-        $("#logfile", newLog).val(logline.file);
-        $("#logsplit", newLog).prop("checked", logline.split);
         $("#logremote", newLog).prop("checked", logline.remote);
+        $("#logssh", newLog).val(logline.ssh);
         $("#logcomm", newLog).prop("checked", logline.comm);
+        $("#logfile", newLog).val(logline.file);
     }
 
     newLog.find("*").each(function (idx, node) {
@@ -254,6 +252,18 @@ var parse_query = function () {
 
 };
 
+var reset = function() {
+    log_structure = {
+        'v': 1
+    };
+
+    $("#description").val("");
+    $("#markinterval").val(0);
+    $("#builder .loggroup").remove();
+    add_log();
+    update();
+};
+
 var getParameterByName = function (name, url) {
     if (!url) url = window.location.href;
     name = name.replace(/[\[\]]/g, "\\$&");
@@ -272,6 +282,11 @@ $(document).ready(function () {
     $("#addbutton").click(function (e) {
         e.preventDefault();
         add_log();
+    });
+
+    $("#resetbutton").click(function (e) {
+        e.preventDefault();
+        reset();
     });
 
     $("#global-options").change(function (e) { update(e); });
