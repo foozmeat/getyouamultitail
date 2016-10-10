@@ -3,9 +3,7 @@
 var num_logs = 0;
 
 var log_structure = {
-    'v': 1,
-    'encoded': '',
-    'lines': []
+    'v': 1
 };
 
 var compile_logs = function () {
@@ -31,6 +29,12 @@ var compile_logs = function () {
         log_structure.lines[i] = log_dict;
     });
 
+    delete log_structure.desc;
+    if ($("#description").val()) {
+        log_structure.desc = $("#description").val();
+    }
+
+    // Get rid of any empty keys to save space
     for (var i = 0; i < log_structure.lines.length; i++) {
         var log = log_structure.lines[i];
 
@@ -39,13 +43,12 @@ var compile_logs = function () {
                 delete log[key];
             }
         });
-
     }
 
     delete log_structure.encoded;
 
     var json = JSON.stringify(log_structure);
-    // console.log(json.length, json);
+    console.log(json.length, json);
 
     var compressed = LZString.compressToEncodedURIComponent(json);
     // console.log(compressed.length, compressed);
@@ -66,6 +69,11 @@ var create_command = function () {
     var base_command = "#!/usr/bin/env bash\n";
     base_command += "# Made with \"Get you a multitail\"\n";
     base_command += sprintf("# %s\n\n", script_link());
+
+    if (log_structure.desc) {
+        base_command += sprintf("# %s\n\n", log_structure.desc);
+    }
+
     base_command += "multitail -m 0 ";
 
     var all_log_commands = "";
@@ -132,8 +140,11 @@ var update = function (evt) {
 
     if (num_logs > 1) {
         $(".drag-handle").show();
+        $(".split-checkbox:gt(0)").show();
+
     } else {
         $(".drag-handle").hide();
+        $(".split-checkbox").hide();
     }
 
     // $('.twitter-share-button').attr("data-url", script_link());
@@ -250,6 +261,9 @@ $(document).ready(function () {
         e.preventDefault();
         add_log();
     });
+
+    $("#description").change(function (e) { update(e); });
+
 
     $("input :checkbox").bootstrapSwitch();
 

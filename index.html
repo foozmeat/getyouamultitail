@@ -14,13 +14,17 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
     <!-- Bootstrap 3 -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
     <link rel="stylesheet" href="css/bootstrap-switch.min.css">
 
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
 
     <script language="javascript" src="js/bootstrap-switch.min.js"></script>
 
@@ -38,58 +42,75 @@
         #logformlinetemplate {
             display: none;
         }
+
+        #description {
+            width: 100%;
+        }
     </style>
 
 </head>
 <body>
-<header>
-    <h1>Get you a multitail</h1>
-    <p>Build yourself some wicked multitail commands and share them with your friends.</p>
+<div class="container">
 
-    <div style="text-align: right;">
-        <a class="github-button" href="https://github.com/foozmeat/getyouamultitail"
-           data-count-href="/foozmeat/getyouamultitail/stargazers"
-           data-count-api="/repos/foozmeat/getyouamultitail#stargazers_count"
-           data-count-aria-label="# stargazers on GitHub" aria-label="Star foozmeat/getyouamultitail on GitHub">Star</a>
+    <header>
 
-        <a class="github-button" href="https://github.com/foozmeat/getyouamultitail/fork"
-           data-count-href="/foozmeat/getyouamultitail/network"
-           data-count-api="/repos/foozmeat/getyouamultitail#forks_count" data-count-aria-label="# forks on GitHub"
-           aria-label="Fork foozmeat/getyouamultitail on GitHub">Fork</a>
+        <div class="jumbotron">
+            <h1>Get you a multitail</h1>
+            <p>Build & share some wicked multitail commands.</p>
+            <div style="text-align: right;">
+                <a class="github-button" href="https://github.com/foozmeat/getyouamultitail"
+                   data-count-href="/foozmeat/getyouamultitail/stargazers"
+                   data-count-api="/repos/foozmeat/getyouamultitail#stargazers_count"
+                   data-count-aria-label="# stargazers on GitHub" aria-label="Star foozmeat/getyouamultitail on GitHub">Star</a>
 
-        <!--<a href="https://twitter.com/share" class="twitter-share-button" data-url="" data-show-count="false">Tweet</a>-->
+                <a class="github-button" href="https://github.com/foozmeat/getyouamultitail/fork"
+                   data-count-href="/foozmeat/getyouamultitail/network"
+                   data-count-api="/repos/foozmeat/getyouamultitail#forks_count"
+                   data-count-aria-label="# forks on GitHub"
+                   aria-label="Fork foozmeat/getyouamultitail on GitHub">Fork</a>
+
+                <!--<a href="https://twitter.com/share" class="twitter-share-button" data-url="" data-show-count="false">Tweet</a>-->
+            </div>
+
+
+        </div>
+    </header>
+
+
+    <form id="builder" class="form-inline">
+        <div class="form-group col-sm-12">
+            <label for="description" class="sr-only">Description</label>
+            <input type="text" id="description" class="form-control" placeholder="Describe what this does">
+        </div>
+
+    </form>
+
+    <button class="btn btn-default" id="addbutton" name="addbutton"><span class="glyphicon glyphicon-plus"></span></button>
+
+    <pre id="result"></pre>
+
+    <div id="buttons">
+        <button class="btn btn-default" id="copybutton" data-clipboard-target="#result">Copy to <span
+                style="position: relative; top: 0.1em; left: 0.2em">📋</span></button>
+        <button class="btn btn-default" id="link"><a href="#">Link to this script</a></button>
     </div>
-
-</header>
-
-<form id="builder" class="form-inline">
-
-</form>
-
-<button id="addbutton" name="addbutton"> <span class="glyphicon glyphicon-plus"></span></button>
-
-<pre id="result"></pre>
-
-<div id="buttons">
-    <button id="copybutton" data-clipboard-target="#result">Copy to <span
-            style="position: relative; top: 0.1em; left: 0.2em">📋</span></button>
-    <button id="link"><a href="#">Link to this script</a></button>
 </div>
 
-<div id="logformlinetemplate" class="loggroup" data-group="">
+<!-- Hidden form template -->
+<div id="logformlinetemplate" class="form-group loggroup" data-group="">
 
     <div class="input-group drag-handle">
         <span class="glyphicon glyphicon-sort" aria-hidden="true"></span>
     </div>
 
-    <div class="input-group">
+    <div class="input-group split-checkbox">
         <label for="logsplit" class="control-label">Split</label>
         <input type="checkbox" class="form-control" id="logsplit">
     </div>
 
     <div class="input-group">
         <label for="loglabel" class="control-label">Label</label>
-        <input id="loglabel" class="form-control" placeholder="Label">
+        <input type="text" id="loglabel" class="form-control" placeholder="Label">
     </div>
 
     <div class="input-group">
@@ -109,7 +130,7 @@
 
     <div class="input-group">
         <label for="logremote" class="control-label">Remote?</label>
-        <input type="checkbox" class="form-control" id="logremote" >
+        <input type="checkbox" class="form-control" id="logremote">
     </div>
 
     <div class="input-group" style="display: none;">
