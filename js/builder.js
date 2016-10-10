@@ -240,6 +240,8 @@ $(document).ready(function () {
         add_log();
     });
 
+    $("input :checkbox").bootstrapSwitch();
+
     new Clipboard('#copybutton');
 });
 
