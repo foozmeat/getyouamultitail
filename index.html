@@ -78,26 +78,44 @@
 
 
     <form id="builder" class="form-inline">
-        <div class="form-group col-sm-12">
+        <div class="form-group col-sm-12 well" id="global-options">
             <label for="description" class="sr-only">Description</label>
             <input type="text" id="description" class="form-control" placeholder="Describe what this does">
+
+            <div class="input-group">
+                <label for="markinterval" class="form-label">Mark Interval (secs)</label>
+                <select name="markinterval" id="markinterval" class="form-control">
+                    <option selected>0</option>
+                    <option>15</option>
+                    <option>30</option>
+                    <option>45</option>
+                    <option>60</option>
+                    <option>90</option>
+                    <option>120</option>
+                </select>
+
+            </div>
         </div>
+
 
     </form>
 
-    <button class="btn btn-default" id="addbutton" name="addbutton"><span class="glyphicon glyphicon-plus"></span></button>
+    <div class="col-sm-12">
+        <button class="btn btn-default" id="addbutton" name="addbutton"><span class="glyphicon glyphicon-plus"></span>
+        </button>
 
-    <pre id="result"></pre>
+        <pre id="result"></pre>
 
-    <div id="buttons">
-        <button class="btn btn-default" id="copybutton" data-clipboard-target="#result">Copy to <span
-                style="position: relative; top: 0.1em; left: 0.2em">📋</span></button>
-        <button class="btn btn-default" id="link"><a href="#">Link to this script</a></button>
+        <div id="buttons">
+            <button class="btn btn-default" id="copybutton" data-clipboard-target="#result">Copy to <span
+                    style="position: relative; top: 0.1em; left: 0.2em">📋</span></button>
+            <button class="btn btn-default" id="link"><a href="#">Link to this script</a></button>
+        </div>
     </div>
 </div>
 
 <!-- Hidden form template -->
-<div id="logformlinetemplate" class="form-group loggroup" data-group="">
+<div id="logformlinetemplate" class="form-group loggroup col-sm-12" data-group="">
 
     <div class="input-group drag-handle">
         <span class="glyphicon glyphicon-sort" aria-hidden="true"></span>

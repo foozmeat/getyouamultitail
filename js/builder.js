@@ -34,6 +34,11 @@ var compile_logs = function () {
         log_structure.desc = $("#description").val();
     }
 
+    delete log_structure.mark;
+    if ($("#markinterval").val() != 0) {
+        log_structure.mark = $("#markinterval").val();
+    }
+
     // Get rid of any empty keys to save space
     for (var i = 0; i < log_structure.lines.length; i++) {
         var log = log_structure.lines[i];
@@ -76,6 +81,10 @@ var create_command = function () {
 
     base_command += "multitail -m 0 ";
 
+    if (log_structure.mark) {
+        base_command += sprintf("--mark-interval %i ", log_structure.mark);
+    }
+
     var all_log_commands = "";
 
     for (var i = 0; i < log_structure.lines.length; i++) {
@@ -92,22 +101,21 @@ var create_command = function () {
         }
 
         if (log.file) {
-            if (log.remote && !log.comm) {
 
+            if (!log.remote && !log.comm) {
+                log_commands += log.split ? "-i " : "-I ";
+            } else {
                 log_commands += log.split ? "-l " : "-L ";
+            }
+
+            if (log.remote && !log.comm) {
                 log_commands += sprintf("'ssh %s \"tail -q -f %s\"' ", log.ssh, log.file);
 
             } else if (log.remote && log.comm) {
-                log_commands += log.split ? "-l " : "-L ";
                 log_commands += sprintf("'ssh %s \"%s\"' ", log.ssh, log.file);
 
-            } else if (!log.remote && !log.comm) {
-                log_commands += log.split ? "-i " : "-I ";
-                log_commands += sprintf('%s ', log.file);
-
-            } else if (!log.remote && log.comm) {
-                log_commands += log.split ? "-l " : "-L ";
-                log_commands += sprintf('"%s" ', log.file);
+            } else if (!log.remote) {
+                log_commands += sprintf("'%s' ", log.file);
 
             }
 
@@ -262,8 +270,7 @@ $(document).ready(function () {
         add_log();
     });
 
-    $("#description").change(function (e) { update(e); });
-
+    $("#global-options").change(function (e) { update(e); });
 
     $("input :checkbox").bootstrapSwitch();
 
