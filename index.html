@@ -154,6 +154,22 @@
         <input type="checkbox" class="form-control logcomm" id="logcomm">
     </div>
 
+    <div class="input-group logcommref" style="display: none;">
+        <label for="logcommref" class="form-label sr-only">Refresh Interval</label>
+        <select name="markinterval" id="logcommref" class="form-control input-sm">
+            <option selected value="0">Refresh Interval (secs)</option>
+            <option>5</option>
+            <option>10</option>
+            <option>15</option>
+            <option>30</option>
+            <option>45</option>
+            <option>60</option>
+            <option>90</option>
+            <option>120</option>
+        </select>
+
+    </div>
+
     <div class="input-group">
         <label for="logfile" class="control-label sr-only">File or Command</label>
         <input type="text" id="logfile" class="form-control input-sm" placeholder="/var/log/syslog or ping example.com">

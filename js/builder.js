@@ -25,6 +25,7 @@ var compile_logs = function () {
         log_dict.split = logformline.find("#logsplit" + idx).is(':checked');
         log_dict.remote = logformline.find("#logremote" + idx).is(':checked');
         log_dict.comm = logformline.find("#logcomm" + idx).is(':checked');
+        log_dict.commref = logformline.find("#logcommref" + idx).val();
 
         log_dict.highfilt = logformline.find("#loghighfilt" + idx).is(':checked');
         log_dict.filter = logformline.find("#logfilter" + idx).val();
@@ -98,7 +99,9 @@ var create_command = function () {
                 split_count++;
             }
         }
-        base_command += sprintf("-s %i ", split_count);
+        if (split_count > 1) {
+            base_command += sprintf("-s %i ", split_count);
+        }
     }
 
     var all_log_commands = "";
@@ -128,6 +131,10 @@ var create_command = function () {
 
         }
 
+        if (log.comm && log.commref > 0) {
+            log_commands += sprintf("-r %i ", log.commref);
+        }
+
         if (log.file) {
 
             if (!log.remote && !log.comm) {
@@ -143,7 +150,7 @@ var create_command = function () {
                 log_commands += sprintf("'ssh %s \"%s\"' ", log.ssh, log.file);
 
             } else if (!log.remote) {
-                log_commands += sprintf("'%s' ", log.file);
+                log_commands += sprintf("%s ", log.file);
 
             }
 
@@ -197,9 +204,17 @@ var updateLogGroup = function (evt) {
                 targetGroup.show();
             } else {
                 targetGroup.hide();
-
             }
 
+        } else if (ctl.id == "logcomm" + datagroup) {
+
+            var targetGroup = $("#logcommref" + datagroup).parents(".input-group");
+
+            if ($(ctl).is(':checked')) {
+                targetGroup.show();
+            } else {
+                targetGroup.hide();
+            }
         }
 
     }
@@ -227,6 +242,7 @@ var add_log = function (logline) {
         $("#loglabel", newLog).val(logline.label);
         $("#logcolor", newLog).val(logline.color);
 
+
         $("#logremote", newLog).prop("checked", logline.remote);
         $("#logssh", newLog).val(logline.ssh);
 
@@ -235,6 +251,16 @@ var add_log = function (logline) {
         }
 
         $("#logcomm", newLog).prop("checked", logline.comm);
+
+        if (logline.comm) {
+            $(".logcommref", newLog).show();
+        }
+
+        if (logline.commref) {
+            $("#logcommref", newLog).val(logline.commref);
+
+        }
+
         $("#logfile", newLog).val(logline.file);
 
         $("#loghighfilt", newLog).prop("checked", logline.highfilt);
