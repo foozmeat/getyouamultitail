@@ -6,7 +6,7 @@ var log_structure = {};
 
 var compile_logs = function () {
 
-    log_structure.lines = [];
+    log_structure.l = [];
 
     $('#builder .loggroup').each(function (i, div) {
 
@@ -29,7 +29,7 @@ var compile_logs = function () {
         log_dict.highfilt = logformline.find("#loghighfilt" + idx).is(':checked');
         log_dict.filter = logformline.find("#logfilter" + idx).val();
 
-        log_structure.lines[i] = log_dict;
+        log_structure.l[i] = log_dict;
 
     });
 
@@ -38,14 +38,15 @@ var compile_logs = function () {
         log_structure.desc = $("#description").val();
     }
 
-    delete log_structure.mark;
-    if ($("#markinterval").val() != 0) {
-        log_structure.mark = $("#markinterval").val();
-    }
+    delete log_structure.vh;
+    log_structure.vh = $("#vertical").is(':checked');
+
+    delete log_structure.m;
+    log_structure.m = $("#markinterval").val();
 
     // Get rid of any empty keys to save space
-    for (var i = 0; i < log_structure.lines.length; i++) {
-        var log = log_structure.lines[i];
+    for (var i = 0; i < log_structure.l.length; i++) {
+        var log = log_structure.l[i];
 
         $.each(log, function (key, value) {
             if (!log[key]) {
@@ -57,7 +58,7 @@ var compile_logs = function () {
     delete log_structure.encoded;
 
     var json = JSON.stringify(log_structure);
-    // console.log(json.length, json);
+    console.log(json.length, json);
 
     var compressed = LZString.compressToEncodedURIComponent(json);
     // console.log(compressed.length, compressed);
@@ -85,15 +86,26 @@ var create_command = function () {
 
     base_command += "multitail -m 0 ";
 
-    if (log_structure.mark) {
-        base_command += sprintf("--mark-interval %i ", log_structure.mark);
+    if (log_structure.m != 0) {
+        base_command += sprintf("--mark-interval %i ", log_structure.m);
+    }
+
+    if (log_structure.vh) {
+
+        var split_count = 1; // The first log counts as a split
+        for (var i = 0; i < log_structure.l.length; i++) {
+            if (log_structure.l[i].split) {
+                split_count++;
+            }
+        }
+        base_command += sprintf("-s %i ", split_count);
     }
 
     var all_log_commands = "";
 
-    for (var i = 0; i < log_structure.lines.length; i++) {
+    for (var i = 0; i < log_structure.l.length; i++) {
 
-        var log = log_structure.lines[i];
+        var log = log_structure.l[i];
         var log_commands = "";
 
         if (log.label) {
@@ -293,10 +305,12 @@ var parse_query = function () {
 
         var temp_log_structure = JSON.parse(json_string);
         $("#description").val(temp_log_structure.desc);
-        $("#markinterval").val(temp_log_structure.mark);
+        $("#markinterval").val(temp_log_structure.m);
+        $("#vertical").prop("checked", temp_log_structure.vh);
 
-        for (var i = 0; i < temp_log_structure.lines.length; i++) {
-            var log = temp_log_structure.lines[i];
+
+        for (var i = 0; i < temp_log_structure.l.length; i++) {
+            var log = temp_log_structure.l[i];
 
             add_log(log);
         }
@@ -317,8 +331,9 @@ var reset = function () {
     $("#description").val("");
     $("#markinterval").val(0);
     $("#builder .loggroup").remove();
-    add_log();
+    $("#vertical").bootstrapSwitch('state', false);
 
+    add_log();
 
 };
 
@@ -353,6 +368,11 @@ $(document).ready(function () {
     $("#resetbutton").click(function (e) {
         e.preventDefault();
         reset();
+    });
+
+    $(".vertical").bootstrapSwitch({
+        onText: "Vertical",
+        offText: "Horizontal"
     });
 
     new Clipboard('#copybutton');
