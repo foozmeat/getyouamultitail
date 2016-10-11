@@ -207,6 +207,7 @@ var updateLogGroup = function (evt) {
     if (num_logs > 1) {
         $(".drag-handle").show();
         $(".split-checkbox:gt(0)").show();
+        $(".split-checkbox:eq(0)").hide();
 
     } else {
         $(".drag-handle").hide();
@@ -369,6 +370,15 @@ $(document).ready(function () {
     $(".vertical").bootstrapSwitch({
         onText: "Vertical",
         offText: "Horizontal"
+    });
+
+    $("#builder").sortable({
+        items: "> .loggroup",
+        opacity: 0.75,
+        forcePlaceholderSize: true,
+        axis: "y",
+        stop: function( event, ui ) { update(event)}
+
     });
 
     new Clipboard('#copybutton');
