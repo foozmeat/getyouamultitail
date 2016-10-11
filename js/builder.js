@@ -181,19 +181,13 @@ var updateLogGroup = function (evt) {
 
         evt = $(evt)[0];
         var loggroup = $(evt.currentTarget);
-        // console.log(loggroup);
 
         if (loggroup.is("input")) {
-            // console.log($(evt.currentTarget).parents(".loggroup"));
             loggroup = $(evt.currentTarget).parents(".loggroup");
         }
 
-
         var ctl = evt.target;
-        // console.log(ctl);
-
         var datagroup = loggroup.attr("data-group");
-        // console.log(datagroup);
 
         if (ctl.id == "logremote" + datagroup) {
 
@@ -222,12 +216,10 @@ var updateLogGroup = function (evt) {
 };
 
 var add_log = function (logline) {
-    // console.log("adding");
 
     var newLog = $("#logformlinetemplate").clone();
     newLog[0].id = '';
     newLog[0].style.display = 'block';
-    // console.log($(newLog[0]));
 
     if (logline) {
         $("#logsplit", newLog).prop("checked", logline.split);
@@ -237,11 +229,17 @@ var add_log = function (logline) {
         $("#logremote", newLog).prop("checked", logline.remote);
         $("#logssh", newLog).val(logline.ssh);
 
+        if (logline.ssh) {
+            $(".logssh", newLog).show();
+        }
+
         $("#logcomm", newLog).prop("checked", logline.comm);
         $("#logfile", newLog).val(logline.file);
 
         $("#loghighfilt", newLog).prop("checked", logline.highfilt);
         $("#logfilter", newLog).val(logline.filter);
+
+
     }
 
     $(".logsplit", newLog).bootstrapSwitch({
@@ -271,7 +269,6 @@ var add_log = function (logline) {
 
 
     newLog.find("*").each(function (idx, node) {
-        // console.log(idx, node);
 
         if (node.id) {
             node.id = node.id + num_logs
@@ -301,7 +298,6 @@ var parse_query = function () {
 
     if (data) {
         var json_string = LZString.decompressFromEncodedURIComponent(data);
-        // console.log(json_string);
 
         var temp_log_structure = JSON.parse(json_string);
         $("#description").val(temp_log_structure.desc);
