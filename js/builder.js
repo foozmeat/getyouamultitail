@@ -14,17 +14,23 @@ var compile_logs = function () {
         var log_dict = {};
         var idx = logformline.attr("data-group");
 
+        var logfile = logformline.find("#logfile" + idx);
+
         log_dict.label = logformline.find("#loglabel" + idx).val();
         log_dict.color = logformline.find("#logcolor" + idx).val();
 
-        log_dict.file = logformline.find("#logfile" + idx).val();
+        log_dict.file = logfile.val();
         log_dict.ssh = logformline.find("#logssh" + idx).val();
 
         log_dict.split = logformline.find("#logsplit" + idx).is(':checked');
         log_dict.remote = logformline.find("#logremote" + idx).is(':checked');
         log_dict.comm = logformline.find("#logcomm" + idx).is(':checked');
 
+        log_dict.highfilt = logformline.find("#loghighfilt" + idx).is(':checked');
+        log_dict.filter = logformline.find("#logfilter" + idx).val();
+
         log_structure.lines[i] = log_dict;
+
     });
 
     delete log_structure.desc;
@@ -98,14 +104,24 @@ var create_command = function () {
             log_commands += sprintf("-ci %s ", log.color);
         }
 
+        if (log.filter) {
+
+            if (log.highfilt) {
+                log_commands += "-e "
+            } else {
+                log_commands += "-ec "
+            }
+
+            log_commands += sprintf("'%s' ", log.filter);
+
+        }
+
         if (log.file) {
 
-            if (i > 0) {
-                if (!log.remote && !log.comm) {
-                    log_commands += log.split ? "-i " : "-I ";
-                } else {
-                    log_commands += log.split ? "-l " : "-L ";
-                }
+            if (!log.remote && !log.comm) {
+                log_commands += log.split ? "-i " : "-I ";
+            } else {
+                log_commands += log.split ? "-l " : "-L ";
             }
 
             if (log.remote && !log.comm) {
@@ -205,10 +221,15 @@ var add_log = function (logline) {
         $("#logsplit", newLog).prop("checked", logline.split);
         $("#loglabel", newLog).val(logline.label);
         $("#logcolor", newLog).val(logline.color);
+
         $("#logremote", newLog).prop("checked", logline.remote);
         $("#logssh", newLog).val(logline.ssh);
+
         $("#logcomm", newLog).prop("checked", logline.comm);
         $("#logfile", newLog).val(logline.file);
+
+        $("#loghighfilt", newLog).prop("checked", logline.highfilt);
+        $("#logfilter", newLog).val(logline.filter);
     }
 
     $(".logsplit", newLog).bootstrapSwitch({
@@ -224,6 +245,11 @@ var add_log = function (logline) {
     $(".logcomm", newLog).bootstrapSwitch({
         onText: "Command",
         offText: "File"
+    });
+
+    $(".loghighfilt", newLog).bootstrapSwitch({
+        onText: "Filter",
+        offText: "Highlight"
     });
 
     $(".addbutton", newLog).click(function (e) {
@@ -282,7 +308,7 @@ var parse_query = function () {
 
 };
 
-var reset = function() {
+var reset = function () {
     log_structure = {
         'v': 1
     };
@@ -312,12 +338,17 @@ $(document).ready(function () {
     $.fn.bootstrapSwitch.defaults.size = 'small';
     $.fn.bootstrapSwitch.defaults.onColor = 'info';
     $.fn.bootstrapSwitch.defaults.offColor = 'success';
-    $.fn.bootstrapSwitch.defaults.onSwitchChange = function(evt, state) { update(evt)};
+    $.fn.bootstrapSwitch.defaults.onSwitchChange = function (evt, state) {
+        update(evt)
+    };
+    $.fn.bootstrapSwitch.defaults.labelWidth = 10;
 
     parse_query();
 
 
-    $("#global-options").change(function (e) { update(e); });
+    $("#global-options").change(function (e) {
+        update(e);
+    });
 
     $("#resetbutton").click(function (e) {
         e.preventDefault();

@@ -18,8 +18,8 @@ html {
 /*}*/
 
 h1 {
-    /*font-size: 8vw;*/
-    /*letter-spacing: -0.045em;*/
+    font-size: 8vw;
+    letter-spacing: -0.045em;
     font-style: italic;
     font-weight: 800;
 }
