@@ -37,16 +37,7 @@
 
     <script src="js/builder.js"></script>
 
-    <!--<link rel="stylesheet" href="css/builder.css">-->
-    <style>
-        #logformlinetemplate {
-            display: none;
-        }
-
-        #description {
-            width: 100%;
-        }
-    </style>
+    <link rel="stylesheet" href="css/builder.css">
 
 </head>
 <body>
@@ -76,16 +67,15 @@
         </div>
     </header>
 
-
     <form id="builder" class="form-inline">
-        <div class="form-group col-sm-12 well" id="global-options">
+        <div class="input-group col-sm-12 well" id="global-options">
             <label for="description" class="sr-only">Description</label>
-            <input type="text" id="description" class="form-control" placeholder="Describe what this does">
+            <input type="text" id="description" class="form-control input-sm" placeholder="Describe what this does">
 
             <div class="input-group">
-                <label for="markinterval" class="form-label">Mark Interval (secs)</label>
-                <select name="markinterval" id="markinterval" class="form-control">
-                    <option selected>0</option>
+                <label for="markinterval" class="form-label sr-only">Mark Interval</label>
+                <select name="markinterval" id="markinterval" class="form-control input-sm">
+                    <option selected value="0">Mark Interval (secs)</option>
                     <option>15</option>
                     <option>30</option>
                     <option>45</option>
@@ -97,21 +87,17 @@
             </div>
         </div>
 
-
     </form>
 
     <div class="col-sm-12 well">
-        <button class="btn btn-default" id="addbutton" name="addbutton">
-            <span class="glyphicon glyphicon-plus"></span>
-        </button>
 
         <pre id="result"></pre>
 
         <div id="buttons">
-            <button class="btn btn-default" id="copybutton" data-clipboard-target="#result">Copy to <span
+            <button class="" id="copybutton" data-clipboard-target="#result">Copy to <span
                     style="position: relative; top: 0.1em; left: 0.2em">📋</span></button>
-            <button class="btn btn-default" id="link"><a href="#">Link to this script</a></button>
-            <button class="btn btn-danger" id="resetbutton">Reset</button>
+            <button class="" id="link"><a href="#">Link to this script</a></button>
+            <button class="" id="resetbutton">Reset</button>
         </div>
     </div>
 </div>
@@ -123,19 +109,19 @@
         <span class="glyphicon glyphicon-sort" aria-hidden="true"></span>
     </div>
 
-    <div class="input-group split-checkbox">
-        <label for="logsplit" class="control-label">Split</label>
-        <input type="checkbox" class="form-control" id="logsplit">
+    <div class="input-group split-checkbox col-xs-1">
+        <label for="logsplit" class="control-label sr-only">Split</label>
+        <input type="checkbox" class="form-control logsplit" id="logsplit">
+    </div>
+
+    <div class="input-group col-xs-1">
+        <label for="loglabel" class="control-label sr-only">Label</label>
+        <input type="text" id="loglabel" class="form-control input-sm" placeholder="Label">
     </div>
 
     <div class="input-group">
-        <label for="loglabel" class="control-label">Label</label>
-        <input type="text" id="loglabel" class="form-control" placeholder="Label">
-    </div>
-
-    <div class="input-group">
-        <label for="logcolor" class="control-label">Color</label>
-        <select name="logcolor" id="logcolor" class="form-control"
+        <label for="logcolor" class="control-label sr-only">Color</label>
+        <select name="logcolor" id="logcolor" class="form-control input-sm"
                 onchange='this.parentNode.parentNode.setAttribute("data-color",this.value);'>
             <option id="colorOption" selected value="">Color</option>
             <option id="blackOption" value="black">black</option>
@@ -149,24 +135,31 @@
     </div>
 
     <div class="input-group">
-        <label for="logremote" class="control-label">Remote?</label>
-        <input type="checkbox" class="form-control" id="logremote">
+        <label for="logremote" class="control-label sr-only">Remote?</label>
+        <input type="checkbox" class="form-control logremote" id="logremote">
     </div>
 
     <div class="input-group" style="display: none;">
-        <label for="logssh" class="control-label">SSH</label>
-        <input type="text" id="logssh" class="form-control" placeholder="user@host">
+        <label for="logssh" class="control-label sr-only">SSH</label>
+        <input type="text" id="logssh" class="form-control input-sm" placeholder="user@host">
     </div>
 
     <div class="input-group">
-        <label for="logcomm" class="control-label">Command?</label>
-        <input type="checkbox" class="form-control" id="logcomm">
+        <label for="logcomm" class="control-label sr-only">Command?</label>
+        <input type="checkbox" class="form-control logcomm" id="logcomm">
     </div>
 
     <div class="input-group">
-        <label for="logfile" class="control-label">File or Command</label>
-        <input type="text" id="logfile" class="form-control" placeholder="/var/log/syslog or ping example.com">
+        <label for="logfile" class="control-label sr-only">File or Command</label>
+        <input type="text" id="logfile" class="form-control input-sm" placeholder="/var/log/syslog or ping example.com">
     </div>
+
+    <div class="input-group">
+        <button class="btn btn-default btn-sm addbutton" name="addbutton">
+            <span class="glyphicon glyphicon-plus"></span>
+        </button>
+    </div>
+
 </div>
 
 </body>

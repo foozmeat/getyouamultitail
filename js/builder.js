@@ -51,10 +51,10 @@ var compile_logs = function () {
     delete log_structure.encoded;
 
     var json = JSON.stringify(log_structure);
-    console.log(json.length, json);
+    // console.log(json.length, json);
 
     var compressed = LZString.compressToEncodedURIComponent(json);
-    console.log(compressed.length, compressed);
+    // console.log(compressed.length, compressed);
 
     log_structure.encoded = compressed;
     return log_structure;
@@ -145,27 +145,26 @@ var update = function (evt) {
     $('#result').text(create_command());
     $('#link a').attr("href", script_link());
 
-    if (num_logs > 1) {
-        $(".drag-handle").show();
-        $(".split-checkbox:gt(0)").show();
-
-    } else {
-        $(".drag-handle").hide();
-        $(".split-checkbox").hide();
-    }
-
     // $('.twitter-share-button').attr("data-url", script_link());
 };
 
 var updateLogGroup = function (evt) {
     if (evt) {
-        evt = $(evt)[0];
-        var ctl = evt.target;
-        var loggroup = $(evt.currentTarget);
-        var datagroup = loggroup.attr("data-group");
 
-        // console.log(ctl);
+        evt = $(evt)[0];
+        var loggroup = $(evt.currentTarget);
         // console.log(loggroup);
+
+        if (loggroup.is("input")) {
+            // console.log($(evt.currentTarget).parents(".loggroup"));
+            loggroup = $(evt.currentTarget).parents(".loggroup");
+        }
+
+
+        var ctl = evt.target;
+        // console.log(ctl);
+
+        var datagroup = loggroup.attr("data-group");
         // console.log(datagroup);
 
         if (ctl.id == "logremote" + datagroup) {
@@ -182,6 +181,16 @@ var updateLogGroup = function (evt) {
         }
 
     }
+
+    if (num_logs > 1) {
+        $(".drag-handle").show();
+        $(".split-checkbox:gt(0)").show();
+
+    } else {
+        $(".drag-handle").hide();
+        $(".split-checkbox").hide();
+    }
+
 };
 
 var add_log = function (logline) {
@@ -201,6 +210,27 @@ var add_log = function (logline) {
         $("#logcomm", newLog).prop("checked", logline.comm);
         $("#logfile", newLog).val(logline.file);
     }
+
+    $(".logsplit", newLog).bootstrapSwitch({
+        onText: "Split",
+        offText: "Merge"
+    });
+
+    $(".logremote", newLog).bootstrapSwitch({
+        onText: "Remote",
+        offText: "Local"
+    });
+
+    $(".logcomm", newLog).bootstrapSwitch({
+        onText: "Command",
+        offText: "File"
+    });
+
+    $(".addbutton", newLog).click(function (e) {
+        e.preventDefault();
+        add_log();
+    });
+
 
     newLog.find("*").each(function (idx, node) {
         // console.log(idx, node);
@@ -247,7 +277,7 @@ var parse_query = function () {
 
         log_structure = temp_log_structure;
     } else {
-        add_log();
+        reset();
     }
 
 };
@@ -256,12 +286,14 @@ var reset = function() {
     log_structure = {
         'v': 1
     };
+    num_logs = 0;
 
     $("#description").val("");
     $("#markinterval").val(0);
     $("#builder .loggroup").remove();
     add_log();
-    update();
+
+
 };
 
 var getParameterByName = function (name, url) {
@@ -277,28 +309,22 @@ $(document).ready(function () {
 
     console.log("ready!");
 
+    $.fn.bootstrapSwitch.defaults.size = 'small';
+    $.fn.bootstrapSwitch.defaults.onColor = 'info';
+    $.fn.bootstrapSwitch.defaults.offColor = 'success';
+    $.fn.bootstrapSwitch.defaults.onSwitchChange = function(evt, state) { update(evt)};
+
     parse_query();
 
-    $("#addbutton").click(function (e) {
-        e.preventDefault();
-        add_log();
-    });
+
+    $("#global-options").change(function (e) { update(e); });
 
     $("#resetbutton").click(function (e) {
         e.preventDefault();
         reset();
     });
 
-    $("#global-options").change(function (e) { update(e); });
-
-    $("input :checkbox").bootstrapSwitch();
-
-    $( ".form-inline" ).sortable({
-        handle: ".drag-handle",
-        update: function( event, ui ) { update() }
-
-    });
-
     new Clipboard('#copybutton');
+
 });
 
