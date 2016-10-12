@@ -67,11 +67,13 @@
     </header>
 
     <form id="builder" class="form-inline">
-        <div class="input-group col-sm-12 well" id="global-options">
-            <label for="description" class="sr-only">Description</label>
-            <input type="text" id="description" class="form-control input-sm" placeholder="Describe what this does">
 
-            <div class="input-group">
+        <div class="form-group " id="global-options">
+            <div class="input-group col-md-12">
+                <label for="description" class="sr-only">Description</label>
+                <input type="text" id="description" class="form-control input-sm" placeholder="Describe what this does">
+            </div>
+            <div class="input-group col-md-3">
                 <label for="markinterval" class="form-label sr-only">Mark Interval</label>
                 <select name="markinterval" id="markinterval" class="form-control input-sm">
                     <option selected value="0">Mark Interval (secs)</option>
@@ -82,10 +84,9 @@
                     <option>90</option>
                     <option>120</option>
                 </select>
-
             </div>
 
-            <div class="input-group">
+            <div class="input-group col-md-3">
                 <label for="vertical" class="control-label sr-only">Vertical Split?</label>
                 <input type="checkbox" class="form-control vertical" id="vertical">
             </div>
@@ -94,7 +95,7 @@
 
     </form>
 
-    <div class="col-sm-12 well">
+    <div class="col-sm-12">
 
         <pre id="result"></pre>
 

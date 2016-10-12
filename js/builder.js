@@ -374,8 +374,8 @@ $(document).ready(function () {
     console.log("ready!");
 
     $.fn.bootstrapSwitch.defaults.size = 'small';
-    $.fn.bootstrapSwitch.defaults.onColor = 'info';
-    $.fn.bootstrapSwitch.defaults.offColor = 'success';
+    $.fn.bootstrapSwitch.defaults.onColor = 'default';
+    $.fn.bootstrapSwitch.defaults.offColor = 'default';
     $.fn.bootstrapSwitch.defaults.onSwitchChange = function (evt, state) {
         update(evt)
     };
