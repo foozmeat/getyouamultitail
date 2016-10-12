@@ -92,6 +92,7 @@
             </div>
 
         </div>
+        <hr>
 
     </form>
 
@@ -150,6 +151,8 @@
         <input type="text" id="logssh" class="form-control input-sm" placeholder="user@host">
     </div>
 
+    <br>
+
     <div class="input-group">
         <label for="logcomm" class="control-label sr-only">Command?</label>
         <input type="checkbox" class="form-control logcomm" id="logcomm">
@@ -186,12 +189,19 @@
         <input type="text" id="logfilter" class="form-control input-sm" placeholder="regex">
     </div>
 
-    <div class="input-group">
-        <button class="btn btn-default btn-sm addbutton" name="addbutton">
+    <div class="input-group addbutton" style="display: none;">
+        <button class="btn btn-default btn-sm" name="addbutton">
             <span class="glyphicon glyphicon-plus"></span>
         </button>
     </div>
 
+    <div class="input-group deletebutton" style="display: none;">
+        <button class="btn btn-danger btn-sm " name="deletebutton">
+            <span class="glyphicon glyphicon-trash"></span>
+        </button>
+    </div>
+
+    <hr>
 </div>
 
 </body>

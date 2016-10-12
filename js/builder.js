@@ -1,8 +1,12 @@
 "use strict";
 
-var num_logs = 0;
-
 var log_structure = {};
+var log_row_id = 0;
+
+var num_logs = function() {
+    return $("#builder .loggroup").length;
+
+};
 
 var compile_logs = function () {
 
@@ -156,10 +160,6 @@ var create_command = function () {
 
         }
 
-        // if (i + 1 < num_logs) {
-        //     log_commands += "\\ \n";
-        // }
-
         if (log.file) {
             all_log_commands += log_commands;
         }
@@ -181,6 +181,19 @@ var update = function (evt) {
     $('#link a').attr("href", script_link());
 
     // $('.twitter-share-button').attr("data-url", script_link());
+};
+
+var deletelog = function(evt) {
+    if (evt) {
+
+        evt = $(evt)[0];
+        var loggroup = $(evt.currentTarget).parents(".loggroup");
+
+        console.log(loggroup);
+        loggroup.remove();
+
+        update();
+    }
 };
 
 var updateLogGroup = function (evt) {
@@ -219,15 +232,31 @@ var updateLogGroup = function (evt) {
 
     }
 
-    if (num_logs > 1) {
+    update_controls();
+};
+
+var update_controls = function() {
+    if (num_logs() > 1) {
         $(".drag-handle").show();
+
         $(".split-checkbox:gt(0)").show();
         $(".split-checkbox:eq(0)").hide();
+
+        $(".deletebutton").show();
+
+        $("#builder").sortable( "enable" )
 
     } else {
         $(".drag-handle").hide();
         $(".split-checkbox").hide();
+        $(".deletebutton:eq(0)").hide();
+
+        $("#builder").sortable( "disable" )
+
     }
+
+    $("#builder .addbutton").hide();
+    $("#builder .addbutton").last().show();
 
 };
 
@@ -294,23 +323,28 @@ var add_log = function (logline) {
         add_log();
     });
 
+    $(".deletebutton", newLog).click(function (e) {
+        e.preventDefault();
+        deletelog(e);
+    });
+
 
     newLog.find("*").each(function (idx, node) {
 
         if (node.id) {
-            node.id = node.id + num_logs
+            node.id = node.id + log_row_id;
         }
 
         if (node.htmlFor) {
-            node.htmlFor = node.htmlFor + num_logs
+            node.htmlFor = node.htmlFor + log_row_id;
         }
 
     });
 
-    newLog.attr("data-group", num_logs);
+    newLog.attr("data-group", log_row_id);
 
     newLog.appendTo('#builder');
-    num_logs++;
+    log_row_id++;
 
     newLog.change(function (e) {
         update(e);
@@ -349,7 +383,6 @@ var reset = function () {
     log_structure = {
         'v': 1
     };
-    num_logs = 0;
 
     $("#description").val("");
     $("#markinterval").val(0);
@@ -381,6 +414,16 @@ $(document).ready(function () {
     };
     $.fn.bootstrapSwitch.defaults.labelWidth = 10;
 
+    $("#builder").sortable({
+        items: "> .loggroup",
+        opacity: 0.75,
+        // forcePlaceholderSize: true,
+        // axis: "y",
+        stop: function( event, ui ) { update(event)}
+
+    });
+
+
     parse_query();
 
 
@@ -396,15 +439,6 @@ $(document).ready(function () {
     $(".vertical").bootstrapSwitch({
         onText: "Vertical",
         offText: "Horizontal"
-    });
-
-    $("#builder").sortable({
-        items: "> .loggroup",
-        opacity: 0.75,
-        forcePlaceholderSize: true,
-        axis: "y",
-        stop: function( event, ui ) { update(event)}
-
     });
 
     new Clipboard('#copybutton');
