@@ -280,7 +280,6 @@ button#link a {
 
 pre {
     font-family: monospace;
-    width: 80vw;
     margin: 3.6rem auto;
     background: #132637;
     color: #f7f8f1;
@@ -303,4 +302,13 @@ pre {
 
 .splitlog {
     margin-top: 20px;
+}
+
+.footer {
+    margin-top: 20px;
+    text-align: center;
+}
+
+#global-options {
+    margin-bottom: 20px;
 }

@@ -25,7 +25,7 @@
 <body>
 <div class="container">
 
-    <header>
+    <header class="col-md-12">
 
         <h1>Get you a multitail</h1>
         <p>Build some wicked <a target="_blank" href="https://www.vanheusden.com/multitail/">multitail</a> commands.</p>
@@ -42,37 +42,33 @@
                data-count-aria-label="# forks on GitHub"
                aria-label="Fork foozmeat/getyouamultitail on GitHub">Fork</a>
 
-            <a href="https://twitter.com/share" class="twitter-share-button" data-url="" data-show-count="true">Tweet</a>
+            <a href="https://twitter.com/share" class="twitter-share-button" data-url=""
+               data-show-count="true">Tweet</a>
         </div>
 
     </header>
 
     <form id="builder" class="form-inline">
 
-        <div class="form-group " id="global-options">
-            <div class="input-group col-md-12">
-                <label for="description" class="sr-only">Description</label>
-                <input type="text" id="description" class="form-control input-sm" placeholder="Describe what this does">
-            </div>
-            <div class="input-group col-md-3">
-                <label for="markinterval" class="form-label sr-only">Mark Interval</label>
-                <select name="markinterval" id="markinterval" class="form-control input-sm">
-                    <option selected value="0">Mark Interval (secs)</option>
-                    <option>15</option>
-                    <option>30</option>
-                    <option>45</option>
-                    <option>60</option>
-                    <option>90</option>
-                    <option>120</option>
-                </select>
-            </div>
+        <div class="form-group col-md-12" id="global-options">
+            <label for="description" class="sr-only">Description</label>
+            <input type="text" id="description" class="form-control" placeholder="Describe what this does"
+                   size="60">
+            <label for="markinterval" class="form-label sr-only">Mark Interval</label>
+            <select name="markinterval" id="markinterval" class="form-control">
+                <option selected value="0">Mark Interval (secs)</option>
+                <option>15</option>
+                <option>30</option>
+                <option>45</option>
+                <option>60</option>
+                <option>90</option>
+                <option>120</option>
+            </select>
 
-            <div class="input-group col-md-3">
-                <label for="vertical" class="control-label sr-only">Vertical Split?</label>
-                <input type="checkbox" class="form-control vertical" id="vertical">
-            </div>
-
+            <label for="vertical" class="control-label sr-only">Vertical Split?</label>
+            <input type="checkbox" class="form-control vertical" id="vertical">
         </div>
+
         <hr>
 
     </form>
@@ -87,6 +83,11 @@
             <button class="" id="link"><a href="#">Link to this script</a></button>
             <button class="" id="resetbutton">Reset</button>
         </div>
+    </div>
+
+    <div class="col-sm-12 footer">
+        <p>Built by <a target="_blank" href="https://twitter.com/foozmeat">@foozmeat</a> with design help from <a
+                target="_blank" href="https://twitter.com/timjcoulter">@timjcoulter.</a></p>
     </div>
 </div>
 
@@ -153,7 +154,8 @@
 
     <div class="input-group">
         <label for="logfile" class="control-label sr-only">File or Command</label>
-        <input type="text" id="logfile" class="form-control input-sm" placeholder="absolute path to log or command" size="60">
+        <input type="text" id="logfile" class="form-control input-sm" placeholder="absolute path to log or command"
+               size="60">
     </div>
 
     <br>

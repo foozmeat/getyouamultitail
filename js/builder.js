@@ -5,7 +5,6 @@ var log_row_id = 0;
 
 var num_logs = function() {
     return $("#builder .loggroup").length;
-
 };
 
 var compile_logs = function () {
@@ -236,11 +235,7 @@ var update_log_group = function (evt) {
             } else {
                 targetGroup.removeClass("splitlog");
             }
-
-
-
         }
-
     }
 
     update_controls();
@@ -248,17 +243,11 @@ var update_log_group = function (evt) {
 
 var update_controls = function() {
     if (num_logs() > 1) {
-
-
-        // $("#builder .logsplit:eq(0)")[0].prop('disabled', true);
-        // newLog.find("*").each(function (idx, node) {
-
         $(".deletebutton").show();
 
         $("#builder").sortable( "enable" )
 
     } else {
-        // $(".logsplit").prop('disabled', true);
         $(".deletebutton").hide();
 
         $("#builder").sortable( "disable" )
@@ -396,8 +385,7 @@ var parse_query = function () {
         var temp_log_structure = JSON.parse(json_string);
         $("#description").val(temp_log_structure.desc);
         $("#markinterval").val(temp_log_structure.m);
-        $("#vertical").prop("checked", temp_log_structure.vh);
-
+        $("#vertical").bootstrapSwitch('state', temp_log_structure.vh);
 
         for (var i = 0; i < temp_log_structure.l.length; i++) {
             var log = temp_log_structure.l[i];
@@ -447,6 +435,11 @@ $(document).ready(function () {
     };
     $.fn.bootstrapSwitch.defaults.labelWidth = 10;
 
+    $("#vertical").bootstrapSwitch({
+        onText: "Vertical",
+        offText: "Horizontal"
+    });
+
     $("#builder").sortable({
         items: "> .loggroup",
         opacity: 0.75,
@@ -465,11 +458,6 @@ $(document).ready(function () {
     $("#resetbutton").click(function (e) {
         e.preventDefault();
         reset();
-    });
-
-    $(".vertical").bootstrapSwitch({
-        onText: "Vertical",
-        offText: "Horizontal"
     });
 
     new Clipboard('#copybutton');
