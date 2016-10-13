@@ -128,7 +128,7 @@ pre {
     margin: 3.6rem auto;
     background: #0A2832;
     color: #E9E2CB;
-    white-space: pre-line;
+    white-space: pre-wrap;
     font-size: 1.2rem;
     padding: 1.2rem;
     border-radius: 0.8rem;
