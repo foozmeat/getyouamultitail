@@ -176,14 +176,14 @@ var create_command = function () {
 
 var update = function (evt) {
 
-    updateLogGroup(evt);
+    update_log_group(evt);
     $('#result').text(create_command());
     $('#link a').attr("href", script_link());
 
     // $('.twitter-share-button').attr("data-url", script_link());
 };
 
-var deletelog = function(evt) {
+var delete_log = function(evt) {
     if (evt) {
 
         evt = $(evt)[0];
@@ -195,7 +195,7 @@ var deletelog = function(evt) {
     }
 };
 
-var updateLogGroup = function (evt) {
+var update_log_group = function (evt) {
     if (evt) {
 
         evt = $(evt)[0];
@@ -277,16 +277,10 @@ var dupe_log = function(evt) {
 
         evt = $(evt)[0];
         var loggroup = $(evt.currentTarget).parents(".loggroup");
-        var group_id = loggroup.data("group");
+        var index = $( "#builder .loggroup" ).index( loggroup );
+        var log_data = log_structure.l[index];
 
-        var newLog = loggroup.clone();
-
-        newLog.attr("data-group", log_row_id);
-
-        newLog.insertAfter(loggroup);
-        log_row_id++;
-
-        update();
+        add_log(log_data);
     }
 };
 
@@ -298,6 +292,11 @@ var add_log = function (logline) {
 
     if (logline) {
         $("#logsplit", newLog).prop("checked", logline.split);
+
+        if (logline.split) {
+            newLog.addClass("splitlog");
+        }
+
         $("#loglabel", newLog).val(logline.label);
         $("#logcolor", newLog).val(logline.color);
 
@@ -355,7 +354,7 @@ var add_log = function (logline) {
 
     $(".deletebutton", newLog).click(function (e) {
         e.preventDefault();
-        deletelog(e);
+        delete_log(e);
     });
 
     $(".dupebutton", newLog).click(function (e) {
@@ -457,9 +456,7 @@ $(document).ready(function () {
 
     });
 
-
     parse_query();
-
 
     $("#global-options").change(function (e) {
         update(e);
