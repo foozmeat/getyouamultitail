@@ -70,9 +70,7 @@ div#buttons {
     white-space: nowrap;
 }
 
-button#copybutton,
-button#resetbutton,
-button#link {
+button {
     -webkit-appearance: none;
     -moz-appearance: none;
     -o-appearance: none;
@@ -88,6 +86,21 @@ button#link {
     cursor: pointer;
     display: inline-block;
     text-align: center;
+}
+
+button.deletebutton {
+    background: #d30102;
+    border: 1px solid black;
+}
+
+button.dupebutton {
+    background: #708183;
+    border: 1px solid black;
+}
+
+button.addbutton {
+    background: #708183;
+    border: 1px solid black;
 }
 
 button#resetbutton {

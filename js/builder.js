@@ -261,8 +261,8 @@ var update_controls = function() {
     $("#builder .logsplit:eq(0)").bootstrapSwitch('disabled', true);
     $("#builder .logsplit:gt(0)").bootstrapSwitch('disabled', false);
 
-    $("#builder .addbutton").hide();
-    $("#builder .addbutton").last().show();
+    $("#builder .addbuttondiv").hide();
+    $("#builder .addbuttondiv").last().show();
 
 };
 
