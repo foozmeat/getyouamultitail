@@ -227,6 +227,18 @@ var updateLogGroup = function (evt) {
             } else {
                 targetGroup.prop('disabled', true);
             }
+
+        } else if (ctl.id == "logsplit" + datagroup) {
+            var targetGroup = $(ctl).parents(".loggroup");
+
+            if ($(ctl).is(':checked')) {
+                targetGroup.addClass("splitlog");
+            } else {
+                targetGroup.removeClass("splitlog");
+            }
+
+
+
         }
 
     }
@@ -293,14 +305,14 @@ var add_log = function (logline) {
         $("#logremote", newLog).prop("checked", logline.remote);
         $("#logssh", newLog).val(logline.ssh);
 
-        if (logline.ssh) {
-            $(".logssh", newLog).show();
+        if (logline.remote) {
+            $("#logssh", newLog).prop('disabled', false);
         }
 
         $("#logcomm", newLog).prop("checked", logline.comm);
 
         if (logline.comm) {
-            $(".logcommref", newLog).show();
+            $("#logcommref", newLog).prop('disabled', false);
         }
 
         if (logline.commref) {
