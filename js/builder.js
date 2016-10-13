@@ -205,7 +205,7 @@ var update_log_group = function (evt) {
         }
 
         var ctl = evt.target;
-        var datagroup = loggroup.attr("data-group");
+        var datagroup = loggroup.data("group");
 
         if (ctl.id == "logremote" + datagroup) {
 
@@ -235,6 +235,11 @@ var update_log_group = function (evt) {
             } else {
                 targetGroup.removeClass("splitlog");
             }
+        } else if (ctl.id == "logcolor" + datagroup) {
+
+            var targetGroup = $(ctl).parents(".loggroup");
+            targetGroup.attr("data-color", $(ctl).val());
+
         }
     }
 
@@ -289,6 +294,7 @@ var add_log = function (logline) {
         $("#loglabel", newLog).val(logline.label);
         $("#logcolor", newLog).val(logline.color);
 
+        newLog.attr("data-color", logline.color);
 
         $("#logremote", newLog).prop("checked", logline.remote);
         $("#logssh", newLog).val(logline.ssh);

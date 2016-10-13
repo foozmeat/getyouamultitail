@@ -92,7 +92,7 @@
 </div>
 
 <!-- Hidden form template -->
-<div id="logformlinetemplate" class="well form-group loggroup col-sm-12" data-group="">
+<div id="logformlinetemplate" class="well form-group loggroup col-sm-12" data-group="" data-color="">
 
     <div class="input-group split-checkbox col-xs-1">
         <label for="logsplit" class="control-label sr-only">Split</label>
@@ -104,10 +104,9 @@
         <input type="text" id="loglabel" class="form-control input-sm" placeholder="Label">
     </div>
 
-    <div class="input-group">
+    <div class="input-group logcolor">
         <label for="logcolor" class="control-label sr-only">Color</label>
-        <select name="logcolor" id="logcolor" class="form-control input-sm"
-                onchange='this.parentNode.parentNode.setAttribute("data-color",this.value);'>
+        <select name="logcolor" id="logcolor" class="form-control input-sm">
             <option id="colorOption" selected value="">Color</option>
             <option id="blackOption" value="black">black</option>
             <option id="redOption">red</option>
@@ -115,6 +114,7 @@
             <option id="yellowOption">yellow</option>
             <option id="blueOption">blue</option>
             <option id="magentaOption">magenta</option>
+            <option id="cyanOption">cyan</option>
             <option id="whiteOption">white</option>
         </select>
     </div>
