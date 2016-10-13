@@ -142,9 +142,9 @@
         <input type="checkbox" class="form-control logremote" id="logremote">
     </div>
 
-    <div class="input-group logssh" style="display: none;">
+    <div class="input-group logssh">
         <label for="logssh" class="control-label sr-only">SSH</label>
-        <input type="text" id="logssh" class="form-control input-sm" placeholder="user@host" size="40">
+        <input type="text" id="logssh" class="form-control input-sm" placeholder="user@host" size="40" disabled>
     </div>
 
     <br>
@@ -154,9 +154,9 @@
         <input type="checkbox" class="form-control logcomm" id="logcomm">
     </div>
 
-    <div class="input-group logcommref" style="display: none;">
+    <div class="input-group logcommref">
         <label for="logcommref" class="form-label sr-only">Refresh Interval</label>
-        <select name="markinterval" id="logcommref" class="form-control input-sm">
+        <select name="markinterval" id="logcommref" class="form-control input-sm" disabled>
             <option selected value="0">Refresh Interval (secs)</option>
             <option>5</option>
             <option>10</option>
@@ -172,9 +172,10 @@
 
     <div class="input-group">
         <label for="logfile" class="control-label sr-only">File or Command</label>
-        <input type="text" id="logfile" class="form-control input-sm" placeholder="/var/log/syslog or ping example.com" size="60">
+        <input type="text" id="logfile" class="form-control input-sm" placeholder="absolute path to log or command" size="60">
     </div>
 
+    <br>
     <div class="input-group">
         <label for="loghighfilt" class="control-label sr-only">Filter or Highlight?</label>
         <input type="checkbox" class="form-control loghighfilt" id="loghighfilt">

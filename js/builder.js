@@ -210,22 +210,22 @@ var updateLogGroup = function (evt) {
 
         if (ctl.id == "logremote" + datagroup) {
 
-            var targetGroup = $("#logssh" + datagroup).parents(".input-group");
+            var targetGroup = $("#logssh" + datagroup);
 
             if ($(ctl).is(':checked')) {
-                targetGroup.show();
+                targetGroup.prop('disabled', false);
             } else {
-                targetGroup.hide();
+                targetGroup.prop('disabled', true);
             }
 
         } else if (ctl.id == "logcomm" + datagroup) {
 
-            var targetGroup = $("#logcommref" + datagroup).parents(".input-group");
+            var targetGroup = $("#logcommref" + datagroup);
 
             if ($(ctl).is(':checked')) {
-                targetGroup.show();
+                targetGroup.prop('disabled', false);
             } else {
-                targetGroup.hide();
+                targetGroup.prop('disabled', true);
             }
         }
 
