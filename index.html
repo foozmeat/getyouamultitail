@@ -46,7 +46,7 @@
     <header>
 
         <h1>Get you a multitail</h1>
-        <p>Build & share some wicked multitail commands.</p>
+        <p>Build some wicked multitail commands.</p>
         <div style="text-align: right;">
             <a class="github-button" href="https://github.com/foozmeat/getyouamultitail"
                data-count-href="/foozmeat/getyouamultitail/stargazers"
@@ -110,11 +110,7 @@
 </div>
 
 <!-- Hidden form template -->
-<div id="logformlinetemplate" class="form-group loggroup col-sm-12" data-group="">
-
-    <div class="input-group drag-handle">
-        <span class="glyphicon glyphicon-sort" aria-hidden="true"></span>
-    </div>
+<div id="logformlinetemplate" class="well form-group loggroup col-sm-12" data-group="">
 
     <div class="input-group split-checkbox col-xs-1">
         <label for="logsplit" class="control-label sr-only">Split</label>
@@ -148,7 +144,7 @@
 
     <div class="input-group logssh" style="display: none;">
         <label for="logssh" class="control-label sr-only">SSH</label>
-        <input type="text" id="logssh" class="form-control input-sm" placeholder="user@host">
+        <input type="text" id="logssh" class="form-control input-sm" placeholder="user@host" size="40">
     </div>
 
     <br>
@@ -176,7 +172,7 @@
 
     <div class="input-group">
         <label for="logfile" class="control-label sr-only">File or Command</label>
-        <input type="text" id="logfile" class="form-control input-sm" placeholder="/var/log/syslog or ping example.com">
+        <input type="text" id="logfile" class="form-control input-sm" placeholder="/var/log/syslog or ping example.com" size="60">
     </div>
 
     <div class="input-group">
@@ -190,18 +186,23 @@
     </div>
 
     <div class="input-group addbutton" style="display: none;">
-        <button class="btn btn-default btn-sm" name="addbutton">
+        <button class="btn btn-default btn-xs" name="addbutton">
             <span class="glyphicon glyphicon-plus"></span>
         </button>
     </div>
 
-    <div class="input-group deletebutton" style="display: none;">
-        <button class="btn btn-danger btn-sm " name="deletebutton">
+    <div class="input-group dupebutton">
+        <button class="btn btn-default btn-xs " name="dupebutton">
+            <span class="glyphicon glyphicon-duplicate"></span>
+        </button>
+    </div>
+
+    <div class="input-group deletebutton">
+        <button class="btn btn-danger btn-xs " name="deletebutton">
             <span class="glyphicon glyphicon-trash"></span>
         </button>
     </div>
 
-    <hr>
 </div>
 
 </body>

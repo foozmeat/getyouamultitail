@@ -63,7 +63,7 @@ var compile_logs = function () {
     delete log_structure.encoded;
 
     var json = JSON.stringify(log_structure);
-    console.log(json.length, json);
+    // console.log(json.length, json);
 
     var compressed = LZString.compressToEncodedURIComponent(json);
     // console.log(compressed.length, compressed);
@@ -189,7 +189,6 @@ var deletelog = function(evt) {
         evt = $(evt)[0];
         var loggroup = $(evt.currentTarget).parents(".loggroup");
 
-        console.log(loggroup);
         loggroup.remove();
 
         update();
@@ -237,27 +236,46 @@ var updateLogGroup = function (evt) {
 
 var update_controls = function() {
     if (num_logs() > 1) {
-        $(".drag-handle").show();
 
-        $(".split-checkbox:gt(0)").show();
-        $(".split-checkbox:eq(0)").hide();
+
+        // $("#builder .logsplit:eq(0)")[0].prop('disabled', true);
+        // newLog.find("*").each(function (idx, node) {
 
         $(".deletebutton").show();
 
         $("#builder").sortable( "enable" )
 
     } else {
-        $(".drag-handle").hide();
-        $(".split-checkbox").hide();
-        $(".deletebutton:eq(0)").hide();
+        // $(".logsplit").prop('disabled', true);
+        $(".deletebutton").hide();
 
         $("#builder").sortable( "disable" )
-
     }
+
+    $("#builder .logsplit:eq(0)").bootstrapSwitch('disabled', true);
+    $("#builder .logsplit:gt(0)").bootstrapSwitch('disabled', false);
 
     $("#builder .addbutton").hide();
     $("#builder .addbutton").last().show();
 
+};
+
+var dupe_log = function(evt) {
+    if (evt) {
+
+        evt = $(evt)[0];
+        var loggroup = $(evt.currentTarget).parents(".loggroup");
+        var group_id = loggroup.data("group");
+
+        var newLog = loggroup.clone();
+
+        newLog.attr("data-group", log_row_id);
+
+        newLog.insertAfter(loggroup);
+        log_row_id++;
+
+        update();
+    }
 };
 
 var add_log = function (logline) {
@@ -328,6 +346,10 @@ var add_log = function (logline) {
         deletelog(e);
     });
 
+    $(".dupebutton", newLog).click(function (e) {
+        e.preventDefault();
+        dupe_log(e);
+    });
 
     newLog.find("*").each(function (idx, node) {
 
@@ -417,8 +439,8 @@ $(document).ready(function () {
     $("#builder").sortable({
         items: "> .loggroup",
         opacity: 0.75,
-        // forcePlaceholderSize: true,
-        // axis: "y",
+        cursor: "move",
+        axis: "y",
         stop: function( event, ui ) { update(event)}
 
     });
