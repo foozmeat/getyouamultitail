@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="css/builder2.css">
 
 </head>
-<body class="light">
+<body class="light" onload="var now = new Date(); if (now.getHours() > 18 || now.getHours() < 4 ) { document.body.setAttribute('class','dark'); }">
 
     <header>
 	    <h1>Get you a
