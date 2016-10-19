@@ -1,164 +1,586 @@
 * {
-    font-family: "-apple-system", sans-serif;
+    font-family: "Monaco",monospace;
+	margin: 0;
+	padding: 0;
 }
 
-html {
+html
+{
     font-size: 10px;
 }
 
-h1 {
-    font-size: 8vw;
-    letter-spacing: -0.045em;
-    font-style: italic;
-    font-weight: 800;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6
+{
+	font-weight: 400;
+	font-size: inherit;
+	text-transform: uppercase;
 }
 
-header p {
-    font-size: 4vw;
-    font-style: italic;
-    font-weight: 200;
-    letter-spacing: -0.035em;
-    color: #0A2832;
+a
+{
+	color: inherit;
 }
 
-#logformlinetemplate {
-    display: none;
+body
+{
+	font-size: 1.4rem;
+	line-height: 1.2em;
+	padding: 2.4rem;
 }
 
-div[data-color="black"] {
-    background: #0A2832;
-    color: #E9E2CB;
+header
+{
+	position: relative;
+	border-style: double;
+	border-width: 0.6rem;
+	padding: 1.6rem 2.4rem;
+	text-align: center;
+	margin-bottom: 4rem;
 }
 
-div[data-color="red"] {
-    background: #d30102;
+header h1
+{
+	display: inline-block;
 }
 
-div[data-color="green"] {
-    background: #859900;
+header pre
+{
+	white-space: pre;
+	text-align: left;
+	font-size: 1.5vw;
+	line-height: 1.5vw;
+	margin: 1.5vw auto;
+	letter-spacing: -0.05vw;
 }
 
-div[data-color="yellow"] {
-    background: #b58900;
+header p
+{
+	margin: 1.5vw auto;
 }
 
-div[data-color="blue"] {
-    background: #268bd2;
+input,
+select
+{
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	-ms-appearance: none;
+	-o-appearance: none;
+	appearance: none;
+	border-radius: 0;
+	font-size: 1.2em;
+	color: inherit;
+	border: 0;
 }
 
-div[data-color="magenta"] {
-    background: #d33682;
+p
+{
+	margin: 1.6rem auto;
 }
 
-div[data-color="cyan"] {
-    background: #2aa198;
+section
+{
+	display: flex;
+	border-width: 0.6rem;
+	border-style: double;
+	padding: 1.6rem 2.4rem;
+	margin: 2.4rem 1.6rem;
+	background-color: inherit;
+	align-items: stretch;
+	flex-wrap: wrap;
+	justify-content: flex-start;
 }
 
-div[data-color="white"] {
-    background: #E9E2CB;
-    /*border: 1px solid rgba(0, 0, 0, 0.1);*/
+p.credits
+{
+	text-align: center;
+	margin: 2.4rem auto;
 }
 
-div.input-group {
-    margin: 0.5rem 0.25rem;
+pre#result
+{
+	display: block;
+	white-space: pre-wrap;
+	word-break: break-all;
+	word-wrap: break-word;
+	padding: 0;
 }
 
-div#buttons {
-    width: 80vw;
-    margin: 0 auto;
-    text-align: center;
-    white-space: nowrap;
+fieldset,
+section
+{
+	margin: 2.4rem 0;
+	position: relative;
 }
 
-button {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    -o-appearance: none;
-    appearance: none;
-    font-size: 2.2vw;
-    border: 0;
-    padding: 0.3em 1em 0.5em 1em;
-    border-radius: 0.8rem;
-    color: #fff;
-    line-height: 1em;
-    top: 0;
-    left: 0;
-    cursor: pointer;
-    display: inline-block;
-    text-align: center;
+fieldset
+{
+	border-width: 0.2rem;
+	border-style: solid;
+	padding: 1.6rem 2.4rem;
+	margin: 1.6rem 1rem;
+	flex: 1 1 auto;
 }
 
-button.deletebutton {
-    background: #d30102;
-    border: 1px solid black;
+legend
+{
+	background-color: inherit;
+	padding: 0 0.5em;
 }
 
-button.dupebutton {
-    background: #708183;
-    border: 1px solid black;
+
+
+fieldset fieldset legend
+{
+	line-height: 1.2em;
+	margin: 0.75em 0;
+	padding: 0;
+	display: inline;
 }
 
-button.addbutton {
-    background: #708183;
-    border: 1px solid black;
+fieldset:disabled,
+input:disabled,
+select:disabled
+{
+	opacity: 0.25;
 }
 
-button#resetbutton {
-    background: #d30102;
+section h2
+{
+	position: absolute;
+	top: -1.2rem;
+	background-color: inherit;
+	text-transform: uppercase;
+	padding: 0.1rem 0.35rem;
+	display: inline-block;
+	white-space: nowrap;
 }
 
-button#copybutton {
-    background: #5859B7;
-    font-weight: 200;
-    /*width: 33%;*/
+/* Global Section */
+
+fieldset#global-description
+{
+	flex: 1 1 100%;
 }
 
-button#link {
-    background: #2aa198;
+fieldset#global-description input
+{
+/* 	min-width: 12em; */
 }
 
-button#link a {
-    text-decoration: none;
-    color: inherit;
-    font-weight: 200;
+
+fieldset#global-markinterval,
+fieldset#global-splitdir
+{
+	flex: 1 1 39%;
 }
 
-pre {
-    font-family: monospace;
-    margin: 3.6rem auto;
-    background: #0A2832;
-    color: #E9E2CB;
-    white-space: pre-wrap;
-    font-size: 1.2rem;
-    padding: 1.2rem;
-    border-radius: 0.8rem;
-    text-align: left;
+fieldset#global-markinterval label,
+fieldset#global-splitdir label
+{
+	padding-left: 0.5em;
 }
 
-.bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-default {
-    background: #465A61;
-    color: white;
+fieldset#global-markinterval label:nth-of-type(1),
+fieldset#global-splitdir label:nth-of-type(1)
+{
+	padding-left: 0;
 }
 
-.bootstrap-switch .bootstrap-switch-handle-off.bootstrap-switch-default {
-    background: #81908F;
-    color: white;
+input#description,
+input#logfilterregex
+{
+	width: 60%;
 }
 
-.splitlog {
-    margin-top: 20px;
+input[type="text"]
+{
+	padding: 0.15em 0.35em;
+	display: inline-block;
+	margin: 1rem 0.25rem;
 }
 
-.footer {
-    margin-top: 20px;
-    text-align: center;
+input[type="radio"]:before,
+input[type="radio"]:after
+{
+	color: inherit;
 }
 
-#global-options {
-    margin-bottom: 20px;
+input[type="radio"]:before,
+input[type="checkbox"]:before
+{
+	content: "[ ";
 }
 
-header {
-    border-bottom: 1px solid black;
-    margin-bottom: 20px;
+input[type="radio"]:checked:before,
+input[type="checkbox"]:checked:before
+{
+	content: "[";
 }
+
+input[type="radio"]:after,
+input[type="checkbox"]:after
+{
+	content: "]";
+}
+
+input[type="radio"]:checked:after,
+input[type="checkbox"]:checked:after
+{
+	content: "x]"
+}
+
+menu
+{
+	text-align: center;
+	padding: 0;
+	margin: 1.6rem auto;
+	flex: 1 1 100%;
+
+}
+
+button
+{
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	-ms-appearance: none;
+	-o-appearance: none;
+	appearance: none;
+	
+	border: 0;
+	background: inherit;
+	color: inherit;
+	font-size: inherit;
+	position: relative;
+	
+	margin: 0.8rem 1.6rem;
+	padding: 0.5rem 2rem;
+}
+
+button:hover
+{
+	top: 0.1rem;
+	left: 0.1rem;
+}
+
+button:active
+{
+	top: 0.15rem;
+	left: 0.15rem;
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+  
+  background: rgba(0,0,0,0.45) !important;
+
+  height: 0.2rem;
+  width: 100%;
+  position: relative;
+  top: -0.3em;
+}
+
+input[type="range"]::-webkit-slider-thumb
+{
+  -webkit-appearance: none;
+  background: rgba(0,0,0,0.75) !important;
+  border-radius: 0;
+  cursor: pointer;
+  width: 0.35em;
+  height: 1.2em;
+}
+
+span#markint,
+span#logint
+{
+	padding: 0 0.15em;
+}
+
+input#logpath
+{
+	width: 60%;
+}
+
+fieldset.color
+{
+	flex: 1 1 100%;
+}
+
+fieldset.color-chooser
+{
+	border: 0;
+	display: inline-block;
+	margin: 0.8rem;
+	padding: 0;
+}
+
+fieldset.color label,
+fieldset.color-chooser legend
+{
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0,0,0,0);
+	border: 0;
+}
+
+
+
+/* -------------------- */
+/* ------ Colors ------ */
+/* -------------------- */
+
+body,
+header,
+section
+{
+	background-color: #efefef;
+}
+
+body,
+header,
+fieldset,
+section,
+input[type="text"]
+{
+	border-color: #444444;
+	color: #444444;
+}
+
+input[type="text"]
+{
+	color: white;
+}
+
+a
+{
+	color: inherit;
+}
+
+button,
+body.dark section[data-color] button
+{
+	background: #999999;
+	color: white;
+	box-shadow: 0.25rem 0.25rem 0 #000;
+}
+
+button:first-letter,
+body.dark section[data-color] button:first-letter
+{
+	color: #dd7777;
+	text-decoration: underline;
+}
+
+button:hover,
+body.dark section[data-color] button:hover
+{
+	box-shadow: 0.15rem 0.15rem 0 #000;
+}
+
+button:active,
+body.dark section[data-color] button:active
+{
+	box-shadow: inset 0.10rem 0.10rem 0 #000;
+}
+
+input:checked
+{
+	font-weight: 600;
+	color: #000000;
+}
+
+section#results
+{
+	background-color: #000;
+	color: #ccc;
+}
+
+input[type="text"],
+span#markint,
+span#logint
+{
+	background: rgba(0,0,0,0.4) !important;
+	color: rgba(255,255,255,1) !important;
+}
+
+input[type="text"]::-webkit-input-placeholder
+{
+	color: rgba(255,255,255,.5) !important;
+}
+
+/* ----------------------- */
+/* ------ Dark Mode ------ */
+/* ----------------------- */
+
+body.dark,
+body.dark header,
+body.dark section
+{
+	background-color: #333333;
+}
+
+body,
+body.dark header,
+body.dark section,
+body.dark fieldset,
+body.dark input[type="text"]
+{
+	border-color: #cccccc;
+	color: #cccccc;
+}
+
+body.dark button
+{
+	background: #444;
+	color: #ddd;
+}
+
+body.dark input:checked
+{
+	color: #ffffff;
+}
+
+body.dark section#results
+{
+	background-color: #000;
+	color: #ccc;
+}
+
+body.dark input[type="text"],
+body.dark span#markint,
+body.dark span#logint
+{
+	background: rgba(0,0,0,0.4) !important;
+	color: rgba(255,255,255,1) !important;
+}
+
+body.dark input[type="text"]::-webkit-input-placeholder
+{
+	color: rgba(255,255,255,.5) !important;
+}
+
+
+/* ---------------------------- */
+/* ------ Color Sections ------ */
+/* ---------------------------- */
+
+fieldset.color-chooser input[id^="logcolor-black"],
+section[data-color="black"] fieldset,
+section[data-color="black"] input,
+section[data-color="black"] input:checked,
+section[data-color="black"],
+body.dark section[data-color="black"]
+{
+	background-color: #444444;
+	border-color: #ffffff;
+	color: #ffffff;
+}
+
+fieldset.color-chooser input[id^="logcolor-red"],	
+section[data-color="red"] fieldset,
+section[data-color="red"] input,
+section[data-color="red"] input:checked,
+section[data-color="red"],
+body.dark section[data-color="red"]
+{
+	background-color: #dd4300;
+	border-color: #ffffff;
+	color: #ffffff;
+}
+
+fieldset.color-chooser input[id^="logcolor-green"],
+section[data-color="green"] fieldset,
+section[data-color="green"] input,
+section[data-color="green"] input:checked,
+section[data-color="green"],
+body.dark section[data-color="green"]
+{
+	background-color: #337700;
+	border-color: #ffffff;
+	color: #ffffff;
+}
+
+fieldset.color-chooser input[id^="logcolor-yellow"],
+section[data-color="yellow"] fieldset,
+section[data-color="yellow"] input,
+section[data-color="yellow"] input:checked,
+section[data-color="yellow"],
+body.dark section[data-color="yellow"]
+{
+	background-color: #eecc00;
+	border-color: #444444;
+	color: #444444;
+}
+
+fieldset.color-chooser input[id^="logcolor-blue"],
+section[data-color="blue"] fieldset,
+section[data-color="blue"] input,
+section[data-color="blue"] input:checked,
+section[data-color="blue"],
+body.dark section[data-color="blue"]
+{
+	background-color: #3333ee;
+	border-color: #ffffff;
+	color: #ffffff;
+}
+
+fieldset.color-chooser input[id^="logcolor-magenta"],
+section[data-color="magenta"] fieldset,
+section[data-color="magenta"] input,
+section[data-color="magenta"] input:checked,
+section[data-color="magenta"],
+body.dark section[data-color="magenta"]
+{
+	background-color: #ff44cc;
+	border-color: #ffffff;
+	color: #ffffff;
+}
+
+fieldset.color-chooser input[id^="logcolor-white"],
+section[data-color="white"] fieldset,
+section[data-color="white"] input,
+section[data-color="white"] input:checked,
+section[data-color="white"],
+body.dark section[data-color="white"]
+{
+	background-color: #fefefe;
+	border-color: #444444;
+	color: #444444;
+}
+
+
+
+
+.hide,
+#logformlinetemplate,
+section[data-state="collapsed"] fieldset
+{
+	display: none;
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0,0,0,0);
+	border: 0;
+}
+
+section menu
+{
+	text-align: left;
+}
+
+
