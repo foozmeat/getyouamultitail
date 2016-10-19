@@ -7,203 +7,465 @@
 
     <title>Get you a Multitail</title>
 
-    <!-- JQuery -->
-    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
-
-    <!-- Bootstrap 3 -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
-          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/bootstrap.switch/3.3.2/css/bootstrap3/bootstrap-switch.min.css">
-
-    <link rel="stylesheet" href="css/builder.css">
+    <link rel="stylesheet" href="css/builder2.css">
 
 </head>
-<body>
-<div class="container">
+<body class="light">
 
-    <header class="col-md-12">
-
-        <h1>Get you a multitail</h1>
-        <p>Build some wicked <a target="_blank" href="https://www.vanheusden.com/multitail/">multitail</a> commands</p>
-        <div style="text-align: right;">
-            <a class="github-button" href="https://github.com/foozmeat/getyouamultitail"
-               data-count-href="/foozmeat/getyouamultitail/stargazers"
-               data-count-api="/repos/foozmeat/getyouamultitail#stargazers_count"
-               data-count-aria-label="# stargazers on GitHub"
-               aria-label="Star foozmeat/getyouamultitail on GitHub">Star</a>
-
-            <a class="github-button" href="https://github.com/foozmeat/getyouamultitail/fork"
-               data-count-href="/foozmeat/getyouamultitail/network"
-               data-count-api="/repos/foozmeat/getyouamultitail#forks_count"
-               data-count-aria-label="# forks on GitHub"
-               aria-label="Fork foozmeat/getyouamultitail on GitHub">Fork</a>
-
-            <a href="https://twitter.com/share" class="twitter-share-button" data-url=""
-               data-show-count="true">Tweet</a>
-        </div>
+    <header>
+	    <h1>Get you a
+<pre>
+.___  ___. __    __  __  .__________. __ .__________.  ___      __  __      
+|   \/   ||  |  |  ||  | |          ||  ||          | /   \    |  ||  |     
+|  \  /  ||  |  |  ||  | `---|  |---`|  |`---|  |---`/  ^  \   |  ||  |     
+|  |\/|  ||  |  |  ||  |     |  |    |  |    |  |   /  /_\  \  |  ||  |     
+|  |  |  ||  `--'  ||  `----.|  |    |  |    |  |  /  _____  \ |  ||  `----.
+|__|  |__| \______/ |_______||__|    |__|    |__| /__/     \__\|__||_______|
+</pre>
+        </h1>
+        <p>Build some wicked <a target="_blank" href="https://www.vanheusden.com/multitail/">multitail</a> commands.</p>
 
     </header>
 
-    <form id="builder" class="form-inline">
+    <form id="builder">
 
-        <div class="form-group col-md-12" id="global-options">
-            <label for="description" class="sr-only">Description</label>
-            <input type="text" id="description" class="form-control" placeholder="Describe what this does"
-                   size="60">
-            <label for="markinterval" class="form-label sr-only">Mark Interval</label>
-            <select name="markinterval" id="markinterval" class="form-control">
-                <option selected value="0">Mark Interval (secs)</option>
-                <option>15</option>
-                <option>30</option>
-                <option>45</option>
-                <option>60</option>
-                <option>90</option>
-                <option>120</option>
-            </select>
+        <section id="global-options">
+	        
+	        <h2>Global Options</h2>
+	        
+	        <fieldset id="global-description">
+	            <legend><label for="description">Description</label></legend>
+				<input type="text" id="description" class="form-control" placeholder="Describe what this does">
+	        </fieldset>
+            
+            <fieldset id="global-markinterval">
+			   <legend><label for="markinterval">Mark every <span id="markint">60</span> seconds.</label></legend>
+			   <input id="markinterval" type="range" min="15" max="120" step="5" value="60" name="markinterval" onchange="document.getElementById('markint').innerHTML = this.value;">
+		   </fieldset>
+            
+            <fieldset id="global-splitdir">
+	            <legend>Split Direction</legend>
+	            <label for="splitdir-v">Vertical</label>
+				<input id="splitdir-v" name="splitdir" type="radio" value="vertical">
+				
+	            <label for="splitdir-h">Horizontal</label>
+				<input id="splitdir-h" name="splitdir" type="radio" value="horizontal" checked>
+			</fieldset>
+        </section>
 
-            <label for="vertical" class="control-label sr-only">Vertical Split?</label>
-            <input type="checkbox" class="form-control vertical" id="vertical">
-        </div>
+<section class="loggroup" id="group01" data-group="0" data-color="yellow" data-state="collapsed">
+	
+	<h2 class="newtitle">/var/sys/log</h2>
+	
+    <fieldset class="color">
+	    <legend>Label and Color</legend>
+	    
+	    <label for="loglabel01">Label</label>
+		<input type="text" class="loglabel" name="loglabel01" placeholder="Label" value="/var/sys/log" onchange="this.parentNode.parentNode.getElementsByTagName('h2')[0].innerHTML = this.value;">
+	    
+		<fieldset class="color-chooser">
+			<legend>Colors</legend>
+		
+			<label for="logcolor-black01">Black</label>
+			<input type="radio" name="logcolor01" id="logcolor-black01" onchange="this.parentNode.parentNode.parentNode.setAttribute('data-color','black');">
+			
+			<label for="logcolor-red01">Red</label>
+			<input type="radio" name="logcolor01" id="logcolor-red01" onchange="this.parentNode.parentNode.parentNode.setAttribute('data-color','red');">
+			
+			<label for="logcolor-green01">Green</label>
+			<input type="radio" name="logcolor01" id="logcolor-green01" onchange="this.parentNode.parentNode.parentNode.setAttribute('data-color','green');">
+			
+			<label for="logcolor-yellow01">Yellow</label>
+			<input type="radio" name="logcolor01" id="logcolor-yellow01" checked onchange="this.parentNode.parentNode.parentNode.setAttribute('data-color','yellow');">
+			
+			<label for="logcolor-blue01">Blue</label>
+			<input type="radio" name="logcolor01" id="logcolor-blue01" onchange="this.parentNode.parentNode.parentNode.setAttribute('data-color','blue');">
+			
+			<label for="logcolor-magenta01">Magenta</label>
+			<input type="radio" name="logcolor01" id="logcolor-magenta01" onchange="this.parentNode.parentNode.parentNode.setAttribute('data-color','magenta');">
+			
+			<label for="logcolor-white01">White</label>
+			<input type="radio" name="logcolor01" id="logcolor-white01" onchange="this.parentNode.parentNode.parentNode.setAttribute('data-color','white');">
+		</fieldset>
+	</fieldset>
+        
+	<fieldset class="splitpane">
+		<legend>Split Pane?</legend>
+		<label for="logsplit-y01">Split</label>
+		<input type="radio" id="logsplit-y01" name="logsplit01">
 
-        <hr>
+		<label for="logsplit-n01">No Split</label>
+		<input type="radio" id="logsplit-n01" name="logsplit01" checked>
+	</fieldset>
+
+	<fieldset class="localremote">
+		<legend>Local or Remote?</legend>
+        
+	        <label for="log-local01">Local</label>
+			<input type="radio" id="log-local01" name="loglocalremote01" onclick="document.getElementById('logssh01').setAttribute('disabled');" checked>
+			
+			<label for="log-remote01">Remote</label>
+        	<input type="radio" id="log-remote01" name="loglocalremote01" onclick="document.getElementById('logssh01').removeAttribute('disabled');">
+			<input type="text" id="logssh01" placeholder="user@host" disabled>
+	</fieldset>
+
+ 	<fieldset class="logtype">
+	 	
+	 	<legend>File or Command?</legend>
+ 
+		   <input type="text" id="logpath01" placeholder="Path to log file">
+
+	        <label for="logfile01">File</label>
+	        <input type="radio" id="logfile01" name="logfilecomm01" checked onclick="document.getElementById('loginterval01').setAttribute('disabled'); document.getElementById('logpath01').setAttribute('placeholder','Path to log file');">
+		      	    
+	       <label for="logcomm01">Command</label>
+		   <input type="radio" id="logcomm01" name="logfilecomm01" onclick="document.getElementById('loginterval01').removeAttribute('disabled'); document.getElementById('logpath01').setAttribute('placeholder','Path to command');">
+		   		   
+		   <fieldset id="loginterval01" disabled>
+			   <legend><label for="loginterval01">Refresh every <span id="logint01">45</span> seconds.</label></legend>
+			   <input name="loginterval01" type="range" min="15" max="120" step="5" value="45" onchange="document.getElementById('logint01').innerHTML = this.value;">
+		   </fieldset>
+		   		
+ 	</fieldset>
+ 	
+ 	<fieldset class="filterhighlight">
+ 		<legend>Filter or Highlight?</legend>
+ 		<label for="loghighlight01">Highlight</label>
+        <input type="radio" id="loghighlight01" name="loghighfilt01" checked onclick="document.getElementById('logfilterregex01').setAttribute('disabled');">
+
+ 		<label for="logfilter01">Filter</label>
+        <input type="radio" id="logfilter01" name="loghighfilt01" onclick="document.getElementById('logfilterregex01').removeAttribute('disabled');">
+        <input type="text" id="logfilterregex01" placeholder="regex" disabled>
+ 	</fieldset>
+
+	<menu class="buttons">
+		<button name="editbutton" onclick="this.parentNode.parentNode.setAttribute('data-state','expanded'); return false;">Edit</button>
+		<button name="addbutton">Add</button>
+        <button name="dupebutton">Duplicate</button>
+        <button name="deletebutton">Trash</button>
+    </menu>
+    
+</section>
+
+<section class="loggroup" id="group02" data-group="0" data-color="red" data-state="collapsed">
+	
+	<h2 class="newtitle">/var/sys/log</h2>
+	
+    <fieldset class="color">
+	    <legend>Label and Color</legend>
+	    
+	    <label for="loglabel02">Label</label>
+		<input type="text" class="loglabel" name="loglabel02" placeholder="Label" value="/var/sys/log" onchange="this.parentNode.parentNode.getElementsByTagName('h2')[0].innerHTML = this.value;">
+	    
+		<fieldset class="color-chooser">
+			<legend>Colors</legend>
+		
+			<label for="logcolor-black02">Black</label>
+			<input type="radio" name="logcolor02" id="logcolor-black02" onchange="this.parentNode.parentNode.parentNode.setAttribute('data-color','black');">
+			
+			<label for="logcolor-red02">Red</label>
+			<input type="radio" name="logcolor02" id="logcolor-red02" checked onchange="this.parentNode.parentNode.parentNode.setAttribute('data-color','red');">
+			
+			<label for="logcolor-green02">Green</label>
+			<input type="radio" name="logcolor02" id="logcolor-green02" onchange="this.parentNode.parentNode.parentNode.setAttribute('data-color','green');">
+			
+			<label for="logcolor-yellow02">Yellow</label>
+			<input type="radio" name="logcolor02" id="logcolor-yellow02" onchange="this.parentNode.parentNode.parentNode.setAttribute('data-color','yellow');">
+			
+			<label for="logcolor-blue02">Blue</label>
+			<input type="radio" name="logcolor02" id="logcolor-blue02" onchange="this.parentNode.parentNode.parentNode.setAttribute('data-color','blue');">
+			
+			<label for="logcolor-magenta02">Magenta</label>
+			<input type="radio" name="logcolor02" id="logcolor-magenta02" onchange="this.parentNode.parentNode.parentNode.setAttribute('data-color','magenta');">
+			
+			<label for="logcolor-white02">White</label>
+			<input type="radio" name="logcolor02" id="logcolor-white02" onchange="this.parentNode.parentNode.parentNode.setAttribute('data-color','white');">
+		</fieldset>
+	</fieldset>
+        
+	<fieldset class="splitpane">
+		<legend>Split Pane?</legend>
+		<label for="logsplit-y02">Split</label>
+		<input type="radio" id="logsplit-y02" name="logsplit02">
+
+		<label for="logsplit-n02">No Split</label>
+		<input type="radio" id="logsplit-n02" name="logsplit02" checked>
+	</fieldset>
+
+	<fieldset class="localremote">
+		<legend>Local or Remote?</legend>
+        
+	        <label for="log-local02">Local</label>
+			<input type="radio" id="log-local02" name="loglocalremote02" onclick="document.getElementById('logssh02').setAttribute('disabled');" checked>
+			
+			<label for="log-remote02">Remote</label>
+        	<input type="radio" id="log-remote02" name="loglocalremote02" onclick="document.getElementById('logssh02').removeAttribute('disabled');">
+			<input type="text" id="logssh02" placeholder="user@host" disabled>
+	</fieldset>
+
+ 	<fieldset class="logtype">
+	 	
+	 	<legend>File or Command?</legend>
+ 
+		   <input type="text" id="logpath02" placeholder="Path to log file">
+
+	        <label for="logfile02">File</label>
+	        <input type="radio" id="logfile02" name="logfilecomm02" checked onclick="document.getElementById('loginterval02').setAttribute('disabled'); document.getElementById('logpath02').setAttribute('placeholder','Path to log file');">
+		      	    
+	       <label for="logcomm02">Command</label>
+		   <input type="radio" id="logcomm02" name="logfilecomm02" onclick="document.getElementById('loginterval02').removeAttribute('disabled'); document.getElementById('logpath02').setAttribute('placeholder','Path to command');">
+		   		   
+		   <fieldset id="loginterval02" disabled>
+			   <legend><label for="loginterval02">Refresh every <span id="logint02">45</span> seconds.</label></legend>
+			   <input name="loginterval02" type="range" min="15" max="120" step="5" value="45" onchange="document.getElementById('logint02').innerHTML = this.value;">
+		   </fieldset>
+		   		
+ 	</fieldset>
+ 	
+ 	<fieldset class="filterhighlight">
+ 		<legend>Filter or Highlight?</legend>
+ 		<label for="loghighlight02">Highlight</label>
+        <input type="radio" id="loghighlight02" name="loghighfilt02" checked onclick="document.getElementById('logfilterregex02').setAttribute('disabled');">
+
+ 		<label for="logfilter02">Filter</label>
+        <input type="radio" id="logfilter02" name="loghighfilt02" onclick="document.getElementById('logfilterregex02').removeAttribute('disabled');">
+        <input type="text" id="logfilterregex02" placeholder="regex" disabled>
+ 	</fieldset>
+
+	<menu class="buttons">
+		<button name="editbutton" onclick="this.parentNode.parentNode.setAttribute('data-state','expanded'); return false;">Edit</button>
+		<button name="addbutton">Add</button>
+        <button name="dupebutton">Duplicate</button>
+        <button name="deletebutton">Trash</button>
+    </menu>
+    
+</section>
+
+<section class="loggroup" id="group03" data-group="0" data-color="magenta" data-state="collapsed">
+	
+	<h2 class="newtitle">/var/sys/log</h2>
+	
+    <fieldset class="color">
+	    <legend>Label and Color</legend>
+	    
+	    <label for="loglabel03">Label</label>
+		<input type="text" class="loglabel" name="loglabel03" placeholder="Label" value="/var/sys/log" onchange="this.parentNode.parentNode.getElementsByTagName('h2')[0].innerHTML = this.value;">
+	    
+		<fieldset class="color-chooser">
+			<legend>Colors</legend>
+		
+			<label for="logcolor-black03">Black</label>
+			<input type="radio" name="logcolor03" id="logcolor-black03" onchange="this.parentNode.parentNode.parentNode.setAttribute('data-color','black');">
+			
+			<label for="logcolor-red03">Red</label>
+			<input type="radio" name="logcolor03" id="logcolor-red03" onchange="this.parentNode.parentNode.parentNode.setAttribute('data-color','red');">
+			
+			<label for="logcolor-green03">Green</label>
+			<input type="radio" name="logcolor03" id="logcolor-green03" onchange="this.parentNode.parentNode.parentNode.setAttribute('data-color','green');">
+			
+			<label for="logcolor-yellow03">Yellow</label>
+			<input type="radio" name="logcolor03" id="logcolor-yellow03" onchange="this.parentNode.parentNode.parentNode.setAttribute('data-color','yellow');">
+			
+			<label for="logcolor-blue03">Blue</label>
+			<input type="radio" name="logcolor03" id="logcolor-blue03" onchange="this.parentNode.parentNode.parentNode.setAttribute('data-color','blue');">
+			
+			<label for="logcolor-magenta03">Magenta</label>
+			<input type="radio" name="logcolor03" id="logcolor-magenta03" checked onchange="this.parentNode.parentNode.parentNode.setAttribute('data-color','magenta');">
+			
+			<label for="logcolor-white03">White</label>
+			<input type="radio" name="logcolor03" id="logcolor-white03" onchange="this.parentNode.parentNode.parentNode.setAttribute('data-color','white');">
+		</fieldset>
+	</fieldset>
+        
+	<fieldset class="splitpane">
+		<legend>Split Pane?</legend>
+		<label for="logsplit-y03">Split</label>
+		<input type="radio" id="logsplit-y03" name="logsplit03">
+
+		<label for="logsplit-n03">No Split</label>
+		<input type="radio" id="logsplit-n03" name="logsplit03" checked>
+	</fieldset>
+
+	<fieldset class="localremote">
+		<legend>Local or Remote?</legend>
+        
+	        <label for="log-local03">Local</label>
+			<input type="radio" id="log-local03" name="loglocalremote03" onclick="document.getElementById('logssh03').setAttribute('disabled');" checked>
+			
+			<label for="log-remote03">Remote</label>
+        	<input type="radio" id="log-remote03" name="loglocalremote03" onclick="document.getElementById('logssh03').removeAttribute('disabled');">
+			<input type="text" id="logssh03" placeholder="user@host" disabled>
+	</fieldset>
+
+ 	<fieldset class="logtype">
+	 	
+	 	<legend>File or Command?</legend>
+ 
+		   <input type="text" id="logpath03" placeholder="Path to log file">
+
+	        <label for="logfile03">File</label>
+	        <input type="radio" id="logfile03" name="logfilecomm03" checked onclick="document.getElementById('loginterval03').setAttribute('disabled'); document.getElementById('logpath03').setAttribute('placeholder','Path to log file');">
+		      	    
+	       <label for="logcomm03">Command</label>
+		   <input type="radio" id="logcomm03" name="logfilecomm03" onclick="document.getElementById('loginterval03').removeAttribute('disabled'); document.getElementById('logpath03').setAttribute('placeholder','Path to command');">
+		   		   
+		   <fieldset id="loginterval03" disabled>
+			   <legend><label for="loginterval03">Refresh every <span id="logint03">45</span> seconds.</label></legend>
+			   <input name="loginterval03" type="range" min="15" max="120" step="5" value="45" onchange="document.getElementById('logint03').innerHTML = this.value;">
+		   </fieldset>
+		   		
+ 	</fieldset>
+ 	
+ 	<fieldset class="filterhighlight">
+ 		<legend>Filter or Highlight?</legend>
+ 		<label for="loghighlight03">Highlight</label>
+        <input type="radio" id="loghighlight03" name="loghighfilt03" checked onclick="document.getElementById('logfilterregex03').setAttribute('disabled');">
+
+ 		<label for="logfilter03">Filter</label>
+        <input type="radio" id="logfilter03" name="loghighfilt03" onclick="document.getElementById('logfilterregex03').removeAttribute('disabled');">
+        <input type="text" id="logfilterregex03" placeholder="regex" disabled>
+ 	</fieldset>
+
+	<menu class="buttons">
+		<button name="editbutton" onclick="this.parentNode.parentNode.setAttribute('data-state','expanded'); return false;">Edit</button>
+		<button name="addbutton">Add</button>
+        <button name="dupebutton">Duplicate</button>
+        <button name="deletebutton">Trash</button>
+    </menu>
+    
+</section>
 
     </form>
 
-    <div class="col-sm-12">
+    <section id="results">
+	    
+	    <h2>Your Multitail</h2>
+	    
+	    <pre id="result">
+#!/usr/bin/env bash
 
-        <pre id="result"></pre>
+# Made with "Get you a multitail"
+# http://getyouamultitail.link/?d=N4IgbiBcCMA0IBsoG1QGMD2CMCcogCMEBDNAaxHgDMBLBAU3wHoxicnsBzJgZwE8eAF3oBbAHRdKITCJE56VfAAYQAX1josufPIAmU2g2at2XXgOHjJ8GXIXK1G6VryQQnefQB2BuozcsbBwY3PxCohIhUrbyim4q6prYriB89AjYAO6+RgEmwaEWEdbOsrEOic7J+EQArozUfsZBZmGWkZxSPAAOCDSCUII49TYYZfbxjknabiLEnN6CxDn+IIGmIebhVlGj43EgCU6Y1W5ofMQ+jblr+a1FO517dgdH0ymZABb9DSCGq+sClt2iUYhNDjlhCkAFY8aFUMg8NQAXXgunoPDQ+E+9D4AAIqDgaN5dDw8YJvmSaGTiHj0SIMFIwJ8oFRiAgePR4CJ8AA2BJAA
 
-        <div id="buttons">
-            <button class="" id="copybutton" data-clipboard-target="#result">Copy to <span
-                    style="position: relative; top: 0.1em; left: 0.2em">📋</span></button>
-            <button class="" id="link"><a href="#">Link to this script</a></button>
-            <button class="" id="resetbutton">Reset</button>
-        </div>
-    </div>
+# hey friends this is a demo
 
-    <div class="col-sm-12 footer">
-        <p>Built by <a target="_blank" href="https://twitter.com/foozmeat">@foozmeat</a> with design help from <a
+multitail -m 0 --mark-interval 60 -ci black -I /var/log/system.log -ci red -I /var/log/system.log -ci green -I /var/log/system.log -ci yellow -I /var/log/system.log -ci blue -i /var/log/system.log -ci magenta -I /var/log/system.log -ci cyan -I /var/log/system.log -ci white -ec 'jsjfks' -I /var/log/system.log		    
+	    </pre>
+    </section>
+
+    <menu class="buttons">
+        <button id="copybutton" data-clipboard-target="#result">Copy to Clipboard</button>
+        <button id="link">Link to this script</button>
+        <button id="resetbutton">Reset</button>
+    </menu>
+    
+    <p class="credits">Built by <a target="_blank" href="https://twitter.com/foozmeat">@foozmeat</a> with design help from <a
                 target="_blank" href="https://twitter.com/timjcoulter">@timjcoulter.</a></p>
-    </div>
 </div>
+
 
 <!-- Hidden form template -->
-<div id="logformlinetemplate" class="well form-group loggroup col-sm-12" data-group="" data-color="">
+<section id="logformlinetemplate" data-color="logcolor-white">
+	
+	<h2 class="newtitle">Add a Log</h2>
+	
+    <fieldset class="color">
+	    <legend>Label and Color</legend>
+	    
+	    <label for="loglabel">Label</label>
+		<input type="text" class="loglabel" placeholder="Label" onchange="this.parentNode.parentNode.getElementsByTagName('h2')[0].innerHTML = this.value;">
+	    
+		<fieldset class="color-chooser">
+			<legend>Colors</legend>
+		
+			<label for="logcolor-black">Black</label>
+			<input type="radio" name="logcolor" id="logcolor-black" onchange="this.parentNode.parentNode.parentNode.setAttribute('data-color',this.id);">
+			
+			<label for="logcolor-red">Red</label>
+			<input type="radio" name="logcolor" id="logcolor-red" onchange="this.parentNode.parentNode.parentNode.setAttribute('data-color',this.id);">
+			
+			<label for="logcolor-green">Green</label>
+			<input type="radio" name="logcolor" id="logcolor-green" onchange="this.parentNode.parentNode.parentNode.setAttribute('data-color',this.id);">
+			
+			<label for="logcolor-yellow">Yellow</label>
+			<input type="radio" name="logcolor" id="logcolor-yellow" onchange="this.parentNode.parentNode.parentNode.setAttribute('data-color',this.id);">
+			
+			<label for="logcolor-blue">Blue</label>
+			<input type="radio" name="logcolor" id="logcolor-blue" onchange="this.parentNode.parentNode.parentNode.setAttribute('data-color',this.id);">
+			
+			<label for="logcolor-magenta">Magenta</label>
+			<input type="radio" name="logcolor" id="logcolor-magenta" onchange="this.parentNode.parentNode.parentNode.setAttribute('data-color',this.id);">
+			
+			<label for="logcolor-white">White</label>
+			<input type="radio" name="logcolor" id="logcolor-white" checked onchange="this.parentNode.parentNode.parentNode.setAttribute('data-color',this.id);">
+		</fieldset>
+	</fieldset>
+        
+	<fieldset class="splitpane">
+		<legend>Split Pane?</legend>
+		<label for="logsplit-y">Split</label>
+		<input type="radio" id="logsplit-y" name="logsplit">
 
-    <div class="input-group split-checkbox col-xs-1">
-        <label for="logsplit" class="control-label sr-only">Split</label>
-        <input type="checkbox" class="form-control logsplit" id="logsplit">
-    </div>
+		<label for="logsplit-n">No Split</label>
+		<input type="radio" id="logsplit-n" name="logsplit" checked>
+	</fieldset>
 
-    <div class="input-group col-xs-1">
-        <label for="loglabel" class="control-label sr-only">Label</label>
-        <input type="text" id="loglabel" class="form-control input-sm" placeholder="Label">
-    </div>
+	<fieldset class="localremote">
+		<legend>Local or Remote?</legend>
+        
+	        <label for="log-local">Local</label>
+			<input type="radio" id="log-local" name="loglocalremote" onclick="document.getElementById('logssh').setAttribute('disabled');" checked>
+			
+			<label for="log-remote">Remote</label>
+        	<input type="radio" id="log-remote" name="loglocalremote" onclick="document.getElementById('logssh').removeAttribute('disabled');">
+			<input type="text" id="logssh" placeholder="user@host" disabled>
+	</fieldset>
 
-    <div class="input-group logcolor">
-        <label for="logcolor" class="control-label sr-only">Color</label>
-        <select name="logcolor" id="logcolor" class="form-control input-sm">
-            <option id="colorOption" selected value="">Color</option>
-            <option id="blackOption" value="black">black</option>
-            <option id="redOption">red</option>
-            <option id="greenOption">green</option>
-            <option id="yellowOption">yellow</option>
-            <option id="blueOption">blue</option>
-            <option id="magentaOption">magenta</option>
-            <option id="cyanOption">cyan</option>
-            <option id="whiteOption">white</option>
-        </select>
-    </div>
+ 	<fieldset class="logtype">
+	 	
+	 	<legend>File or Command?</legend>
+ 
+		   <input type="text" id="logpath" placeholder="Path to log file">
 
-    <div class="input-group">
-        <label for="logremote" class="control-label sr-only">Remote?</label>
-        <input type="checkbox" class="form-control logremote" id="logremote">
-    </div>
+	        <label for="logfile">File</label>
+	        <input type="radio" id="logfile" name="logfilecomm" checked onclick="document.getElementById('loginterval').setAttribute('disabled'); document.getElementById('logpath').setAttribute('placeholder','Path to log file');">
+		      	    
+	       <label for="logcomm">Command</label>
+		   <input type="radio" id="logcomm" name="logfilecomm" onclick="document.getElementById('loginterval').removeAttribute('disabled'); document.getElementById('logpath').setAttribute('placeholder','Path to command');">
+		   		   
+		   <fieldset id="loginterval" disabled>
+			   <legend><label for="loginterval">Refresh every <span id="logint">45</span> seconds.</label></legend>
+			   <input name="loginterval" type="range" min="15" max="120" step="5" value="45" onchange="document.getElementById('logint').innerHTML = this.value;">
+		   </fieldset>
+		   		
+ 	</fieldset>
+ 	
+ 	<fieldset class="filterhighlight">
+ 		<legend>Filter or Highlight?</legend>
+ 		<label for="loghighlight">Highlight</label>
+        <input type="radio" id="loghighlight" name="loghighfilt" checked onclick="document.getElementById('logfilterregex').setAttribute('disabled');">
 
-    <div class="input-group logssh">
-        <label for="logssh" class="control-label sr-only">SSH</label>
-        <input type="text" id="logssh" class="form-control input-sm" placeholder="user@host" size="40" disabled>
-    </div>
+ 		<label for="logfilter">Filter</label>
+        <input type="radio" id="logfilter" name="loghighfilt" onclick="document.getElementById('logfilterregex').removeAttribute('disabled');">
+        <input type="text" id="logfilterregex" placeholder="regex" disabled>
+ 	</fieldset>
 
-    <br>
-
-    <div class="input-group">
-        <label for="logcomm" class="control-label sr-only">Command?</label>
-        <input type="checkbox" class="form-control logcomm" id="logcomm">
-    </div>
-
-    <div class="input-group logcommref">
-        <label for="logcommref" class="form-label sr-only">Refresh Interval</label>
-        <select name="markinterval" id="logcommref" class="form-control input-sm" disabled>
-            <option selected value="0">Refresh Interval (secs)</option>
-            <option>5</option>
-            <option>10</option>
-            <option>15</option>
-            <option>30</option>
-            <option>45</option>
-            <option>60</option>
-            <option>90</option>
-            <option>120</option>
-        </select>
-
-    </div>
-
-    <div class="input-group">
-        <label for="logfile" class="control-label sr-only">File or Command</label>
-        <input type="text" id="logfile" class="form-control input-sm" placeholder="absolute path to log or command"
-               size="60">
-    </div>
-
-    <br>
-    <div class="input-group">
-        <label for="loghighfilt" class="control-label sr-only">Filter or Highlight?</label>
-        <input type="checkbox" class="form-control loghighfilt" id="loghighfilt">
-    </div>
-
-    <div class="input-group">
-        <label for="logfilter" class="control-label sr-only">Filter</label>
-        <input type="text" id="logfilter" class="form-control input-sm" placeholder="regex">
-    </div>
-
-    <div class="input-group addbuttondiv" style="display: none;">
-        <button class="btn-xs addbutton" name="addbutton">
-            <span class="glyphicon glyphicon-plus"></span>
-        </button>
-    </div>
-
-    <div class="input-group">
-        <button class="btn-xs dupebutton" name="dupebutton">
-            <span class="glyphicon glyphicon-duplicate"></span>
-        </button>
-    </div>
-
-    <div class="input-group">
-        <button class="btn-xs deletebutton" name="deletebutton">
-            <span class="glyphicon glyphicon-trash"></span>
-        </button>
-    </div>
-
-</div>
+	<menu class="buttons">
+		<button name="editbutton" onclick="this.parentNode.setAttribute('data-state','expanded');">Edit</button>
+		<button name="addbutton">Add</button>
+        <button name="dupebutton">Duplicate</button>
+        <button name="deletebutton">Trash</button>
+    </menu>
+    
+</section><!-- End hidden template -->
 
 <!-- JQuery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-
-<!-- Bootstrap 3 -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-        crossorigin="anonymous"></script>
-
-<script language="javascript" src="https://cdn.jsdelivr.net/bootstrap.switch/3.3.2/js/bootstrap-switch.min.js"></script>
 
 <!-- Other stuff -->
 <script language="javascript" src="js/lz-string.min.js"></script>
-<script language="javascript" src="https://cdn.jsdelivr.net/sprintf.js/1.0.3/sprintf.min.js"></script>
-<script src="https://cdn.jsdelivr.net/clipboard.js/1.5.12/clipboard.min.js"></script>
+<script language="javascript" src="js/sprintf.min.js"></script>
+<script language="javascript" src="js/clipboard.min.js"></script>
 <script src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 <script src="https://buttons.github.io/buttons.js"></script>
 
