@@ -3,7 +3,7 @@
 var log_structure = {};
 var log_row_id = 0;
 
-var num_logs = function() {
+var num_logs = function () {
     return $("#builder .loggroup").length;
 };
 
@@ -182,7 +182,7 @@ var update = function (evt) {
     // $('.twitter-share-button').attr("data-url", script_link());
 };
 
-var delete_log = function(evt) {
+var delete_log = function (evt) {
     if (evt) {
 
         evt = $(evt)[0];
@@ -246,16 +246,16 @@ var update_log_group = function (evt) {
     update_controls();
 };
 
-var update_controls = function() {
+var update_controls = function () {
     if (num_logs() > 1) {
         $(".deletebutton").show();
 
-        $("#builder").sortable( "enable" )
+        $("#builder").sortable("enable")
 
     } else {
         $(".deletebutton").hide();
 
-        $("#builder").sortable( "disable" )
+        $("#builder").sortable("disable")
     }
 
     $("#builder .logsplit:eq(0)").bootstrapSwitch('disabled', true);
@@ -266,12 +266,12 @@ var update_controls = function() {
 
 };
 
-var dupe_log = function(evt) {
+var dupe_log = function (evt) {
     if (evt) {
 
         evt = $(evt)[0];
         var loggroup = $(evt.currentTarget).parents(".loggroup");
-        var index = $( "#builder .loggroup" ).index( loggroup );
+        var index = $("#builder .loggroup").index(loggroup);
         var log_data = log_structure.l[index];
 
         add_log(log_data);
@@ -451,7 +451,9 @@ $(document).ready(function () {
         opacity: 0.75,
         cursor: "move",
         axis: "y",
-        stop: function( event, ui ) { update(event)}
+        stop: function (event, ui) {
+            update(event)
+        }
 
     });
 

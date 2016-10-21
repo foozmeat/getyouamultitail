@@ -273,13 +273,13 @@ button
 	-ms-appearance: none;
 	-o-appearance: none;
 	appearance: none;
-	
+
 	border: 0;
 	background: inherit;
 	color: inherit;
 	font-size: inherit;
 	position: relative;
-	
+
 	margin: 0 1.5rem;
 	padding: 0.5rem 2rem;
 }
@@ -451,7 +451,7 @@ input[type=range] {
   -ms-appearance: none;
   -o-appearance: none;
   appearance: none;
-  
+
   background: transparent;
 
   background: #999999;
@@ -476,7 +476,7 @@ input[type=range]::-webkit-slider-thumb
 input[type=range]::-ms-track {
   cursor: pointer;
 
-  background: transparent; 
+  background: transparent;
   border-color: transparent;
   color: transparent;
 }
@@ -571,7 +571,7 @@ body.dark button:active
 	box-shadow: inset .15rem .15rem 0 #222222;
 }
 
-body.dark input:checked 
+body.dark input:checked
 {
 	color: #ffffff;
 }
@@ -584,4 +584,6 @@ body.dark section#results
 
 }
 
-
+#logformlinetemplate {
+	display: none;
+}
