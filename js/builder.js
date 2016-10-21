@@ -250,16 +250,16 @@ var update_controls = function() {
     if (num_logs() > 1) {
         $(".deletebutton").show();
 
-        $("#builder").sortable( "enable" )
+        // $("#builder").sortable( "enable" )
 
     } else {
         $(".deletebutton").hide();
 
-        $("#builder").sortable( "disable" )
+        // $("#builder").sortable( "disable" )
     }
 
-    $("#builder .logsplit:eq(0)").bootstrapSwitch('disabled', true);
-    $("#builder .logsplit:gt(0)").bootstrapSwitch('disabled', false);
+    // $("#builder .logsplit:eq(0)").bootstrapSwitch('disabled', true);
+    // $("#builder .logsplit:gt(0)").bootstrapSwitch('disabled', false);
 
     $("#builder .addbuttondiv").hide();
     $("#builder .addbuttondiv").last().show();
@@ -322,25 +322,25 @@ var add_log = function (logline) {
 
     }
 
-    $(".logsplit", newLog).bootstrapSwitch({
-        onText: "Split",
-        offText: "Merge"
-    });
-
-    $(".logremote", newLog).bootstrapSwitch({
-        onText: "Remote",
-        offText: "Local"
-    });
-
-    $(".logcomm", newLog).bootstrapSwitch({
-        onText: "Command",
-        offText: "File"
-    });
-
-    $(".loghighfilt", newLog).bootstrapSwitch({
-        onText: "Filter",
-        offText: "Highlight"
-    });
+    // $(".logsplit", newLog).bootstrapSwitch({
+    //     onText: "Split",
+    //     offText: "Merge"
+    // });
+    //
+    // $(".logremote", newLog).bootstrapSwitch({
+    //     onText: "Remote",
+    //     offText: "Local"
+    // });
+    //
+    // $(".logcomm", newLog).bootstrapSwitch({
+    //     onText: "Command",
+    //     offText: "File"
+    // });
+    //
+    // $(".loghighfilt", newLog).bootstrapSwitch({
+    //     onText: "Filter",
+    //     offText: "Highlight"
+    // });
 
     $(".addbutton", newLog).click(function (e) {
         e.preventDefault();
@@ -391,7 +391,7 @@ var parse_query = function () {
         var temp_log_structure = JSON.parse(json_string);
         $("#description").val(temp_log_structure.desc);
         $("#markinterval").val(temp_log_structure.m);
-        $("#vertical").bootstrapSwitch('state', temp_log_structure.vh);
+        // $("#vertical").bootstrapSwitch('state', temp_log_structure.vh);
 
         for (var i = 0; i < temp_log_structure.l.length; i++) {
             var log = temp_log_structure.l[i];
@@ -414,7 +414,7 @@ var reset = function () {
     $("#description").val("");
     $("#markinterval").val(0);
     $("#builder .loggroup").remove();
-    $("#vertical").bootstrapSwitch('state', false);
+    // $("#vertical").bootstrapSwitch('state', false);
 
     add_log();
 
@@ -433,27 +433,27 @@ $(document).ready(function () {
 
     console.log("ready!");
 
-    $.fn.bootstrapSwitch.defaults.size = 'small';
-    $.fn.bootstrapSwitch.defaults.onColor = 'default';
-    $.fn.bootstrapSwitch.defaults.offColor = 'default';
-    $.fn.bootstrapSwitch.defaults.onSwitchChange = function (evt, state) {
-        update(evt)
-    };
-    $.fn.bootstrapSwitch.defaults.labelWidth = 10;
+    // $.fn.bootstrapSwitch.defaults.size = 'small';
+    // $.fn.bootstrapSwitch.defaults.onColor = 'default';
+    // $.fn.bootstrapSwitch.defaults.offColor = 'default';
+    // $.fn.bootstrapSwitch.defaults.onSwitchChange = function (evt, state) {
+    //     update(evt)
+    // };
+    // $.fn.bootstrapSwitch.defaults.labelWidth = 10;
 
-    $("#vertical").bootstrapSwitch({
-        onText: "Vertical",
-        offText: "Horizontal"
-    });
+    // $("#vertical").bootstrapSwitch({
+    //     onText: "Vertical",
+    //     offText: "Horizontal"
+    // });
 
-    $("#builder").sortable({
-        items: "> .loggroup",
-        opacity: 0.75,
-        cursor: "move",
-        axis: "y",
-        stop: function( event, ui ) { update(event)}
-
-    });
+    // $("#builder").sortable({
+    //     items: "> .loggroup",
+    //     opacity: 0.75,
+    //     cursor: "move",
+    //     axis: "y",
+    //     stop: function( event, ui ) { update(event)}
+    //
+    // });
 
     parse_query();
 
