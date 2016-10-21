@@ -250,16 +250,16 @@ var update_controls = function () {
     if (num_logs() > 1) {
         $(".deletebutton").show();
 
-        $("#builder").sortable("enable")
+        // $("#builder").sortable("enable")
 
     } else {
         $(".deletebutton").hide();
 
-        $("#builder").sortable("disable")
+        // $("#builder").sortable("disable")
     }
 
-    $("#builder .logsplit:eq(0)").bootstrapSwitch('disabled', true);
-    $("#builder .logsplit:gt(0)").bootstrapSwitch('disabled', false);
+    // $("#builder .logsplit:eq(0)").bootstrapSwitch('disabled', true);
+    // $("#builder .logsplit:gt(0)").bootstrapSwitch('disabled', false);
 
     $("#builder .addbuttondiv").hide();
     $("#builder .addbuttondiv").last().show();
@@ -322,25 +322,25 @@ var add_log = function (logline) {
 
     }
 
-    $(".logsplit", newLog).bootstrapSwitch({
-        onText: "Split",
-        offText: "Merge"
-    });
-
-    $(".logremote", newLog).bootstrapSwitch({
-        onText: "Remote",
-        offText: "Local"
-    });
-
-    $(".logcomm", newLog).bootstrapSwitch({
-        onText: "Command",
-        offText: "File"
-    });
-
-    $(".loghighfilt", newLog).bootstrapSwitch({
-        onText: "Filter",
-        offText: "Highlight"
-    });
+    // $(".logsplit", newLog).bootstrapSwitch({
+    //     onText: "Split",
+    //     offText: "Merge"
+    // });
+    //
+    // $(".logremote", newLog).bootstrapSwitch({
+    //     onText: "Remote",
+    //     offText: "Local"
+    // });
+    //
+    // $(".logcomm", newLog).bootstrapSwitch({
+    //     onText: "Command",
+    //     offText: "File"
+    // });
+    //
+    // $(".loghighfilt", newLog).bootstrapSwitch({
+    //     onText: "Filter",
+    //     offText: "Highlight"
+    // });
 
     $(".addbutton", newLog).click(function (e) {
         e.preventDefault();
@@ -446,16 +446,16 @@ $(document).ready(function () {
     //     offText: "Horizontal"
     // });
 
-    $("#builder").sortable({
-        items: "> .loggroup",
-        opacity: 0.75,
-        cursor: "move",
-        axis: "y",
-        stop: function (event, ui) {
-            update(event)
-        }
-
-    });
+    // $("#builder").sortable({
+    //     items: "> .loggroup",
+    //     opacity: 0.75,
+    //     cursor: "move",
+    //     axis: "y",
+    //     stop: function (event, ui) {
+    //         update(event)
+    //     }
+    //
+    // });
 
     parse_query();
 
