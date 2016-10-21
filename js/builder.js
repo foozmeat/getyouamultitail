@@ -391,7 +391,7 @@ var parse_query = function () {
         var temp_log_structure = JSON.parse(json_string);
         $("#description").val(temp_log_structure.desc);
         $("#markinterval").val(temp_log_structure.m);
-        $("#vertical").bootstrapSwitch('state', temp_log_structure.vh);
+        // $("#vertical").bootstrapSwitch('state', temp_log_structure.vh);
 
         for (var i = 0; i < temp_log_structure.l.length; i++) {
             var log = temp_log_structure.l[i];
@@ -414,7 +414,7 @@ var reset = function () {
     $("#description").val("");
     $("#markinterval").val(0);
     $("#builder .loggroup").remove();
-    $("#vertical").bootstrapSwitch('state', false);
+    // $("#vertical").bootstrapSwitch('state', false);
 
     add_log();
 
@@ -433,18 +433,18 @@ $(document).ready(function () {
 
     console.log("ready!");
 
-    $.fn.bootstrapSwitch.defaults.size = 'small';
-    $.fn.bootstrapSwitch.defaults.onColor = 'default';
-    $.fn.bootstrapSwitch.defaults.offColor = 'default';
-    $.fn.bootstrapSwitch.defaults.onSwitchChange = function (evt, state) {
-        update(evt)
-    };
-    $.fn.bootstrapSwitch.defaults.labelWidth = 10;
+    // $.fn.bootstrapSwitch.defaults.size = 'small';
+    // $.fn.bootstrapSwitch.defaults.onColor = 'default';
+    // $.fn.bootstrapSwitch.defaults.offColor = 'default';
+    // $.fn.bootstrapSwitch.defaults.onSwitchChange = function (evt, state) {
+    //     update(evt)
+    // };
+    // $.fn.bootstrapSwitch.defaults.labelWidth = 10;
 
-    $("#vertical").bootstrapSwitch({
-        onText: "Vertical",
-        offText: "Horizontal"
-    });
+    // $("#vertical").bootstrapSwitch({
+    //     onText: "Vertical",
+    //     offText: "Horizontal"
+    // });
 
     $("#builder").sortable({
         items: "> .loggroup",

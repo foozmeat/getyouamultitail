@@ -7,205 +7,208 @@
 
     <title>Get you a Multitail</title>
 
-    <!-- JQuery -->
-    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
-
-    <!-- Bootstrap 3 -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
-          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/bootstrap.switch/3.3.2/css/bootstrap3/bootstrap-switch.min.css">
-
-    <link rel="stylesheet" href="css/builder.css">
+    <link rel="stylesheet" href="css/builder2.css">
 
 </head>
 <body>
 <div class="container">
 
-    <header class="col-md-12">
+    <header>
 
-        <h1>Get you a multitail</h1>
-        <p>Build some wicked <a target="_blank" href="https://www.vanheusden.com/multitail/">multitail</a> commands</p>
-        <div style="text-align: right;">
-            <a class="github-button" href="https://github.com/foozmeat/getyouamultitail"
-               data-count-href="/foozmeat/getyouamultitail/stargazers"
-               data-count-api="/repos/foozmeat/getyouamultitail#stargazers_count"
-               data-count-aria-label="# stargazers on GitHub"
-               aria-label="Star foozmeat/getyouamultitail on GitHub">Star</a>
+        <h1>Get you a
+            <pre>
+.___  ___. __    __  __  .__________. __ .__________.  ___      __  __
+|   \/   ||  |  |  ||  | |          ||  ||          | /   \    |  ||  |
+|  \  /  ||  |  |  ||  | `---|  |---`|  |`---|  |---`/  ^  \   |  ||  |
+|  |\/|  ||  |  |  ||  |     |  |    |  |    |  |   /  /_\  \  |  ||  |
+|  |  |  ||  `--'  ||  `----.|  |    |  |    |  |  /  _____  \ |  ||  `----.
+|__|  |__| \______/ |_______||__|    |__|    |__| /__/     \__\|__||_______|
+</pre>
+        </h1>
+        <p>Build some wicked <a target="_blank" href="https://www.vanheusden.com/multitail/">multitail</a> commands.</p>
+        <!--
+                <div style="text-align: right;">
+                    <a class="github-button" href="https://github.com/foozmeat/getyouamultitail"
+                       data-count-href="/foozmeat/getyouamultitail/stargazers"
+                       data-count-api="/repos/foozmeat/getyouamultitail#stargazers_count"
+                       data-count-aria-label="# stargazers on GitHub"
+                       aria-label="Star foozmeat/getyouamultitail on GitHub">Star</a>
 
-            <a class="github-button" href="https://github.com/foozmeat/getyouamultitail/fork"
-               data-count-href="/foozmeat/getyouamultitail/network"
-               data-count-api="/repos/foozmeat/getyouamultitail#forks_count"
-               data-count-aria-label="# forks on GitHub"
-               aria-label="Fork foozmeat/getyouamultitail on GitHub">Fork</a>
+                    <a class="github-button" href="https://github.com/foozmeat/getyouamultitail/fork"
+                       data-count-href="/foozmeat/getyouamultitail/network"
+                       data-count-api="/repos/foozmeat/getyouamultitail#forks_count"
+                       data-count-aria-label="# forks on GitHub"
+                       aria-label="Fork foozmeat/getyouamultitail on GitHub">Fork</a>
 
-            <a href="https://twitter.com/share" class="twitter-share-button" data-url=""
-               data-show-count="true">Tweet</a>
-        </div>
+                    <a href="https://twitter.com/share" class="twitter-share-button" data-url=""
+                       data-show-count="true">Tweet</a>
+                </div>
+        -->
 
     </header>
 
     <form id="builder" class="form-inline">
 
-        <div class="form-group col-md-12" id="global-options">
-            <label for="description" class="sr-only">Description</label>
-            <input type="text" id="description" class="form-control" placeholder="Describe what this does"
-                   size="60">
-            <label for="markinterval" class="form-label sr-only">Mark Interval</label>
-            <select name="markinterval" id="markinterval" class="form-control">
-                <option selected value="0">Mark Interval (secs)</option>
-                <option>15</option>
-                <option>30</option>
-                <option>45</option>
-                <option>60</option>
-                <option>90</option>
-                <option>120</option>
-            </select>
+        <section id="global-options">
 
-            <label for="vertical" class="control-label sr-only">Vertical Split?</label>
-            <input type="checkbox" class="form-control vertical" id="vertical">
-        </div>
+            <h2>Global Options</h2>
 
-        <hr>
+            <fieldset id="desc">
+                <legend><label for="description">Description</label></legend>
+                <input type="text" id="description" class="form-control" placeholder="Describe what this does">
+            </fieldset>
+
+            <fieldset>
+                <legend><label for="markinterval">Mark every <span id="markint">60</span> seconds.</label></legend>
+                <input id="markinterval" type="range" min="15" max="120" step="5" value="60" name="markinterval"
+                       onchange="document.getElementById('markint').innerHTML = this.value;">
+            </fieldset>
+
+            <fieldset id="splitdir">
+                <legend>Split Direction</legend>
+                <label for="splitdir-v">Vertical</label>
+                <input id="splitdir-v" name="splitdir" type="radio" value="vertical">
+
+                <label for="splitdir-h">Horizontal</label>
+                <input id="splitdir-h" name="splitdir" type="radio" value="horizontal" checked>
+            </fieldset>
+        </section>
 
     </form>
 
-    <div class="col-sm-12">
+    <section id="results">
+
+        <h2>Your Multitail</h2>
 
         <pre id="result"></pre>
+    </section>
 
-        <div id="buttons">
-            <button class="" id="copybutton" data-clipboard-target="#result">Copy to <span
-                    style="position: relative; top: 0.1em; left: 0.2em">📋</span></button>
-            <button class="" id="link"><a href="#">Link to this script</a></button>
-            <button class="" id="resetbutton">Reset</button>
-        </div>
-    </div>
+    <menu id="buttons">
+        <button class="" id="copybutton" data-clipboard-target="#result">Copy to <span
+                style="position: relative; top: 0.1em; left: 0.2em">📋</span></button>
+        <button class="" id="link"><a href="#">Link to this script</a></button>
+        <button class="" id="resetbutton">Reset</button>
+    </menu>
 
-    <div class="col-sm-12 footer">
-        <p>Built by <a target="_blank" href="https://twitter.com/foozmeat">@foozmeat</a> with design help from <a
-                target="_blank" href="https://twitter.com/timjcoulter">@timjcoulter.</a></p>
-    </div>
+    <p id="credits">Code by <a target="_blank" href="https://twitter.com/foozmeat">@foozmeat</a> / Design by <a
+            target="_blank" href="https://twitter.com/timjcoulter">@timjcoulter</a></p>
 </div>
 
 <!-- Hidden form template -->
-<div id="logformlinetemplate" class="well form-group loggroup col-sm-12" data-group="" data-color="">
+<section id="logformlinetemplate" data-group="" class="loggroup">
 
-    <div class="input-group split-checkbox col-xs-1">
-        <label for="logsplit" class="control-label sr-only">Split</label>
-        <input type="checkbox" class="form-control logsplit" id="logsplit">
-    </div>
+    <h2>Add a Log</h2>
 
-    <div class="input-group col-xs-1">
-        <label for="loglabel" class="control-label sr-only">Label</label>
-        <input type="text" id="loglabel" class="form-control input-sm" placeholder="Label">
-    </div>
+    <fieldset id="color">
+        <legend>Label and Color</legend>
 
-    <div class="input-group logcolor">
-        <label for="logcolor" class="control-label sr-only">Color</label>
-        <select name="logcolor" id="logcolor" class="form-control input-sm">
-            <option id="colorOption" selected value="">Color</option>
-            <option id="blackOption" value="black">black</option>
-            <option id="redOption">red</option>
-            <option id="greenOption">green</option>
-            <option id="yellowOption">yellow</option>
-            <option id="blueOption">blue</option>
-            <option id="magentaOption">magenta</option>
-            <option id="cyanOption">cyan</option>
-            <option id="whiteOption">white</option>
-        </select>
-    </div>
+        <label for="loglabel">Label</label>
+        <input type="text" id="loglabel" placeholder="Label"
+               onchange="this.parentNode.parentNode.getElementsByTagName('h2')[0].innerHTML = this.value;">
 
-    <div class="input-group">
-        <label for="logremote" class="control-label sr-only">Remote?</label>
-        <input type="checkbox" class="form-control logremote" id="logremote">
-    </div>
+        <label for="logcolor-black">Black</label>
+        <input type="radio" name="logcolor" id="logcolor-black"
+               onchange="this.parentNode.parentNode.setAttribute('data-color',this.id);">
 
-    <div class="input-group logssh">
-        <label for="logssh" class="control-label sr-only">SSH</label>
-        <input type="text" id="logssh" class="form-control input-sm" placeholder="user@host" size="40" disabled>
-    </div>
+        <label for="logcolor-red">Red</label>
+        <input type="radio" name="logcolor" id="logcolor-red"
+               onchange="this.parentNode.parentNode.setAttribute('data-color',this.id);">
 
-    <br>
+        <label for="logcolor-green">Green</label>
+        <input type="radio" name="logcolor" id="logcolor-green"
+               onchange="this.parentNode.parentNode.setAttribute('data-color',this.id);">
 
-    <div class="input-group">
-        <label for="logcomm" class="control-label sr-only">Command?</label>
-        <input type="checkbox" class="form-control logcomm" id="logcomm">
-    </div>
+        <label for="logcolor-yellow">Yellow</label>
+        <input type="radio" name="logcolor" id="logcolor-yellow"
+               onchange="this.parentNode.parentNode.setAttribute('data-color',this.id);">
 
-    <div class="input-group logcommref">
-        <label for="logcommref" class="form-label sr-only">Refresh Interval</label>
-        <select name="markinterval" id="logcommref" class="form-control input-sm" disabled>
-            <option selected value="0">Refresh Interval (secs)</option>
-            <option>5</option>
-            <option>10</option>
-            <option>15</option>
-            <option>30</option>
-            <option>45</option>
-            <option>60</option>
-            <option>90</option>
-            <option>120</option>
-        </select>
+        <label for="logcolor-blue">Blue</label>
+        <input type="radio" name="logcolor" id="logcolor-blue"
+               onchange="this.parentNode.parentNode.setAttribute('data-color',this.id);">
 
-    </div>
+        <label for="logcolor-magenta">Magenta</label>
+        <input type="radio" name="logcolor" id="logcolor-magenta"
+               onchange="this.parentNode.parentNode.setAttribute('data-color',this.id);">
 
-    <div class="input-group">
-        <label for="logfile" class="control-label sr-only">File or Command</label>
-        <input type="text" id="logfile" class="form-control input-sm" placeholder="absolute path to log or command"
-               size="60">
-    </div>
+        <label for="logcolor-white">White</label>
+        <input type="radio" name="logcolor" id="logcolor-white"
+               onchange="this.parentNode.parentNode.setAttribute('data-color',this.id);">
+    </fieldset>
 
-    <br>
-    <div class="input-group">
-        <label for="loghighfilt" class="control-label sr-only">Filter or Highlight?</label>
-        <input type="checkbox" class="form-control loghighfilt" id="loghighfilt">
-    </div>
+    <fieldset>
+        <legend>Split Pane?</legend>
+        <label for="logsplit-y">Split</label>
+        <input type="radio" id="logsplit-y" name="logsplit">
 
-    <div class="input-group">
-        <label for="logfilter" class="control-label sr-only">Filter</label>
-        <input type="text" id="logfilter" class="form-control input-sm" placeholder="regex">
-    </div>
+        <label for="logsplit-n">No Split</label>
+        <input type="radio" id="logsplit-n" name="logsplit" checked>
+    </fieldset>
 
-    <div class="input-group addbuttondiv" style="display: none;">
-        <button class="btn-xs addbutton" name="addbutton">
-            <span class="glyphicon glyphicon-plus"></span>
-        </button>
-    </div>
+    <fieldset>
+        <legend>Local or Remote?</legend>
 
-    <div class="input-group">
-        <button class="btn-xs dupebutton" name="dupebutton">
-            <span class="glyphicon glyphicon-duplicate"></span>
-        </button>
-    </div>
+        <label for="log-local">Local</label>
+        <input type="radio" id="log-local" name="loglocalremote"
+               onclick="document.getElementById('logssh').setAttribute('disabled');" checked>
 
-    <div class="input-group">
-        <button class="btn-xs deletebutton" name="deletebutton">
-            <span class="glyphicon glyphicon-trash"></span>
-        </button>
-    </div>
+        <label for="log-remote">Remote</label></legend>
+        <input type="radio" id="log-remote" name="loglocalremote"
+               onclick="document.getElementById('logssh').removeAttribute('disabled');">
+        <input type="text" id="logssh" placeholder="user@host" disabled>
+    </fieldset>
 
-</div>
+    <fieldset>
+
+        <legend>File or Command?</legend>
+
+
+        <label for="logfile">File</label>
+        <input type="radio" id="logfile" name="logfilecomm" checked
+               onclick="document.getElementById('loginterval').setAttribute('disabled'); document.getElementById('logpath').setAttribute('placeholder','Path to log file');">
+
+        <label for="logcomm">Command</label>
+        <input type="radio" id="logcomm" name="logfilecomm"
+               onclick="document.getElementById('loginterval').removeAttribute('disabled'); document.getElementById('logpath').setAttribute('placeholder','Path to command');">
+
+        <input type="text" id="logpath" placeholder="Path to log file">
+
+        <fieldset id="loginterval" disabled>
+            <legend><label for="loginterval">Refresh every <span id="logint">45</span> seconds.</label></legend>
+            <input name="loginterval" type="range" min="15" max="120" step="5" value="45"
+                   onchange="document.getElementById('logint').innerHTML = this.value;">
+        </fieldset>
+
+    </fieldset>
+
+    <fieldset>
+        <legend>Filter or Highlight?</legend>
+        <label for="loghighlight">Highlight</label>
+        <input type="radio" id="loghighlight" name="loghighfilt" checked
+               onclick="document.getElementById('logfilterregex').setAttribute('disabled');">
+
+        <label for="logfilter">Filter</label>
+        <input type="radio" id="logfilter" name="loghighfilt"
+               onclick="document.getElementById('logfilterregex').removeAttribute('disabled');">
+        <input type="text" id="logfilterregex" placeholder="regex" disabled>
+    </fieldset>
+
+    <menu>
+        <button name="addbutton">Add</button>
+        <button class="btn btn-default btn-xs " name="dupebutton">Duplicate</button>
+        <button class="btn btn-danger btn-xs " name="deletebutton">Trash</button>
+    </menu>
+
+</section>
 
 <!-- JQuery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-
-<!-- Bootstrap 3 -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-        crossorigin="anonymous"></script>
-
-<script language="javascript" src="https://cdn.jsdelivr.net/bootstrap.switch/3.3.2/js/bootstrap-switch.min.js"></script>
 
 <!-- Other stuff -->
 <script language="javascript" src="js/lz-string.min.js"></script>
-<script language="javascript" src="https://cdn.jsdelivr.net/sprintf.js/1.0.3/sprintf.min.js"></script>
-<script src="https://cdn.jsdelivr.net/clipboard.js/1.5.12/clipboard.min.js"></script>
-<script src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-<script src="https://buttons.github.io/buttons.js"></script>
+<script language="javascript" src="js/sprintf.min.js"></script>
+<script language="javascript" src="js/clipboard.min.js"></script>
+<!--<script src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>-->
+<!--<script src="https://buttons.github.io/buttons.js"></script>-->
 
 <script src="js/builder.js"></script>
 
