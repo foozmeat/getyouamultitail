@@ -70,12 +70,12 @@
     <button id="resetbutton">Reset</button>
 </menu>
 
-<p class="credits">Code by <a target="_blank" href="https://twitter.com/foozmeat">@foozmeat</a> / Design by <a
+<p class="credits">Code by <a target="_blank" href="https://twitter.com/foozmeat">@foozmeat</a> / Visuals by <a
         target="_blank" href="https://twitter.com/timjcoulter">@timjcoulter</a></p>
 
 
 <!-- Hidden form template -->
-<section id="logformlinetemplate" data-color="logcolor-white">
+<section id="logformlinetemplate" data-color="logcolor-white" class="loggroup">
 
     <h2 class="newtitle">Add a Log</h2>
 
@@ -120,11 +120,11 @@
     </fieldset>
 
     <fieldset class="splitpane">
-        <legend>Split Pane?</legend>
+        <legend>Split or Merge?</legend>
         <label for="logsplit-y">Split</label>
         <input type="radio" id="logsplit-y" name="logsplit">
 
-        <label for="logsplit-n">No Split</label>
+        <label for="logsplit-n">Merge</label>
         <input type="radio" id="logsplit-n" name="logsplit" checked>
     </fieldset>
 
@@ -176,23 +176,24 @@
     </fieldset>
 
     <menu class="buttons">
-        <button name="editbutton" onclick="this.parentNode.setAttribute('data-state','expanded');">Edit</button>
-        <button name="addbutton">Add</button>
-        <button name="dupebutton">Duplicate</button>
-        <button name="deletebutton">Trash</button>
+        <button name="editbutton" class="editbutton" onclick="this.parentNode.setAttribute('data-state','expanded');">Edit</button>
+        <button name="addbutton" class="addbutton">Add</button>
+        <button name="dupebutton" class="dupebutton">Duplicate</button>
+        <button name="deletebutton" class="deletebutton">Trash</button>
     </menu>
 
 </section><!-- End hidden template -->
 
 <!-- JQuery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
 <!-- Other stuff -->
 <script language="javascript" src="js/lz-string.min.js"></script>
 <script language="javascript" src="https://cdn.jsdelivr.net/sprintf.js/1.0.3/sprintf.min.js"></script>
 <script src="https://cdn.jsdelivr.net/clipboard.js/1.5.12/clipboard.min.js"></script>
-<script src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-<script src="https://buttons.github.io/buttons.js"></script>
+<!--<script src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>-->
+<!--<script src="https://buttons.github.io/buttons.js"></script>-->
 
 <script src="js/builder.js"></script>
 
