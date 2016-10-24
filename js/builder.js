@@ -21,7 +21,7 @@ var compile_logs = function() {
         var logfile = logformline.find("#logfile" + idx);
 
         log_dict.label = logformline.find("#loglabel" + idx).val();
-        log_dict.color = logformline.find("#logcolor" + idx).val();
+        log_dict.color = logformline.find("input[name=logcolor" + idx + "]:checked").val();
 
         log_dict.file = logfile.val();
         log_dict.ssh = logformline.find("#logssh" + idx).val();
@@ -238,7 +238,7 @@ var update_log_group = function(evt) {
             } else {
                 targetGroup.removeClass("splitlog");
             }
-        } else if (ctl.id == "logcolor" + datagroup) {
+        } else if (ctl.name == "logcolor" + datagroup) {
 
             targetGroup = $(ctl).parents(".loggroup");
             targetGroup.attr("data-color", $(ctl).val());
@@ -295,7 +295,8 @@ var add_log = function(logline) {
         }
 
         $("#loglabel", newLog).val(logline.label);
-        $("#logcolor", newLog).val(logline.color);
+        // $("#logcolor", newLog).val(logline.color);
+        $("input[name=logcolor" + idx + "]:checked").val(logline.color);
 
         newLog.attr("data-color", logline.color);
 
@@ -374,6 +375,10 @@ var add_log = function(logline) {
             node.htmlFor = node.htmlFor + log_row_id;
         }
 
+        if (node.name) {
+            node.name = node.name + log_row_id;
+        }
+
     });
 
     newLog.attr("data-group", log_row_id);
@@ -440,6 +445,11 @@ var getParameterByName = function(name, url) {
 $(document).ready(function() {
 
     console.log("ready!");
+
+    // var now = new Date();
+    // if (now.getHours() > 18 || now.getHours() < 4 ) {
+        // $('body').addClass('dark');
+    // }
 
     // $.fn.bootstrapSwitch.defaults.size = 'small';
     // $.fn.bootstrapSwitch.defaults.onColor = 'default';
