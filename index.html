@@ -76,7 +76,7 @@
     <!-- Hidden form template -->
     <section id="logformlinetemplate" data-color="logcolor-white" class="loggroup">
 
-        <h2 class="newtitle">Add a Log</h2>
+        <h2 class="newtitle" id="title">Add a Log</h2>
 
         <fieldset class="color">
             <legend>Label and Color</legend>
@@ -88,39 +88,39 @@
                 <legend>Colors</legend>
 
                 <label for="logcolor-black">Black</label>
-                <input type="radio" name="logcolor" value="black" id="logcolor-black" onchange="this.parentNode.parentNode.parentNode.setAttribute('data-color',this.id);">
+                <input type="radio" name="logcolor" value="black" id="logcolor-black">
 
                 <label for="logcolor-red">Red</label>
-                <input type="radio" name="logcolor" value="red" id="logcolor-red" onchange="this.parentNode.parentNode.parentNode.setAttribute('data-color',this.id);">
+                <input type="radio" name="logcolor" value="red" id="logcolor-red">
 
                 <label for="logcolor-green">Green</label>
-                <input type="radio" name="logcolor" value="green" id="logcolor-green" onchange="this.parentNode.parentNode.parentNode.setAttribute('data-color',this.id);">
+                <input type="radio" name="logcolor" value="green" id="logcolor-green">
 
                 <label for="logcolor-yellow">Yellow</label>
-                <input type="radio" name="logcolor" value="yellow" id="logcolor-yellow" onchange="this.parentNode.parentNode.parentNode.setAttribute('data-color',this.id);">
+                <input type="radio" name="logcolor" value="yellow" id="logcolor-yellow">
 
                 <label for="logcolor-blue">Blue</label>
-                <input type="radio" name="logcolor" value="blue" id="logcolor-blue" onchange="this.parentNode.parentNode.parentNode.setAttribute('data-color',this.id);">
+                <input type="radio" name="logcolor" value="blue" id="logcolor-blue">
 
                 <label for="logcolor-magenta">Magenta</label>
-                <input type="radio" name="logcolor" value="magenta" id="logcolor-magenta" onchange="this.parentNode.parentNode.parentNode.setAttribute('data-color',this.id);">
+                <input type="radio" name="logcolor" value="magenta" id="logcolor-magenta">
 
                 <label for="logcolor-white">White</label>
-                <input type="radio" name="logcolor" value="white" id="logcolor-white" checked onchange="this.parentNode.parentNode.parentNode.setAttribute('data-color',this.id);">
+                <input type="radio" name="logcolor" value="white" id="logcolor-white" checked>
             </fieldset>
         </fieldset>
 
         <fieldset class="splitpane">
-            <legend>Split or Merge?</legend>
+            <!-- <legend>Split or Merge?</legend> -->
             <label for="logsplit-y">Split</label>
-            <input type="radio" id="logsplit-y" name="logsplit">
+            <input type="radio" id="logsplit-y" name="logsplit" value="1">
 
             <label for="logsplit-n">Merge</label>
-            <input type="radio" id="logsplit-n" name="logsplit" checked>
+            <input type="radio" id="logsplit-n" name="logsplit" value="0" checked>
         </fieldset>
 
         <fieldset class="localremote">
-            <legend>Local or Remote?</legend>
+            <!-- <legend>Local or Remote?</legend> -->
 
             <label for="log-local">Local</label>
             <input type="radio" id="log-local" name="loglocalremote" onclick="document.getElementById('logssh').setAttribute('disabled');" checked>

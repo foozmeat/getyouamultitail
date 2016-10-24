@@ -26,7 +26,9 @@ var compile_logs = function() {
         log_dict.file = logfile.val();
         log_dict.ssh = logformline.find("#logssh" + idx).val();
 
-        log_dict.split = logformline.find("#logsplit" + idx).is(':checked');
+        // log_dict.split = logformline.find("#logsplit" + idx).is(':checked');
+        log_dict.split = logformline.find("input[name=logsplit" + idx + "]:checked").val() == 1;
+
         log_dict.remote = logformline.find("#logremote" + idx).is(':checked');
         log_dict.comm = logformline.find("#logcomm" + idx).is(':checked');
         log_dict.commref = logformline.find("#logcommref" + idx).val();
@@ -243,6 +245,8 @@ var update_log_group = function(evt) {
             targetGroup = $(ctl).parents(".loggroup");
             targetGroup.attr("data-color", $(ctl).val());
 
+        } else if (ctl.id == "loglable" + datagroup) {
+            $("title" + datagroup).text = $(ctl).val();
         }
     }
 
