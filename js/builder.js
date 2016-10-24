@@ -1,5 +1,6 @@
 "use strict";
 
+
 var log_structure = {};
 var log_row_id = 0;
 
@@ -7,11 +8,11 @@ var num_logs = function() {
     return $("#builder .loggroup").length;
 };
 
-var compile_logs = function () {
+var compile_logs = function() {
 
     log_structure.l = [];
 
-    $('#builder .loggroup').each(function (i, div) {
+    $('#builder .loggroup').each(function(i, div) {
 
         var logformline = $(div);
         var log_dict = {};
@@ -43,16 +44,17 @@ var compile_logs = function () {
     }
 
     delete log_structure.vh;
-    log_structure.vh = $("#vertical").is(':checked');
+    log_structure.vh = $("input[name=splitdir]:checked").val() == 'vertical';
 
     delete log_structure.m;
     log_structure.m = $("#markinterval").val();
+    $('#markint').text(log_structure.m);
 
     // Get rid of any empty keys to save space
     for (var i = 0; i < log_structure.l.length; i++) {
         var log = log_structure.l[i];
 
-        $.each(log, function (key, value) {
+        $.each(log, function(key, value) {
             if (!log[key]) {
                 delete log[key];
             }
@@ -62,7 +64,7 @@ var compile_logs = function () {
     delete log_structure.encoded;
 
     var json = JSON.stringify(log_structure);
-    // console.log(json.length, json);
+    console.log(json.length, json);
 
     var compressed = LZString.compressToEncodedURIComponent(json);
     // console.log(compressed.length, compressed);
@@ -71,12 +73,12 @@ var compile_logs = function () {
     return log_structure;
 };
 
-var script_link = function () {
-    return sprintf("%s//%s%s?d=%s", document.location.protocol, document.location.hostname, document.location.pathname, log_structure.encoded)
+var script_link = function() {
+    return sprintf("%s//%s%s?d=%s", document.location.protocol, document.location.hostname, document.location.pathname, log_structure.encoded);
 
 };
 
-var create_command = function () {
+var create_command = function() {
 
     compile_logs();
 
@@ -90,7 +92,7 @@ var create_command = function () {
 
     base_command += "multitail -m 0 ";
 
-    if (log_structure.m != 0) {
+    if (log_structure.m !== 0) {
         base_command += sprintf("--mark-interval %i ", log_structure.m);
     }
 
@@ -109,9 +111,9 @@ var create_command = function () {
 
     var all_log_commands = "";
 
-    for (var i = 0; i < log_structure.l.length; i++) {
+    for (var j = 0; j < log_structure.l.length; j++) {
 
-        var log = log_structure.l[i];
+        var log = log_structure.l[j];
         var log_commands = "";
 
         if (log.label) {
@@ -125,9 +127,9 @@ var create_command = function () {
         if (log.filter) {
 
             if (log.highfilt) {
-                log_commands += "-e "
+                log_commands += "-e ";
             } else {
-                log_commands += "-ec "
+                log_commands += "-ec ";
             }
 
             log_commands += sprintf("'%s' ", log.filter);
@@ -165,7 +167,7 @@ var create_command = function () {
 
     }
 
-    if (all_log_commands != "") {
+    if (all_log_commands !== "") {
         return base_command + all_log_commands;
     } else {
         return "";
@@ -173,7 +175,7 @@ var create_command = function () {
 
 };
 
-var update = function (evt) {
+var update = function(evt) {
 
     update_log_group(evt);
     $('#result').text(create_command());
@@ -194,10 +196,11 @@ var delete_log = function(evt) {
     }
 };
 
-var update_log_group = function (evt) {
+var update_log_group = function(evt) {
     if (evt) {
 
         evt = $(evt)[0];
+        var targetGroup;
         var loggroup = $(evt.currentTarget);
 
         if (loggroup.is("input")) {
@@ -209,7 +212,7 @@ var update_log_group = function (evt) {
 
         if (ctl.id == "logremote" + datagroup) {
 
-            var targetGroup = $("#logssh" + datagroup);
+            targetGroup = $("#logssh" + datagroup);
 
             if ($(ctl).is(':checked')) {
                 targetGroup.prop('disabled', false);
@@ -219,7 +222,7 @@ var update_log_group = function (evt) {
 
         } else if (ctl.id == "logcomm" + datagroup) {
 
-            var targetGroup = $("#logcommref" + datagroup);
+            targetGroup = $("#logcommref" + datagroup);
 
             if ($(ctl).is(':checked')) {
                 targetGroup.prop('disabled', false);
@@ -228,7 +231,7 @@ var update_log_group = function (evt) {
             }
 
         } else if (ctl.id == "logsplit" + datagroup) {
-            var targetGroup = $(ctl).parents(".loggroup");
+            targetGroup = $(ctl).parents(".loggroup");
 
             if ($(ctl).is(':checked')) {
                 targetGroup.addClass("splitlog");
@@ -237,7 +240,7 @@ var update_log_group = function (evt) {
             }
         } else if (ctl.id == "logcolor" + datagroup) {
 
-            var targetGroup = $(ctl).parents(".loggroup");
+            targetGroup = $(ctl).parents(".loggroup");
             targetGroup.attr("data-color", $(ctl).val());
 
         }
@@ -250,12 +253,12 @@ var update_controls = function() {
     if (num_logs() > 1) {
         $(".deletebutton").show();
 
-        $("#builder").sortable( "enable" )
+        $("#builder").sortable("enable");
 
     } else {
         $(".deletebutton").hide();
 
-        $("#builder").sortable( "disable" )
+        $("#builder").sortable("disable");
     }
 
     // $("#builder .logsplit:eq(0)").bootstrapSwitch('disabled', true);
@@ -271,14 +274,14 @@ var dupe_log = function(evt) {
 
         evt = $(evt)[0];
         var loggroup = $(evt.currentTarget).parents(".loggroup");
-        var index = $( "#builder .loggroup" ).index( loggroup );
+        var index = $("#builder .loggroup").index(loggroup);
         var log_data = log_structure.l[index];
 
         add_log(log_data);
     }
 };
 
-var add_log = function (logline) {
+var add_log = function(logline) {
 
     var newLog = $("#logformlinetemplate").clone();
     newLog[0].id = '';
@@ -342,26 +345,26 @@ var add_log = function (logline) {
     //     offText: "Highlight"
     // });
 
-    $(".addbutton", newLog).click(function (e) {
+    $(".addbutton", newLog).click(function(e) {
         e.preventDefault();
         add_log();
     });
 
-    $(".deletebutton", newLog).click(function (e) {
+    $(".deletebutton", newLog).click(function(e) {
         e.preventDefault();
         delete_log(e);
     });
 
-    $(".dupebutton", newLog).click(function (e) {
+    $(".dupebutton", newLog).click(function(e) {
         e.preventDefault();
         dupe_log(e);
     });
 
-    $(".editbutton", newLog).click(function (e) {
+    $(".editbutton", newLog).click(function(e) {
         e.preventDefault();
     });
 
-    newLog.find("*").each(function (idx, node) {
+    newLog.find("*").each(function(idx, node) {
 
         if (node.id) {
             node.id = node.id + log_row_id;
@@ -378,7 +381,7 @@ var add_log = function (logline) {
     newLog.appendTo('#builder');
     log_row_id++;
 
-    newLog.change(function (e) {
+    newLog.change(function(e) {
         update(e);
     });
 
@@ -386,7 +389,7 @@ var add_log = function (logline) {
 
 };
 
-var parse_query = function () {
+var parse_query = function() {
     var data = getParameterByName('d');
 
     if (data) {
@@ -410,7 +413,7 @@ var parse_query = function () {
 
 };
 
-var reset = function () {
+var reset = function() {
     log_structure = {
         'v': 1
     };
@@ -424,16 +427,17 @@ var reset = function () {
 
 };
 
-var getParameterByName = function (name, url) {
+var getParameterByName = function(name, url) {
     if (!url) url = window.location.href;
     name = name.replace(/[\[\]]/g, "\\$&");
-    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"), results = regex.exec(url);
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
     if (!results) return null;
     if (!results[2]) return '';
     return results[2];
 };
 
-$(document).ready(function () {
+$(document).ready(function() {
 
     console.log("ready!");
 
@@ -455,17 +459,19 @@ $(document).ready(function () {
         opacity: 0.75,
         cursor: "move",
         axis: "y",
-        stop: function( event, ui ) { update(event)}
+        stop: function(event, ui) {
+            update(event);
+        }
 
     });
 
     parse_query();
 
-    $("#global-options").change(function (e) {
+    $("#global-options").change(function(e) {
         update(e);
     });
 
-    $("#resetbutton").click(function (e) {
+    $("#resetbutton").click(function(e) {
         e.preventDefault();
         reset();
     });
@@ -473,4 +479,3 @@ $(document).ready(function () {
     new Clipboard('#copybutton');
 
 });
-

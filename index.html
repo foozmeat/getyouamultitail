@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,11 +11,11 @@
     <link rel="stylesheet" href="css/builder.css">
 
 </head>
-<body class="light"
-      onload="var now = new Date(); if (now.getHours() > 18 || now.getHours() < 4 ) { document.body.setAttribute('class','dark'); }">
 
-<header>
-    <h1>Get you a
+<body class="light" onload="var now = new Date(); if (now.getHours() > 18 || now.getHours() < 4 ) { document.body.setAttribute('class','dark'); }">
+
+    <header>
+        <h1>Get you a
         <pre>
 .___  ___. __    __  __  .__________. __ .__________.  ___      __  __
 |   \/   ||  |  |  ||  | |          ||  ||          | /   \    |  ||  |
@@ -24,178 +25,163 @@
 |__|  |__| \______/ |_______||__|    |__|    |__| /__/     \__\|__||_______|
 </pre>
     </h1>
-    <p>Build some wicked <a target="_blank" href="https://www.vanheusden.com/multitail/">multitail</a> commands.</p>
+        <p>Build some wicked <a target="_blank" href="https://www.vanheusden.com/multitail/">multitail</a> commands.</p>
 
-</header>
+    </header>
 
-<form id="builder">
+    <form id="builder">
 
-    <section id="global-options">
+        <section id="global-options">
 
-        <h2>Global Options</h2>
+            <h2>Global Options</h2>
 
-        <fieldset id="global-description">
-            <legend><label for="description">Description</label></legend>
-            <input type="text" id="description" class="form-control" placeholder="Describe what this does">
-        </fieldset>
+            <fieldset id="global-description">
+                <legend><label for="description">Description</label></legend>
+                <input type="text" id="description" class="form-control" placeholder="Describe what this does">
+            </fieldset>
 
-        <fieldset id="global-markinterval">
-            <legend><label for="markinterval">Mark every <span id="markint">60</span> seconds.</label></legend>
-            <input id="markinterval" type="range" min="15" max="120" step="5" value="60" name="markinterval"
-                   onchange="document.getElementById('markint').innerHTML = this.value;">
-        </fieldset>
+            <fieldset id="global-markinterval">
+                <legend><label for="markinterval">Mark every <span id="markint">0</span> seconds.</label></legend>
+                <input id="markinterval" type="range" min="0" max="120" step="5" value="0" name="markinterval">
+            </fieldset>
 
-        <fieldset id="global-splitdir">
-            <legend>Split Direction</legend>
-            <label for="splitdir-v">Vertical</label>
-            <input id="splitdir-v" name="splitdir" type="radio" value="vertical">
+            <fieldset id="global-splitdir">
+                <legend>Split Direction</legend>
+                <label for="splitdir-v">Vertical</label>
+                <input id="splitdir-v" name="splitdir" type="radio" value="vertical">
 
-            <label for="splitdir-h">Horizontal</label>
-            <input id="splitdir-h" name="splitdir" type="radio" value="horizontal" checked>
-        </fieldset>
+                <label for="splitdir-h">Horizontal</label>
+                <input id="splitdir-h" name="splitdir" type="radio" value="horizontal" checked>
+            </fieldset>
+        </section>
+
+    </form>
+
+    <section id="results">
+
+        <h2>Your Multitail</h2>
+
+        <pre id="result"></pre>
     </section>
 
-</form>
-
-<section id="results">
-
-    <h2>Your Multitail</h2>
-
-    <pre id="result"></pre>
-</section>
-
-<menu class="buttons">
-    <button id="copybutton" data-clipboard-target="#result">Copy to Clipboard</button>
-    <button id="link">Link to this script</button>
-    <button id="resetbutton">Reset</button>
-</menu>
-
-<p class="credits">Code by <a target="_blank" href="https://twitter.com/foozmeat">@foozmeat</a> / Visuals by <a
-        target="_blank" href="https://twitter.com/timjcoulter">@timjcoulter</a></p>
-
-
-<!-- Hidden form template -->
-<section id="logformlinetemplate" data-color="logcolor-white" class="loggroup">
-
-    <h2 class="newtitle">Add a Log</h2>
-
-    <fieldset class="color">
-        <legend>Label and Color</legend>
-
-        <label for="loglabel">Label</label>
-        <input type="text" class="loglabel" id="loglabel" placeholder="Label"
-               onchange="this.parentNode.parentNode.getElementsByTagName('h2')[0].innerHTML = this.value;">
-
-        <fieldset class="color-chooser">
-            <legend>Colors</legend>
-
-            <label for="logcolor-black">Black</label>
-            <input type="radio" name="logcolor" id="logcolor-black"
-                   onchange="this.parentNode.parentNode.parentNode.setAttribute('data-color',this.id);">
-
-            <label for="logcolor-red">Red</label>
-            <input type="radio" name="logcolor" id="logcolor-red"
-                   onchange="this.parentNode.parentNode.parentNode.setAttribute('data-color',this.id);">
-
-            <label for="logcolor-green">Green</label>
-            <input type="radio" name="logcolor" id="logcolor-green"
-                   onchange="this.parentNode.parentNode.parentNode.setAttribute('data-color',this.id);">
-
-            <label for="logcolor-yellow">Yellow</label>
-            <input type="radio" name="logcolor" id="logcolor-yellow"
-                   onchange="this.parentNode.parentNode.parentNode.setAttribute('data-color',this.id);">
-
-            <label for="logcolor-blue">Blue</label>
-            <input type="radio" name="logcolor" id="logcolor-blue"
-                   onchange="this.parentNode.parentNode.parentNode.setAttribute('data-color',this.id);">
-
-            <label for="logcolor-magenta">Magenta</label>
-            <input type="radio" name="logcolor" id="logcolor-magenta"
-                   onchange="this.parentNode.parentNode.parentNode.setAttribute('data-color',this.id);">
-
-            <label for="logcolor-white">White</label>
-            <input type="radio" name="logcolor" id="logcolor-white" checked
-                   onchange="this.parentNode.parentNode.parentNode.setAttribute('data-color',this.id);">
-        </fieldset>
-    </fieldset>
-
-    <fieldset class="splitpane">
-        <legend>Split or Merge?</legend>
-        <label for="logsplit-y">Split</label>
-        <input type="radio" id="logsplit-y" name="logsplit">
-
-        <label for="logsplit-n">Merge</label>
-        <input type="radio" id="logsplit-n" name="logsplit" checked>
-    </fieldset>
-
-    <fieldset class="localremote">
-        <legend>Local or Remote?</legend>
-
-        <label for="log-local">Local</label>
-        <input type="radio" id="log-local" name="loglocalremote"
-               onclick="document.getElementById('logssh').setAttribute('disabled');" checked>
-
-        <label for="log-remote">Remote</label>
-        <input type="radio" id="log-remote" name="loglocalremote"
-               onclick="document.getElementById('logssh').removeAttribute('disabled');">
-        <input type="text" id="logssh" placeholder="user@host" disabled>
-    </fieldset>
-
-    <fieldset class="logtype">
-
-        <legend>File or Command?</legend>
-
-        <input type="text" id="logpath" placeholder="Path to log file">
-
-        <label for="logfile">File</label>
-        <input type="radio" id="logfile" name="logfilecomm" checked
-               onclick="document.getElementById('loginterval').setAttribute('disabled'); document.getElementById('logpath').setAttribute('placeholder','Path to log file');">
-
-        <label for="logcomm">Command</label>
-        <input type="radio" id="logcomm" name="logfilecomm"
-               onclick="document.getElementById('loginterval').removeAttribute('disabled'); document.getElementById('logpath').setAttribute('placeholder','Path to command');">
-
-        <fieldset id="loginterval" disabled>
-            <legend><label for="loginterval">Refresh every <span id="logint">45</span> seconds.</label></legend>
-            <input name="loginterval" type="range" min="15" max="120" step="5" value="45"
-                   onchange="document.getElementById('logint').innerHTML = this.value;">
-        </fieldset>
-
-    </fieldset>
-
-    <fieldset class="filterhighlight">
-        <legend>Filter or Highlight?</legend>
-        <label for="loghighlight">Highlight</label>
-        <input type="radio" id="loghighlight" name="loghighfilt" checked
-               onclick="document.getElementById('logfilterregex').setAttribute('disabled');">
-
-        <label for="logfilter">Filter</label>
-        <input type="radio" id="logfilter" name="loghighfilt"
-               onclick="document.getElementById('logfilterregex').removeAttribute('disabled');">
-        <input type="text" id="logfilterregex" placeholder="regex" disabled>
-    </fieldset>
-
     <menu class="buttons">
-        <button name="editbutton" class="editbutton" onclick="this.parentNode.setAttribute('data-state','expanded');">Edit</button>
-        <button name="addbutton" class="addbutton">Add</button>
-        <button name="dupebutton" class="dupebutton">Duplicate</button>
-        <button name="deletebutton" class="deletebutton">Trash</button>
+        <button id="copybutton" data-clipboard-target="#result">Copy to Clipboard</button>
+        <button id="link">Link to this script</button>
+        <button id="resetbutton">Reset</button>
     </menu>
 
-</section><!-- End hidden template -->
+    <p class="credits">Code by <a target="_blank" href="https://twitter.com/foozmeat">@foozmeat</a> / Visuals by <a target="_blank" href="https://twitter.com/timjcoulter">@timjcoulter</a></p>
 
-<!-- JQuery -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
-<!-- Other stuff -->
-<script language="javascript" src="js/lz-string.min.js"></script>
-<script language="javascript" src="https://cdn.jsdelivr.net/sprintf.js/1.0.3/sprintf.min.js"></script>
-<script src="https://cdn.jsdelivr.net/clipboard.js/1.5.12/clipboard.min.js"></script>
-<!--<script src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>-->
-<!--<script src="https://buttons.github.io/buttons.js"></script>-->
+    <!-- Hidden form template -->
+    <section id="logformlinetemplate" data-color="logcolor-white" class="loggroup">
 
-<script src="js/builder.js"></script>
+        <h2 class="newtitle">Add a Log</h2>
+
+        <fieldset class="color">
+            <legend>Label and Color</legend>
+
+            <label for="loglabel">Label</label>
+            <input type="text" class="loglabel" id="loglabel" placeholder="Label" onchange="this.parentNode.parentNode.getElementsByTagName('h2')[0].innerHTML = this.value;">
+
+            <fieldset class="color-chooser">
+                <legend>Colors</legend>
+
+                <label for="logcolor-black">Black</label>
+                <input type="radio" name="logcolor" id="logcolor-black" onchange="this.parentNode.parentNode.parentNode.setAttribute('data-color',this.id);">
+
+                <label for="logcolor-red">Red</label>
+                <input type="radio" name="logcolor" id="logcolor-red" onchange="this.parentNode.parentNode.parentNode.setAttribute('data-color',this.id);">
+
+                <label for="logcolor-green">Green</label>
+                <input type="radio" name="logcolor" id="logcolor-green" onchange="this.parentNode.parentNode.parentNode.setAttribute('data-color',this.id);">
+
+                <label for="logcolor-yellow">Yellow</label>
+                <input type="radio" name="logcolor" id="logcolor-yellow" onchange="this.parentNode.parentNode.parentNode.setAttribute('data-color',this.id);">
+
+                <label for="logcolor-blue">Blue</label>
+                <input type="radio" name="logcolor" id="logcolor-blue" onchange="this.parentNode.parentNode.parentNode.setAttribute('data-color',this.id);">
+
+                <label for="logcolor-magenta">Magenta</label>
+                <input type="radio" name="logcolor" id="logcolor-magenta" onchange="this.parentNode.parentNode.parentNode.setAttribute('data-color',this.id);">
+
+                <label for="logcolor-white">White</label>
+                <input type="radio" name="logcolor" id="logcolor-white" checked onchange="this.parentNode.parentNode.parentNode.setAttribute('data-color',this.id);">
+            </fieldset>
+        </fieldset>
+
+        <fieldset class="splitpane">
+            <legend>Split or Merge?</legend>
+            <label for="logsplit-y">Split</label>
+            <input type="radio" id="logsplit-y" name="logsplit">
+
+            <label for="logsplit-n">Merge</label>
+            <input type="radio" id="logsplit-n" name="logsplit" checked>
+        </fieldset>
+
+        <fieldset class="localremote">
+            <legend>Local or Remote?</legend>
+
+            <label for="log-local">Local</label>
+            <input type="radio" id="log-local" name="loglocalremote" onclick="document.getElementById('logssh').setAttribute('disabled');" checked>
+
+            <label for="log-remote">Remote</label>
+            <input type="radio" id="log-remote" name="loglocalremote" onclick="document.getElementById('logssh').removeAttribute('disabled');">
+            <input type="text" id="logssh" placeholder="user@host" disabled>
+        </fieldset>
+
+        <fieldset class="logtype">
+
+            <legend>File or Command?</legend>
+
+            <input type="text" id="logpath" placeholder="Path to log file">
+
+            <label for="logfile">File</label>
+            <input type="radio" id="logfile" name="logfilecomm" checked onclick="document.getElementById('loginterval').setAttribute('disabled'); document.getElementById('logpath').setAttribute('placeholder','Path to log file');">
+
+            <label for="logcomm">Command</label>
+            <input type="radio" id="logcomm" name="logfilecomm" onclick="document.getElementById('loginterval').removeAttribute('disabled'); document.getElementById('logpath').setAttribute('placeholder','Path to command');">
+
+            <fieldset id="loginterval" disabled>
+                <legend><label for="loginterval">Refresh every <span id="logint">45</span> seconds.</label></legend>
+                <input name="loginterval" type="range" min="15" max="120" step="5" value="45" onchange="document.getElementById('logint').innerHTML = this.value;">
+            </fieldset>
+
+        </fieldset>
+
+        <fieldset class="filterhighlight">
+            <legend>Filter or Highlight?</legend>
+            <label for="loghighlight">Highlight</label>
+            <input type="radio" id="loghighlight" name="loghighfilt" checked onclick="document.getElementById('logfilterregex').setAttribute('disabled');">
+
+            <label for="logfilter">Filter</label>
+            <input type="radio" id="logfilter" name="loghighfilt" onclick="document.getElementById('logfilterregex').removeAttribute('disabled');">
+            <input type="text" id="logfilterregex" placeholder="regex" disabled>
+        </fieldset>
+
+        <menu class="buttons">
+            <button name="editbutton" class="editbutton" onclick="this.parentNode.setAttribute('data-state','expanded');">Edit</button>
+            <button name="addbutton" class="addbutton">Add</button>
+            <button name="dupebutton" class="dupebutton">Duplicate</button>
+            <button name="deletebutton" class="deletebutton">Trash</button>
+        </menu>
+
+    </section>
+    <!-- End hidden template -->
+
+    <!-- JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
+    <!-- Other stuff -->
+    <script language="javascript" src="js/lz-string.min.js"></script>
+    <script language="javascript" src="https://cdn.jsdelivr.net/sprintf.js/1.0.3/sprintf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/clipboard.js/1.5.12/clipboard.min.js"></script>
+    <!--<script src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>-->
+    <!--<script src="https://buttons.github.io/buttons.js"></script>-->
+
+    <script src="js/builder.js"></script>
 
 </body>
+
 </html>

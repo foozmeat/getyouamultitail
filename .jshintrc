@@ -1,0 +1,10 @@
+{
+  "browser" : true,
+  "jquery" : false,
+  "-W117": true,
+  "globalstrict": true,
+  
+  "globals": {
+    "$": false
+  }
+}
