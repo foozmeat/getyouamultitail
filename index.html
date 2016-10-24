@@ -123,10 +123,10 @@
             <!-- <legend>Local or Remote?</legend> -->
 
             <label for="log-local">Local</label>
-            <input type="radio" id="log-local" name="loglocalremote" onclick="document.getElementById('logssh').setAttribute('disabled');" checked>
+            <input type="radio" id="log-local" name="loglocalremote" value="0" checked>
 
             <label for="log-remote">Remote</label>
-            <input type="radio" id="log-remote" name="loglocalremote" onclick="document.getElementById('logssh').removeAttribute('disabled');">
+            <input type="radio" id="log-remote" name="loglocalremote" value="1">
             <input type="text" id="logssh" placeholder="user@host" disabled>
         </fieldset>
 
@@ -134,17 +134,17 @@
 
             <legend>File or Command?</legend>
 
-            <input type="text" id="logpath" placeholder="Path to log file">
+            <input type="text" id="logpath" placeholder="Path to log file or command">
 
             <label for="logfile">File</label>
-            <input type="radio" id="logfile" name="logfilecomm" checked onclick="document.getElementById('loginterval').setAttribute('disabled'); document.getElementById('logpath').setAttribute('placeholder','Path to log file');">
+            <input type="radio" id="logfile" name="logfilecomm" value="0" checked>
 
             <label for="logcomm">Command</label>
-            <input type="radio" id="logcomm" name="logfilecomm" onclick="document.getElementById('loginterval').removeAttribute('disabled'); document.getElementById('logpath').setAttribute('placeholder','Path to command');">
+            <input type="radio" id="logcomm" name="logfilecomm" value="1">
 
-            <fieldset id="loginterval" disabled>
-                <legend><label for="loginterval">Refresh every <span id="logint">45</span> seconds.</label></legend>
-                <input name="loginterval" type="range" min="15" max="120" step="5" value="45" onchange="document.getElementById('logint').innerHTML = this.value;">
+            <fieldset id="logcommref" disabled>
+                <legend><label for="logcommref">Refresh every <span id="logint">45</span> seconds.</label></legend>
+                <input name="logcommref" type="range" min="15" max="120" step="5" value="45">
             </fieldset>
 
         </fieldset>

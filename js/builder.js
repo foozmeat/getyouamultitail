@@ -18,7 +18,7 @@ var compile_logs = function() {
         var log_dict = {};
         var idx = logformline.attr("data-group");
 
-        var logfile = logformline.find("#logfile" + idx);
+        var logfile = logformline.find("#logpath" + idx);
 
         log_dict.label = logformline.find("#loglabel" + idx).val();
         log_dict.color = logformline.find("input[name=logcolor" + idx + "]:checked").val();
@@ -26,11 +26,13 @@ var compile_logs = function() {
         log_dict.file = logfile.val();
         log_dict.ssh = logformline.find("#logssh" + idx).val();
 
-        // log_dict.split = logformline.find("#logsplit" + idx).is(':checked');
         log_dict.split = logformline.find("input[name=logsplit" + idx + "]:checked").val() == 1;
 
-        log_dict.remote = logformline.find("#logremote" + idx).is(':checked');
-        log_dict.comm = logformline.find("#logcomm" + idx).is(':checked');
+        log_dict.remote = logformline.find("input[name=loglocalremote" + idx + "]:checked").val() == 1;
+
+        log_dict.comm = logformline.find("input[name=logfilecomm" + idx + "]:checked").val() == 1;
+
+
         log_dict.commref = logformline.find("#logcommref" + idx).val();
 
         log_dict.highfilt = logformline.find("#loghighfilt" + idx).is(':checked');
@@ -212,21 +214,21 @@ var update_log_group = function(evt) {
         var ctl = evt.target;
         var datagroup = loggroup.data("group");
 
-        if (ctl.id == "logremote" + datagroup) {
+        if (ctl.name == "loglocalremote" + datagroup) {
 
             targetGroup = $("#logssh" + datagroup);
 
-            if ($(ctl).is(':checked')) {
+            if ($(ctl).val() == 1) {
                 targetGroup.prop('disabled', false);
             } else {
                 targetGroup.prop('disabled', true);
             }
 
-        } else if (ctl.id == "logcomm" + datagroup) {
+        } else if (ctl.name == "logfilecomm" + datagroup) {
 
             targetGroup = $("#logcommref" + datagroup);
 
-            if ($(ctl).is(':checked')) {
+            if ($(ctl).val() == 1) {
                 targetGroup.prop('disabled', false);
             } else {
                 targetGroup.prop('disabled', true);
@@ -264,9 +266,6 @@ var update_controls = function() {
 
         $("#builder").sortable("disable");
     }
-
-    // $("#builder .logsplit:eq(0)").bootstrapSwitch('disabled', true);
-    // $("#builder .logsplit:gt(0)").bootstrapSwitch('disabled', false);
 
     $("#builder .addbuttondiv").hide();
     $("#builder .addbuttondiv").last().show();
@@ -322,33 +321,13 @@ var add_log = function(logline) {
 
         }
 
-        $("#logfile", newLog).val(logline.file);
+        $("#logpath", newLog).val(logline.file);
 
         $("#loghighfilt", newLog).prop("checked", logline.highfilt);
         $("#logfilter", newLog).val(logline.filter);
 
 
     }
-
-    // $(".logsplit", newLog).bootstrapSwitch({
-    //     onText: "Split",
-    //     offText: "Merge"
-    // });
-    //
-    // $(".logremote", newLog).bootstrapSwitch({
-    //     onText: "Remote",
-    //     offText: "Local"
-    // });
-    //
-    // $(".logcomm", newLog).bootstrapSwitch({
-    //     onText: "Command",
-    //     offText: "File"
-    // });
-    //
-    // $(".loghighfilt", newLog).bootstrapSwitch({
-    //     onText: "Filter",
-    //     offText: "Highlight"
-    // });
 
     $(".addbutton", newLog).click(function(e) {
         e.preventDefault();
@@ -407,7 +386,6 @@ var parse_query = function() {
         var temp_log_structure = JSON.parse(json_string);
         $("#description").val(temp_log_structure.desc);
         $("#markinterval").val(temp_log_structure.m);
-        // $("#vertical").bootstrapSwitch('state', temp_log_structure.vh);
 
         for (var i = 0; i < temp_log_structure.l.length; i++) {
             var log = temp_log_structure.l[i];
@@ -430,7 +408,6 @@ var reset = function() {
     $("#description").val("");
     $("#markinterval").val(0);
     $("#builder .loggroup").remove();
-    // $("#vertical").bootstrapSwitch('state', false);
 
     add_log();
 
@@ -454,19 +431,6 @@ $(document).ready(function() {
     // if (now.getHours() > 18 || now.getHours() < 4 ) {
         // $('body').addClass('dark');
     // }
-
-    // $.fn.bootstrapSwitch.defaults.size = 'small';
-    // $.fn.bootstrapSwitch.defaults.onColor = 'default';
-    // $.fn.bootstrapSwitch.defaults.offColor = 'default';
-    // $.fn.bootstrapSwitch.defaults.onSwitchChange = function (evt, state) {
-    //     update(evt)
-    // };
-    // $.fn.bootstrapSwitch.defaults.labelWidth = 10;
-
-    // $("#vertical").bootstrapSwitch({
-    //     onText: "Vertical",
-    //     offText: "Horizontal"
-    // });
 
     $("#builder").sortable({
         items: "> .loggroup",
