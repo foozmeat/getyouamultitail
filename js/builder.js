@@ -51,7 +51,7 @@ var compile_logs = function() {
     log_structure.vh = $("input[name=splitdir]:checked").val() == 'vertical';
 
     delete log_structure.m;
-    log_structure.m = $("#markinterval").val();
+    log_structure.m = parseInt($("#markinterval").val());
     $('#markint').text(log_structure.m);
 
     // Get rid of any empty keys to save space
@@ -183,7 +183,7 @@ var update = function(evt) {
 
     update_log_group(evt);
     $('#result').text(create_command());
-    $('#link a').attr("href", script_link());
+    $('#link').data("url", script_link());
 
     // $('.twitter-share-button').attr("data-url", script_link());
 };
@@ -452,6 +452,12 @@ $(document).ready(function() {
     $("#resetbutton").click(function(e) {
         e.preventDefault();
         reset();
+    });
+
+    $("#link").click(function(e) {
+        e.preventDefault();
+        window.location = $("#link").data("url");
+
     });
 
     new Clipboard('#copybutton');
