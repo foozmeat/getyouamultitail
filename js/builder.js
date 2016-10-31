@@ -33,6 +33,7 @@ var compile_logs = function() {
         log_dict.comm = logformline.find("input[name=logfilecomm" + idx + "]:checked").val() == 1;
 
         log_dict.commref = logformline.find("#logcommref" + idx).val();
+        $("#logint" + idx).text(log_dict.commref);
 
         log_dict.highfilt = logformline.find("input[name=loghighfilt" + idx + "]:checked").val() == 1;
 
@@ -225,7 +226,7 @@ var update_log_group = function(evt) {
 
         } else if (ctl.name == "logfilecomm" + datagroup) {
 
-            targetGroup = $("#logcommref" + datagroup);
+            targetGroup = $("#logcommrefgroup" + datagroup);
 
             if ($(ctl).val() == 1) {
                 targetGroup.prop('disabled', false);
@@ -316,7 +317,7 @@ var add_log = function(logline) {
         $("#logcomm", newLog).prop("checked", logline.comm);
 
         if (logline.comm) {
-            $("#logcommref", newLog).prop('disabled', false);
+            $("#logcommrefgroup", newLog).prop('disabled', false);
         }
 
         if (logline.commref) {
