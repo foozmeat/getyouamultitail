@@ -234,10 +234,10 @@ var update_log_group = function(evt) {
                 targetGroup.prop('disabled', true);
             }
 
-        } else if (ctl.id == "logsplit" + datagroup) {
+        } else if (ctl.name == "logsplit" + datagroup) {
             targetGroup = $(ctl).parents(".loggroup");
 
-            if ($(ctl).is(':checked')) {
+            if ($(ctl).val() == 1) {
                 targetGroup.addClass("splitlog");
             } else {
                 targetGroup.removeClass("splitlog");
@@ -292,9 +292,10 @@ var add_log = function(logline) {
     newLog[0].style.display = 'block';
 
     if (logline) {
-        // $("input[name=logsplit][value='some value']").prop("checked",true);
 
-        $("#logsplit", newLog).prop("checked", logline.split);
+        $("input[name=logsplit][value=1]", newLog).prop("checked",logline.split);
+
+        // $("#logsplit", newLog).prop("checked", logline.split);
 
         if (logline.split) {
             newLog.addClass("splitlog");
@@ -303,7 +304,9 @@ var add_log = function(logline) {
         $("#loglabel", newLog).val(logline.label);
         $("#title", newLog).text(logline.label);
 
-        $("#logcolor-" + logline.color, newLog).prop("checked", true);
+        // $("#logcolor-" + logline.color, newLog).prop("checked", true);
+
+        $("input[name=logcolor][value=" + logline.color + "]", newLog).prop("checked",true);
 
         newLog.attr("data-color", logline.color);
 
