@@ -32,11 +32,11 @@ var compile_logs = function() {
 
         log_dict.comm = logformline.find("input[name=logfilecomm" + idx + "]:checked").val() == 1;
 
-
         log_dict.commref = logformline.find("#logcommref" + idx).val();
 
-        log_dict.highfilt = logformline.find("#loghighfilt" + idx).is(':checked');
-        log_dict.filter = logformline.find("#logfilter" + idx).val();
+        log_dict.highfilt = logformline.find("input[name=loghighfilt" + idx + "]:checked").val() == 1;
+
+        log_dict.filter = logformline.find("#logfilterregex" + idx).val();
 
         log_structure.l[i] = log_dict;
 
@@ -79,7 +79,6 @@ var compile_logs = function() {
 
 var script_link = function() {
     return sprintf("%s//%s%s?d=%s", document.location.protocol, document.location.hostname, document.location.pathname, log_structure.encoded);
-
 };
 
 var create_command = function() {
@@ -242,12 +241,13 @@ var update_log_group = function(evt) {
             } else {
                 targetGroup.removeClass("splitlog");
             }
+
         } else if (ctl.name == "logcolor" + datagroup) {
 
             targetGroup = $(ctl).parents(".loggroup");
             targetGroup.attr("data-color", $(ctl).val());
 
-        } else if (ctl.id == "loglable" + datagroup) {
+        } else if (ctl.id == "loglabel" + datagroup) {
             $("title" + datagroup).text = $(ctl).val();
         }
     }
@@ -291,6 +291,8 @@ var add_log = function(logline) {
     newLog[0].style.display = 'block';
 
     if (logline) {
+        // $("input[name=logsplit][value='some value']").prop("checked",true);
+
         $("#logsplit", newLog).prop("checked", logline.split);
 
         if (logline.split) {
@@ -298,12 +300,13 @@ var add_log = function(logline) {
         }
 
         $("#loglabel", newLog).val(logline.label);
-        // $("#logcolor", newLog).val(logline.color);
-        $("input[name=logcolor" + idx + "]:checked").val(logline.color);
+
+        $("#logcolor-" + logline.color, newLog).prop("checked", true);
 
         newLog.attr("data-color", logline.color);
 
         $("#logremote", newLog).prop("checked", logline.remote);
+
         $("#logssh", newLog).val(logline.ssh);
 
         if (logline.remote) {
@@ -318,14 +321,13 @@ var add_log = function(logline) {
 
         if (logline.commref) {
             $("#logcommref", newLog).val(logline.commref);
-
         }
 
         $("#logpath", newLog).val(logline.file);
 
-        $("#loghighfilt", newLog).prop("checked", logline.highfilt);
-        $("#logfilter", newLog).val(logline.filter);
+        $("#logfilterregex", newLog).val(logline.filter);
 
+        $("#logfilter", newLog).prop("checked", logline.highfilt);
 
     }
 

@@ -149,14 +149,15 @@
 
         </fieldset>
 
-        <fieldset class="filterhighlight">
+        <fieldset class="logfilterhighlight">
             <legend>Filter or Highlight?</legend>
             <label for="loghighlight">Highlight</label>
-            <input type="radio" id="loghighlight" name="loghighfilt" checked onclick="document.getElementById('logfilterregex').setAttribute('disabled');">
+            <input type="radio" id="loghighlight" name="loghighfilt" value="0" checked>
 
             <label for="logfilter">Filter</label>
-            <input type="radio" id="logfilter" name="loghighfilt" onclick="document.getElementById('logfilterregex').removeAttribute('disabled');">
-            <input type="text" id="logfilterregex" placeholder="regex" disabled>
+            <input type="radio" id="logfilter" name="loghighfilt" value="1">
+
+            <input type="text" id="logfilterregex" placeholder="regex">
         </fieldset>
 
         <menu class="buttons">
