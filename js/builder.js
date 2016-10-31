@@ -301,6 +301,7 @@ var add_log = function(logline) {
         }
 
         $("#loglabel", newLog).val(logline.label);
+        $("#title", newLog).text(logline.label);
 
         $("#logcolor-" + logline.color, newLog).prop("checked", true);
 
