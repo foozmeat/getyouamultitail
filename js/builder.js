@@ -249,7 +249,7 @@ var update_log_group = function(evt) {
             targetGroup.attr("data-color", $(ctl).val());
 
         } else if (ctl.id == "loglabel" + datagroup) {
-            $("title" + datagroup).text = $(ctl).val();
+            $("#title" + datagroup).text($(ctl).val());
         }
     }
 
