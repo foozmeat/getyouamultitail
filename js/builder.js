@@ -253,14 +253,10 @@ var update_log_group = function(evt) {
             targetGroup.attr("data-color", $(ctl).val());
 
         } else if (ctl.id == "loglabel" + datagroup) {
-            $("#title" + datagroup).text($(ctl).val());
+            $("#title" + datagroup).text( '[' + $(ctl).val() + ']');
         }
     }
 
-    update_controls();
-};
-
-var update_controls = function() {
     if (num_logs() > 1) {
         $(".deletebutton").show();
 
@@ -274,7 +270,6 @@ var update_controls = function() {
 
     $("#builder .addbuttondiv").hide();
     $("#builder .addbuttondiv").last().show();
-
 };
 
 var dupe_log = function(evt) {
@@ -320,7 +315,7 @@ var add_log = function(logline) {
         }
 
         $("#loglabel", newLog).val(logline.label);
-        $("#title", newLog).text(logline.label);
+        $("#title", newLog).text('[' + logline.label + ']');
 
         if (!logline.color) {
             logline.color = 'white';
@@ -353,6 +348,10 @@ var add_log = function(logline) {
         $("#logfilterregex", newLog).val(logline.filter);
 
         $("#logfilter", newLog).prop("checked", logline.highfilt);
+
+        newLog.attr('data-state', 'collapsed');
+        $(".editbutton", newLog).text('Edit');
+
 
     }
 
