@@ -260,12 +260,12 @@ var update_controls = function() {
     if (num_logs() > 1) {
         $(".deletebutton").show();
 
-        $("#builder").sortable("enable");
+        // $("#builder").sortable("enable");
 
     } else {
         $(".deletebutton").hide();
 
-        $("#builder").sortable("disable");
+        // $("#builder").sortable("disable");
     }
 
     $("#builder .addbuttondiv").hide();
@@ -441,16 +441,16 @@ $(document).ready(function() {
         // $('body').addClass('dark');
     // }
 
-    $("#builder").sortable({
-        items: "> .loggroup",
-        opacity: 0.75,
-        cursor: "move",
-        axis: "y",
-        stop: function(event, ui) {
-            update(event);
-        }
-
-    });
+    // $("#builder").sortable({
+    //     items: "> .loggroup",
+    //     opacity: 0.75,
+    //     cursor: "move",
+    //     axis: "y",
+    //     stop: function(event, ui) {
+    //         update(event);
+    //     }
+    //
+    // });
 
     parse_query();
 
