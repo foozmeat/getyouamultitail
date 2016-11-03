@@ -70,7 +70,8 @@
         <button id="resetbutton">Reset</button>
     </menu>
 
-    <p class="credits">Code by <a target="_blank" href="https://twitter.com/foozmeat">@foozmeat</a> / Visuals by <a target="_blank" href="https://twitter.com/timjcoulter">@timjcoulter</a></p>
+    <p class="credits">Code by <a target="_blank" href="https://twitter.com/foozmeat">@foozmeat</a> /
+        Visuals by <a target="_blank" href="https://twitter.com/timjcoulter">@timjcoulter</a></p>
 
 
     <!-- Hidden form template -->
@@ -82,7 +83,7 @@
             <legend>Label and Color</legend>
 
             <label for="loglabel">Label</label>
-            <input type="text" class="loglabel" id="loglabel" placeholder="Label" onchange="this.parentNode.parentNode.getElementsByTagName('h2')[0].innerHTML = this.value;">
+            <input type="text" class="loglabel" id="loglabel" placeholder="Label">
 
             <fieldset class="color-chooser">
                 <legend>Colors</legend>
@@ -112,10 +113,10 @@
 
         <fieldset class="splitpane">
             <!-- <legend>Split or Merge?</legend> -->
-            <label for="logsplit-y">Split</label>
-            <input type="radio" id="logsplit" name="logsplit" value="1">
+            <label for="logsplitradio">Split</label>
+            <input type="radio" id="logsplitradio" name="logsplit" value="1">
 
-            <label for="logmerge-n">Merge</label>
+            <label for="logmerge">Merge</label>
             <input type="radio" id="logmerge" name="logsplit" value="0" checked>
         </fieldset>
 
@@ -127,7 +128,7 @@
 
             <label for="log-remote">Remote</label>
             <input type="radio" id="log-remote" name="loglocalremote" value="1">
-            
+
             <input type="text" id="logssh" placeholder="user@host" disabled>
         </fieldset>
 

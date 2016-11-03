@@ -26,13 +26,13 @@ var compile_logs = function() {
         log_dict.file = logfile.val();
         log_dict.ssh = logformline.find("#logssh" + idx).val();
 
-        log_dict.split = logformline.find("input[name=logsplit" + idx + "]:checked").val() == 1;
+        log_dict.split = logformline.find("#logsplitradio" + idx + ":checked").val() == 1;
 
         log_dict.remote = logformline.find("input[name=loglocalremote" + idx + "]:checked").val() == 1;
 
         log_dict.comm = logformline.find("input[name=logfilecomm" + idx + "]:checked").val() == 1;
 
-        log_dict.commref = logformline.find("#logcommref" + idx).val();
+        log_dict.commref = parseInt(logformline.find("#logcommref" + idx).val());
         $("#logint" + idx).text(log_dict.commref);
 
         log_dict.highfilt = logformline.find("input[name=loghighfilt" + idx + "]:checked").val() == 1;
@@ -69,7 +69,7 @@ var compile_logs = function() {
     delete log_structure.encoded;
 
     var json = JSON.stringify(log_structure);
-    console.log(json.length, json);
+    console.log(json);
 
     var compressed = LZString.compressToEncodedURIComponent(json);
     // console.log(compressed.length, compressed);
@@ -292,27 +292,22 @@ var add_log = function(logline) {
     newLog[0].style.display = 'block';
 
     if (logline) {
-
-        $("input[name=logsplit][value=1]", newLog).prop("checked",logline.split);
-
-        // $("#logsplit", newLog).prop("checked", logline.split);
+        // console.log(logline);
+        console.log($("#logsplitradio", newLog)[0]);
 
         if (logline.split) {
-            newLog.addClass("splitlog");
+            $("#logsplitradio", newLog).prop("checked", logline.split);
+            // newLog.addClass("splitlog");
         }
 
         $("#loglabel", newLog).val(logline.label);
         $("#title", newLog).text(logline.label);
 
-        // $("#logcolor-" + logline.color, newLog).prop("checked", true);
-
         $("input[name=logcolor][value=" + logline.color + "]", newLog).prop("checked",true);
 
         newLog.attr("data-color", logline.color);
 
-        $("input[name=loglocalremote][value=1]", newLog).prop("checked",logline.remote);
-
-        // $("#logremote", newLog).prop("checked", logline.remote);
+        $("input[name=loglocalremote][value=1]", newLog).prop("checked", logline.remote);
 
         $("#logssh", newLog).val(logline.ssh);
 
@@ -391,6 +386,7 @@ var parse_query = function() {
 
     if (data) {
         var json_string = LZString.decompressFromEncodedURIComponent(data);
+        console.log("Parsed", json_string);
 
         var temp_log_structure = JSON.parse(json_string);
         $("#description").val(temp_log_structure.desc);
