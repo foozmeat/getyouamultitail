@@ -297,7 +297,7 @@ var add_log = function(logline) {
 
         if (logline.split) {
             $("#logsplitradio", newLog).prop("checked", logline.split);
-            // newLog.addClass("splitlog");
+            newLog.addClass("splitlog");
         }
 
         $("#loglabel", newLog).val(logline.label);
