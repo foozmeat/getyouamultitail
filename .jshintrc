@@ -2,8 +2,9 @@
   "browser" : true,
   "jquery" : false,
   "-W117": true,
+  "-W083": true,
   "globalstrict": true,
-  
+
   "globals": {
     "$": false
   }
