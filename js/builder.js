@@ -49,7 +49,11 @@ var compile_logs = function() {
     }
 
     delete log_structure.vh;
-    log_structure.vh = $("input[name=splitdir]:checked").val() == 'vertical';
+    var vh_val = $("input[name=splitdir]:checked").val() == 'vertical';
+
+    if (vh_val) {
+        log_structure.vh = vh_val;
+    }
 
     delete log_structure.m;
     log_structure.m = parseInt($("#markinterval").val());
@@ -309,8 +313,6 @@ var add_log = function(logline) {
     newLog[0].style.display = 'block';
 
     if (logline) {
-        // console.log(logline);
-        console.log($("#logsplitradio", newLog)[0]);
 
         if (logline.split) {
             $("#logsplitradio", newLog).prop("checked", logline.split);
@@ -413,6 +415,7 @@ var parse_query = function() {
         var temp_log_structure = JSON.parse(json_string);
         $("#description").val(temp_log_structure.desc);
         $("#markinterval").val(temp_log_structure.m);
+        $("#splitdir-v").prop("checked", temp_log_structure.vh);
 
         for (var i = 0; i < temp_log_structure.l.length; i++) {
             var log = temp_log_structure.l[i];
