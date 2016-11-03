@@ -310,7 +310,9 @@ var add_log = function(logline) {
 
         newLog.attr("data-color", logline.color);
 
-        $("#logremote", newLog).prop("checked", logline.remote);
+        $("input[name=loglocalremote][value=1]", newLog).prop("checked",logline.remote);
+
+        // $("#logremote", newLog).prop("checked", logline.remote);
 
         $("#logssh", newLog).val(logline.ssh);
 
