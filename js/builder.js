@@ -285,6 +285,23 @@ var dupe_log = function(evt) {
     }
 };
 
+var toggle_log = function(evt) {
+    if (evt) {
+
+        var loggroup = $(evt.target).parents("section");
+
+        if (loggroup.attr('data-state') === 'expanded') {
+            loggroup.attr('data-state', 'collapsed');
+            $(evt.target).text('Edit');
+
+        } else {
+            loggroup.attr('data-state', 'expanded');
+            $(evt.target).text('Collapse');
+        }
+    }
+
+};
+
 var add_log = function(logline) {
 
     var newLog = $("#logformlinetemplate").clone();
@@ -303,7 +320,11 @@ var add_log = function(logline) {
         $("#loglabel", newLog).val(logline.label);
         $("#title", newLog).text(logline.label);
 
-        $("input[name=logcolor][value=" + logline.color + "]", newLog).prop("checked",true);
+        if (!logline.color) {
+            logline.color = 'white';
+        }
+
+        $("#logcolor-" + logline.color, newLog).prop('checked', true);
 
         newLog.attr("data-color", logline.color);
 
@@ -348,8 +369,9 @@ var add_log = function(logline) {
         dupe_log(e);
     });
 
-    $(".editbutton", newLog).click(function(e) {
-        e.preventDefault();
+    $(".editbutton", newLog).click(function(evt) {
+        evt.preventDefault();
+        toggle_log(evt);
     });
 
     newLog.find("*").each(function(idx, node) {

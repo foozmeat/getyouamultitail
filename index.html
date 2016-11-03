@@ -75,7 +75,7 @@
 
 
     <!-- Hidden form template -->
-    <section id="logformlinetemplate" data-color="logcolor-white" class="loggroup">
+    <section id="logformlinetemplate" data-color="logcolor-white" class="loggroup" data-state="expanded">
 
         <h2 class="newtitle" id="title">Add a Log</h2>
 
@@ -107,7 +107,7 @@
                 <input type="radio" name="logcolor" value="magenta" id="logcolor-magenta">
 
                 <label for="logcolor-white">White</label>
-                <input type="radio" name="logcolor" value="white" id="logcolor-white" checked>
+                <input type="radio" name="logcolor" value="white" id="logcolor-white">
             </fieldset>
         </fieldset>
 
@@ -164,7 +164,7 @@
         </fieldset>
 
         <menu class="buttons">
-            <button name="editbutton" class="editbutton" onclick="this.parentNode.setAttribute('data-state','expanded');">Edit</button>
+            <button name="editbutton" class="editbutton">Collapse</button>
             <button name="addbutton" class="addbutton">Add</button>
             <button name="dupebutton" class="dupebutton">Duplicate</button>
             <button name="deletebutton" class="deletebutton">Trash</button>
