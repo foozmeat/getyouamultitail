@@ -253,7 +253,7 @@ var update_log_group = function(evt) {
             targetGroup.attr("data-color", $(ctl).val());
 
         } else if (ctl.id == "loglabel" + datagroup) {
-            $("#title" + datagroup).text( '[' + $(ctl).val() + ']');
+            $("#title" + datagroup).text( '[' + $(ctl).val() + '] ' + log_structure.l[datagroup].file);
         }
     }
 
@@ -315,7 +315,7 @@ var add_log = function(logline) {
         }
 
         $("#loglabel", newLog).val(logline.label);
-        $("#title", newLog).text('[' + logline.label + ']');
+        $("#title", newLog).text('[' + logline.label + '] ' + logline.file);
 
         if (!logline.color) {
             logline.color = 'white';
