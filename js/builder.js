@@ -185,8 +185,8 @@ var create_command = function() {
 
 var update = function(evt) {
 
-    update_log_group(evt);
     $('#result').text(create_command());
+    update_log_group(evt);
     $('#link').data("url", script_link());
 
     // $('.twitter-share-button').attr("data-url", script_link());
@@ -253,7 +253,7 @@ var update_log_group = function(evt) {
             targetGroup.attr("data-color", $(ctl).val());
 
         } else if (ctl.id == "loglabel" + datagroup) {
-            $("#title" + datagroup).text( '[' + $(ctl).val() + '] ' + log_structure.l[datagroup].file);
+            $("#title" + datagroup).text( title(log_structure.l[datagroup]));
         }
     }
 
@@ -315,7 +315,7 @@ var add_log = function(logline) {
         }
 
         $("#loglabel", newLog).val(logline.label);
-        $("#title", newLog).text('[' + logline.label + '] ' + logline.file);
+        $("#title", newLog).text(title(logline));
 
         if (!logline.color) {
             logline.color = 'white';
@@ -402,6 +402,19 @@ var add_log = function(logline) {
 
     newLog.change();
 
+};
+
+var title = function(logline) {
+
+  console.log(logline);
+
+  var title = '[' + logline.label + '] ' + logline.file;
+
+  if (logline.remote) {
+    title += ' ' + logline.ssh;
+  }
+
+  return title;
 };
 
 var parse_query = function() {
