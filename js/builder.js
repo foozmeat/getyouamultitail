@@ -147,10 +147,10 @@ var create_command = function () {
             }
 
             if (log.remote && !log.comm) {
-                log_commands += sprintf("'ssh %s \"tail -q -f %s\"' ", log.ssh, log.file);
+                log_commands += sprintf("'ssh -t %s \"tail -q -f %s\"' ", log.ssh, log.file);
 
             } else if (log.remote && log.comm) {
-                log_commands += sprintf("'ssh %s \"%s\"' ", log.ssh, log.file);
+                log_commands += sprintf("'ssh -t %s \"%s\"' ", log.ssh, log.file);
 
             } else if (!log.remote) {
                 log_commands += sprintf("%s ", log.file);
